@@ -1,0 +1,33 @@
+@use "../../../styles/utils/_vars.scss" as *;
+@use "../../../styles/fonts//typography.scss" as *;
+
+$counter-position: -6.5px;
+$counter-size: 14px;
+
+.container {
+  position: relative;
+  width: $icon-size;
+  height: $icon-size;
+}
+
+.counter {
+  position: absolute;
+  top: $counter-position;
+  right: $counter-position;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $counter-size;
+  height: $counter-size;
+  background: $red-accent-color;
+  border-radius: 50%;
+  border: 1px solid $white-color;
+}
+
+.label {
+  @include button-text;
+
+  color: $white-color;
+  font-size: 7px;
+  line-height: 9.5px;
+}
