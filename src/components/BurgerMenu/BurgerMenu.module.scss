@@ -9,7 +9,7 @@ $burger-top-margin_bottom: 32px;
 $burger-item-margin: 24px;
 $burger-icon-padding: 22px 72px;
 
-// waiting for header
+  // waiting for header
 .burger {
 /*   position: fixed;
   top: 0;
@@ -114,7 +114,6 @@ $burger-icon-padding: 22px 72px;
   justify-content: space-between;
   align-items: center;
 }
-
 
 .burger_top_actions {
   @extend .burger__top;
