@@ -41,14 +41,14 @@
     justify-content: center;
 
     &-message {
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 15px;
-        font-family: "Mont", sans-serif;
-        color: $secondary-color;
-        letter-spacing: 0.1em;
-        margin-right: 16px;
-      }
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 15px;
+      font-family: "Mont", sans-serif;
+      color: $secondary-color;
+      letter-spacing: 0.1em;
+      margin-right: 16px;
+    }
 
     &-arrow {
       transform: rotate(180deg);
