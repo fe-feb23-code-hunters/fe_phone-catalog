@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './productCard.module.scss';
+import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 
 type Props = {
   imgURL: string,
@@ -53,7 +54,9 @@ export const ProductCard: React.FC<Props> = ({
           </button>
           <div
             className={classes.card__buttons__favorite}
-          />
+          >
+            <HeartOutlined />
+          </div>
         </div>
       </div>
     </div>

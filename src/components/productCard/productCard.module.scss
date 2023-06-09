@@ -116,14 +116,15 @@
         }
 
         &__favorite {
+            display: flex;
             width: 40px;
             height: 40px;
             background: none;
             border: 1px solid #B4BDC4;
             cursor: pointer;
-            background-image: url(../../img/heart.svg);
-            background-repeat: no-repeat;
-            background-position: center;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
             transition: border 0.3s;
 
             &:hover {
