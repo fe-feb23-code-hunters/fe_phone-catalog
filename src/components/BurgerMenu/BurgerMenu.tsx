@@ -1,57 +1,64 @@
-import './BurgerMenu.scss';
+import { Link } from 'react-router-dom';
+import classes from './BurgerMenu.module.scss';
 import Close from '../../icons/Close/Close';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 
 export const BurgerMenu = () => {
   return (
-    <nav className="burger" id="menu">
-      <div className="container">
-        <div className="burger__content">
-          <div className="burger__top top-actions">
-            <a href="/" className="logo">
+    <nav className={classes.burger} id="menu">
+      <div className={classes.container}>
+        <div className={classes.burger__content}>
+          <div className={classes.burger_top_actions}>
+            <Link to="/" className="logo">
               <img
                 src={`${process.env.PUBLIC_URL}/img/logo/logo.png`}
                 alt="Nice Gadgets Logo"
-                className="logo__img"
+                className={classes.logo__img}
               />
-            </a>
-            <a href="/" className="burger__top_close">
+            </Link>
+            <Link to="/" className={classes.burger__top_close}>
               <Close />
-            </a>
+            </Link>
           </div>
-          <ul className="burger__list">
-            <li className="burger__item">
-              <a href="/" className="burger__link">
+
+          <ul className={classes.burger__list}>
+            <li className={classes.burger__item}>
+              <Link to="/" className={classes.burger__link}>
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="burger__item">
-              <a href="/phone" className="burger__link">
+
+            <li className={classes.burger__item}>
+              <Link to="/phone" className={classes.burger__link}>
                 Phones
-              </a>
+              </Link>
             </li>
-            <li className="burger__item">
-              <a href="/tablets" className="burger__link">
+
+            <li className={classes.burger__item}>
+              <Link to="/tablets" className={classes.burger__link}>
                 Tablets
-              </a>
+              </Link>
             </li>
-            <li className="burger__item">
-              <a href="/accesories" className="burger__link">
+
+            <li className={classes.burger__item}>
+              <Link to="/accesories" className={classes.burger__link}>
                 Accesories
-              </a>
+              </Link>
             </li>
           </ul>
-          <div className="burger__bottom bottom-actions">
-            <a href="/" className="burger__bottom-icon">
+
+          <div className={classes.burger__bottom}>
+            <Link to="/favourite" className={classes.burger__bottom_icon}>
               <HeartOutlined />
-            </a>
-            <a
-              href="/"
-              className="burger__bottom-icon burger__bottom-icon--left"
+            </Link>
+
+            <Link
+              to="/shoppingbag"
+              className={classes.burger__bottom_icon__left}
             >
               <ShoppingBag />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
