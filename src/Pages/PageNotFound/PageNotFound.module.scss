@@ -1,0 +1,41 @@
+@use '../../styles/utils/mixins' as *;
+@use '../../styles/fonts/typography.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @include onMobile {
+    @include mobile-h3;
+  }
+
+  @include onTablet {
+    @include desktop-tablet-h4;
+  }
+
+  @include onDesktop {
+    @include desktop-tablet-h3;
+  }
+}
+
+.page_not_found {
+  @include onMobile {
+    height: 150px;
+    width: 200px;
+  }
+
+  @include onTablet {
+    margin-top: 100px;
+    height: 200px;
+    width: 300px;
+  }
+
+  @include onDesktop {
+    margin-top: 100px;
+    height: 300px;
+    width: 600px;
+  }
+}
