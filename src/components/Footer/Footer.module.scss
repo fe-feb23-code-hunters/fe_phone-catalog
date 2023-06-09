@@ -1,6 +1,10 @@
-@import "../../styles/utils/mixins";
-@import "../../styles/utils/vars";
-@import "../../styles/fonts/fonts.scss";
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+$button-size: 32px;
+$footer-padding: 32px;
+$element-transition: 0.5s ease-in-out;
 
 * {
   box-sizing: border-box;
@@ -20,19 +24,19 @@
 
   height: 320px;
   padding: 35px 16px;
-  box-shadow: 0 -1px 0 #e2e6e9;
+  box-shadow: 0 -1px 0 $elements-color;
 
   @include onTablet {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
 
-    padding: 32px;
+    padding: $footer-padding;
     height: 96px;
   }
 
   @include onDesktop {
-    padding: 32px 152px;
+    padding: $footer-padding 152px;
   }
 
   &__top-action {
@@ -41,13 +45,16 @@
     justify-content: center;
 
     &-message {
-      font-weight: 300;
-      font-size: 12px;
-      line-height: 15px;
-      font-family: "Mont", sans-serif;
+      @include small-text;
       color: $secondary-color;
       letter-spacing: 0.1em;
       margin-right: 16px;
+      cursor: pointer;
+      transition: color $element-transition;
+
+      &:hover {
+        color: $primary-color;
+      }
     }
 
     &-arrow {
@@ -59,8 +66,8 @@
       justify-content: center;
       align-items: center;
 
-      width: 32px;
-      height: 32px;
+      width: $button-size;
+      height: $button-size;
       padding: 0;
       border: 1px solid $icons-color;
       background-color: $white-color;
@@ -68,7 +75,7 @@
 
       &:hover {
         border-color: $primary-color;
-        transition: border-color 0.5s ease-in-out;
+        transition: border-color $element-transition;
       }
     }
   }
@@ -104,12 +111,8 @@
     &-link {
       text-decoration: none;
       color: $secondary-color;
-      text-transform: uppercase;
-      font-weight: 800;
-      font-family: "Mont", sans-serif;
-      font-size: 12px;
-      line-height: 11px;
-      letter-spacing: 0.04em;
+      @include uppercased-text;
+
       display: inline-block;
       padding: 15px 0;
       transition: color 0.5s ease-in-out;

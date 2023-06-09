@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import Arrow from '../../icons/Arrow';
 import classes from './Footer.module.scss';
@@ -8,6 +9,12 @@ const handleScrollToTop = () => {
     left: 0,
     behavior: 'smooth',
   });
+};
+
+const handleKeyDown = (event: React.KeyboardEvent<HTMLParagraphElement>) => {
+  if (event.ctrlKey && event.key === 'PageUp') {
+    handleScrollToTop();
+  }
 };
 
 export const Footer = () => {
@@ -56,7 +63,15 @@ export const Footer = () => {
         </ul>
 
         <div className={topAction}>
-          <p className={topActionMessage}>Back to top</p>
+          <p
+            className={topActionMessage}
+            onClick={handleScrollToTop}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+            role="button"
+          >
+            Back to top
+          </p>
           <button
             type="button"
             className={topActionButton}
