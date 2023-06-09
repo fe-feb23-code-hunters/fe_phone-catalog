@@ -39,33 +39,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
-  &__top-action-message {
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 15px;
-    font-family: "Mont", sans-serif;
-    color: $secondary-color;
-    letter-spacing: 0.1em;
-    margin-right: 16px;
-  }
+    &-message {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 15px;
+        font-family: "Mont", sans-serif;
+        color: $secondary-color;
+        letter-spacing: 0.1em;
+        margin-right: 16px;
+      }
 
-  &__top-action-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &-arrow {
+      transform: rotate(180deg);
+    }
 
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 1px solid $icons-color;
-    background-color: $white-color;
-    cursor: pointer;
+    &-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    &:hover {
-      border-color: $primary-color;
-      transition: border-color 0.5s ease-in-out;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid $icons-color;
+      background-color: $white-color;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $primary-color;
+        transition: border-color 0.5s ease-in-out;
+      }
     }
   }
 

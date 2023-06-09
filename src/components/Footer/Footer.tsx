@@ -21,6 +21,7 @@ export const Footer = () => {
     'footer__nav-list-link': navListLink,
     'footer__top-action-message': topActionMessage,
     'footer__top-action-button': topActionButton,
+    'footer__top-action-arrow': topActionArrow,
   } = classes;
 
   return (
@@ -61,7 +62,7 @@ export const Footer = () => {
             className={topActionButton}
             onClick={handleScrollToTop}
           >
-            <Arrow />
+            <Arrow className={topActionArrow} />
           </button>
         </div>
       </footer>
