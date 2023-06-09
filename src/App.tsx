@@ -1,9 +1,10 @@
-import { BurgerMenu } from './components/BurgerMenu';
+import { Footer } from './components/Footer';
 import './styles/App.scss';
 
 const App = () => (
   <div className="App">
-    <BurgerMenu />
+    <h1>Phone Catalog</h1>
+    <Footer />
   </div>
 );
 
