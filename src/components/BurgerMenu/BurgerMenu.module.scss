@@ -10,19 +10,104 @@ $burger-item-margin: 24px;
 $burger-icon-padding: 22px 72px;
 
 // waiting for header
-/* .burger {
-  position: fixed;
+.burger {
+/*   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
   transform: translateX(-100%);
   transition: transform 0.5s;
-}
 
-.burger:target {
-  transform: translate(0);
-} */
+  &:target {
+    transform: translate(0);
+  } */
+
+  &__content {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__top {
+    height: $top-height;
+    padding-left: $padding-top;
+    margin-bottom: $burger-top-margin_bottom;
+
+    border-bottom: 1px solid $secondary-color;
+
+    &_close {
+      display: block;
+      height: $top-height;
+      padding: $padding-top;
+
+      border-left: 1px solid $secondary-color;
+    }
+  }
+
+  &__list {
+    display: block;
+    padding: 0;
+
+    text-align: center;
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: $burger-item-margin;
+  }
+
+  &__link {
+    @include uppercased-text;
+    padding-bottom: 8px;
+
+    font-weight: 800;
+    color: $secondary-color;
+    text-decoration: none;
+
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+
+    &:hover {
+      color: $primary-color;
+      border-color: $primary-color;
+    }
+
+    &:active {
+      color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: $bottom-height;
+
+    align-items: center;
+
+    &_icon {
+      height: $bottom-height;
+      width: 50%;
+
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-top: 1px solid $secondary-color;
+      padding: $burger-icon-padding;
+      text-align: center;
+
+      &_left {
+        border-left: 1px solid $secondary-color;
+      }
+
+      &:active {
+        border-bottom: 2px solid $primary-color;
+      }
+    }
+  }
+}
 
 .top_actions {
   display: flex;
@@ -30,23 +115,15 @@ $burger-icon-padding: 22px 72px;
   align-items: center;
 }
 
-.burger__content {
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-}
-
-.burger__top {
-  height: $top-height;
-  padding-left: $padding-top;
-  margin-bottom: $burger-top-margin_bottom;
-
-  border-bottom: 1px solid $secondary-color;
-}
 
 .burger_top_actions {
   @extend .burger__top;
   @extend .top_actions;
+}
+
+.burger__bottom_icon__left {
+  @extend .burger__bottom_icon;
+  @extend .burger__bottom_icon_left;
 }
 
 .logo {
@@ -56,81 +133,4 @@ $burger-icon-padding: 22px 72px;
       width: 64px;
     }
   }
-}
-
-.burger__top_close {
-  display: block;
-  height: $top-height;
-  padding: $padding-top;
-
-  border-left: 1px solid $secondary-color;
-}
-
-.burger__list {
-  display: block;
-  padding: 0;
-
-  text-align: center;
-  list-style: none;
-}
-
-.burger__item {
-  margin-bottom: $burger-item-margin;
-}
-
-.burger__link {
-  @include uppercased-text;
-  padding-bottom: 8px;
-
-  font-weight: 800;
-  color: $secondary-color;
-  text-decoration: none;
-
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s;
-}
-
-.burger__link:hover {
-  color: $primary-color;
-  border-color: $primary-color;
-}
-
-.burger__link:active {
-  color: $primary-color;
-  border-color: $primary-color;
-}
-
-.burger__bottom {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: $bottom-height;
-
-  align-items: center;
-}
-
-.burger__bottom_icon {
-  height: $bottom-height;
-  width: 50%;
-
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-top: 1px solid $secondary-color;
-  padding: $burger-icon-padding;
-  text-align: center;
-}
-
-.burger__bottom-icon--left {
-  border-left: 1px solid $secondary-color;
-}
-
-.burger__bottom_icon:active {
-  border-bottom: 2px solid $primary-color;
-}
-
-.burger__bottom_icon__left {
-  @extend .burger__bottom_icon;
-  @extend .burger__bottom-icon--left;
-
 }
