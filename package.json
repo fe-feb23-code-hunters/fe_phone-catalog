@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "eslint src",
+    "lint": "eslint 'src/**/*.tsx'",
     "lint:fix": "eslint --fix src",
     "stylelint": "stylelint './**/*.scss'",
     "stylelint:fix": "stylelint './**/*.scss' --fix",

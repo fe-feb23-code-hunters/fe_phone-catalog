@@ -2,7 +2,7 @@ import { useContext } from 'react';
 // eslint-disable-next-line max-len
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   const { products } = useContext(ProductsContext);
 
   return (
@@ -16,3 +16,5 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
+
+export default HomePage;
