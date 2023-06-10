@@ -1,0 +1,53 @@
+@use "../../../../styles/utils/vars" as *;
+@use "../../../../styles/fonts/typography" as *;
+
+$button-size-default: 32px;
+$button-size-large: 40px;
+
+.button {
+  @include button-text;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $button-size-default;
+  width: $button-size-default;
+  background-color: $white-color;
+  border: 1px solid $icons-color;
+  color: $primary-color;
+  font-weight: 300;
+  transition: border 0.3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $primary-color;
+  }
+
+  &.disabled {
+    border: 1px solid $elements-color;
+    cursor: default;
+
+    &:hover {
+      border: 1px solid $elements-color;
+    }
+  }
+
+  &.selected {
+    border: 1px solid $elements-color;
+
+    &:hover {
+      border: 1px solid $primary-color;
+    }
+  }
+
+  &.filled {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: $white-color;
+  }
+
+  &.large {
+    height: $button-size-large;
+    width: $button-size-large;
+  }
+}
