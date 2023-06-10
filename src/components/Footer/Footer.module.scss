@@ -6,15 +6,12 @@ $button-size: 32px;
 $footer-padding: 32px;
 $element-transition: 0.5s ease-in-out;
 
-* {
-  box-sizing: border-box;
-}
-
 .container {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+  background-color: $white-color;
 }
 
 .footer {

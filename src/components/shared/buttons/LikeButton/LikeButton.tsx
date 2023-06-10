@@ -3,7 +3,7 @@ import HeartOutlined from '../../../../icons/HeartOutlined';
 import HeartFilled from '../../../../icons/HeartFilled';
 
 interface Props {
-  isSelected: boolean;
+  isSelected?: boolean;
   isLarge?: boolean;
   onClick: () => void;
 }

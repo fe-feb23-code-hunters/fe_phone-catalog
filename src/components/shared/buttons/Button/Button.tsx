@@ -5,14 +5,14 @@ import classes from './button.module.scss';
 interface Props {
   label: string;
   onClick: () => void;
-  isHightlited?: boolean;
+  isSelected?: boolean;
 }
 
-const Button: React.FC<Props> = ({ label, onClick, isHightlited }) => (
+const Button: React.FC<Props> = ({ label, onClick, isSelected }) => (
   <button
     type="button"
     className={cn(classes.button, {
-      [classes.higlighted]: isHightlited,
+      [classes.higlighted]: isSelected,
     })}
     onClick={onClick}
   >

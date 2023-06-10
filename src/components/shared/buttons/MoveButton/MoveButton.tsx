@@ -3,7 +3,7 @@ import ArrowDark from '../../../../icons/ArrowDark';
 import IconButton from '../IconButton';
 
 interface Props {
-  isDisabled: boolean;
+  isDisabled?: boolean;
   iconClassName?: string;
   onClick: () => void;
 }
@@ -16,7 +16,7 @@ const MoveButton: React.FC<Props> = ({
   const ArrowIcon = isDisabled ? Arrow : ArrowDark;
 
   return (
-    <IconButton isDisabled onClick={onClick}>
+    <IconButton isDisabled={isDisabled} onClick={onClick}>
       <ArrowIcon className={iconClassName} />
     </IconButton>
   );
