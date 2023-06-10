@@ -1,6 +1,8 @@
+import cn from 'classnames';
 import Arrow from '../../../../icons/Arrow';
 import ArrowDark from '../../../../icons/ArrowDark';
 import IconButton from '../IconButton';
+import classes from './move-button.module.scss';
 
 interface Props {
   isDisabled?: boolean;
@@ -17,7 +19,7 @@ const MoveButton: React.FC<Props> = ({
 
   return (
     <IconButton isDisabled={isDisabled} onClick={onClick}>
-      <ArrowIcon className={iconClassName} />
+      <ArrowIcon className={cn(iconClassName, classes.icon)} />
     </IconButton>
   );
 };
