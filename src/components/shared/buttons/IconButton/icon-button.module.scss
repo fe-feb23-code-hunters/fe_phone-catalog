@@ -25,7 +25,6 @@ $button-size-large: 40px;
 
   &.disabled {
     border: 1px solid $elements-color;
-    transform: rotate(270deg);
     cursor: default;
 
     &:hover {
