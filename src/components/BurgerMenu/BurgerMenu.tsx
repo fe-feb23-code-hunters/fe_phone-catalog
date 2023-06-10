@@ -68,10 +68,7 @@ export const BurgerMenu = () => {
               <HeartOutlined />
             </Link>
 
-            <Link
-              to="/shoppingbag"
-              className={bottomIconLeft}
-            >
+            <Link to="/shoppingbag" className={bottomIconLeft}>
               <ShoppingBag />
             </Link>
           </div>

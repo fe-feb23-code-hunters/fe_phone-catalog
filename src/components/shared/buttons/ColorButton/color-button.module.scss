@@ -1,0 +1,34 @@
+@use "../../../../styles/utils/vars" as *;
+@use "../../../../styles/utils/mixins" as *;
+
+$button-size-default: 32px;
+$button-size-mobile: 30px;
+
+.button {
+  height: $button-size-default;
+  width: $button-size-default;
+  padding: 0;
+  border: 1px solid $elements-color;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include onMobile {
+    height: $button-size-mobile;
+    width: $button-size-mobile;
+  }
+
+  &:hover {
+    border-color: $icons-color;
+  }
+
+  &.selected {
+    border-color: $primary-color;
+  }
+}
+
+.innerCircle {
+  height: 100%;
+  width: 100%;
+  border: 2px solid $white-color;
+  border-radius: 50%;
+}
