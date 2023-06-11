@@ -1,13 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import './styles/App.scss';
-import Catalog from './pages/Catalog/Catalog';
-import Product from './pages/Product/Product';
-import FavouritePage from './pages/FavouritePage/FavouritePage';
-import Cart from './pages/Cart/Cart';
-import PageNotFound from './pages/PageNotFound/PageNotFound';
-import HomePage from './pages/HomePage/HomePage';
 import ProductsProvider from './providers/ProductsProvider';
+import HomePage from './pages/HomePage';
+import Catalog from './pages/Catalog';
+import Product from './pages/Product';
+import FavouritePage from './pages/FavouritePage';
+import Cart from './pages/Cart';
+import PageNotFound from './pages/PageNotFound';
 
 const App = () => (
   <ProductsProvider>
