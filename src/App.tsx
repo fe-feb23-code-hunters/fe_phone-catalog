@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import './styles/App.scss';
-import ProductsProvider from './providers/ProductsProvider';
 import HomePage from './Pages/HomePage';
 import Catalog from './Pages/Catalog';
 import Product from './Pages/Product';
 import FavouritePage from './Pages/FavouritePage';
 import Cart from './Pages/Cart';
 import PageNotFound from './Pages/PageNotFound';
+import AppProvider from './providers/AppProvider';
 
 const App = () => (
-  <ProductsProvider>
+  <AppProvider>
     <div className="App">
       <header>
         <h1>Here must be header</h1>
@@ -36,7 +36,7 @@ const App = () => (
         <Footer />
       </footer>
     </div>
-  </ProductsProvider>
+  </AppProvider>
 );
 
 export default App;
