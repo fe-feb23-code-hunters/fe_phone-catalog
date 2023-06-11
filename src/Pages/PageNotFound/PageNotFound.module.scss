@@ -54,7 +54,7 @@ $margin-desktop: 75px;
         border-radius: 50%;
         animation: eyesBlink 3s linear infinite;
 
-         &::before {
+        &::before {
           @include pseudo;
           width: 85%;
           height: inherit;
