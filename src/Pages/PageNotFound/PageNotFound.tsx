@@ -3,16 +3,26 @@ import classes from './PageNotFound.module.scss';
 
 export const PageNotFound: React.FC = () => (
   <div className={classes.container}>
-    <img
-      src={`${process.env.PUBLIC_URL}/img/PageNotFound/pageNotFound.svg`}
-      alt="page not found"
-      className={classes.page_not_found}
-    />
-    <h1>Ooops, looks like a ghost!</h1>
-    <br />
-    <h4>
-      The page you are looking for can&apos;t be found. Go home by &nbsp;
-      <Link to="/">clicking here!</Link>
-    </h4>
+    <div className={classes.ghost}>
+      <div className={classes.ghost_body}>
+        <div className={classes.face}>
+          <div className={classes.eyes} />
+        </div>
+        <div className={classes.bottom}>
+          <div className={classes.circle} />
+          <div className={classes.circle} />
+          <div className={classes.circle} />
+          <div className={classes.wave} />
+        </div>
+      </div>
+      <div className={classes.shadow} />
+    </div>
+    <div className={classes.description}>
+      <h3 className={classes.text__title}>Ooops, looks like a ghost!</h3>
+      <h4 className={classes.text__body}>
+        The page you are looking for can&apos;t be found. Go home by &nbsp;
+        <Link className={classes.text__body} to="/">clicking here!</Link>
+      </h4>
+    </div>
   </div>
 );
