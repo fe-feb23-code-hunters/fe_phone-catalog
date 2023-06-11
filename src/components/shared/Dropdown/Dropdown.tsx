@@ -3,25 +3,23 @@
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import Arrow from '../../../icons/Arrow';
+import { DropdownOption } from '../../../types/common';
 import classes from './dropdown.module.scss';
 
-interface Option {
-  value: string;
-  label: string;
-}
-
 interface Props {
-  options: Option[];
+  options: DropdownOption[];
+  selectedOption: DropdownOption;
+  onChange: (newOption: DropdownOption) => void;
   label: string;
 }
 
-const Dropdown: React.FC<Props> = ({ options, label }) => {
-  const firstOption = options[0];
-
+const Dropdown: React.FC<Props> = ({
+  options,
+  selectedOption,
+  onChange,
+  label,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Option | undefined>(
-    firstOption,
-  );
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -29,8 +27,9 @@ const Dropdown: React.FC<Props> = ({ options, label }) => {
     setIsOpen((prevState) => !prevState);
   };
 
-  const handleOptionClick = (option: Option) => {
-    setSelectedOption(option);
+  const handleOptionClick = (option: DropdownOption) => {
+    onChange(option);
+
     setIsOpen(false);
   };
 
