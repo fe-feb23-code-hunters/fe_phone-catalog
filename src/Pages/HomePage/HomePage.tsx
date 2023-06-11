@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
       <h1>Home Page</h1>
 
       {/* Products for review, delete this */}
-      {products.map((product: any) => (
+      {products.map((product: { id: string; name: string }) => (
         <div key={product.id}>{product.name}</div>
       ))}
     </div>
