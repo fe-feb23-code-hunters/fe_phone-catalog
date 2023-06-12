@@ -14,7 +14,7 @@ $large-logo-height: 30px;
   justify-content: space-between;
   height: $small-device-size;
   width: 100%;
-  box-shadow: 0px 1px 0px $elements-color;
+  box-shadow: 0 1px 0 $elements-color;
 
   @include onDesktop {
     height: $large-device-size;
@@ -47,7 +47,7 @@ $large-logo-height: 30px;
 
   &__bar-icon {
     display: flex;
-    box-shadow: -1px 0px 0px $elements-color;
+    box-shadow: -1px 0 0 $elements-color;
     width: $small-device-size;
     height: $small-device-size;
     justify-content: center;
@@ -61,7 +61,7 @@ $large-logo-height: 30px;
 
   &__menu-button {
     display: flex;
-    box-shadow: -1px 0px 0px $elements-color;
+    box-shadow: -1px 0 0 $elements-color;
     width: $small-device-size;
     height: $small-device-size;
     justify-content: center;
