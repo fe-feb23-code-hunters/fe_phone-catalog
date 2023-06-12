@@ -1,0 +1,86 @@
+@use "../../styles/App.scss" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/utils/grid.scss" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../components/productCard/productCard.module.scss" as *;
+
+.icon {
+  height: $icon-size;
+  margin-right: 8px;
+}
+
+.container__top {
+  margin-top: 24px;
+}
+
+.container__center {
+  display: flex;
+  align-items: center;
+}
+
+.container__margin_text {
+  margin-top: 8px;
+}
+
+.title {
+  margin: 0;
+  @include desktop-tablet-h1;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}
+
+.section__margin {
+  margin-top: 40px;
+
+  @include onMobile {
+    margin-top: 24px;
+  }
+}
+
+.option__margin {
+  margin-top: 40px;
+
+  @include onMobile {
+    margin-top: 32px;
+  }
+}
+
+.text {
+  @include small-text;
+  color: $secondary-color;
+
+  &__disabled {
+    margin-left: 8px;
+    display: inline-block;
+  }
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(4, $card-width);
+  padding: 24px;
+  margin: 0 auto;
+  max-width: 1200px;
+  gap: 16px;
+
+  @media (max-width: 1199px) {
+    $card-width: 229px;
+    justify-content: center;
+    grid-template-columns: repeat(3, $card-width);
+  }
+
+  @media (max-width: 767px) {
+    $card-width: 288px;
+    justify-content: center;
+    grid-template-columns: repeat(2, $card-width);
+  }
+
+  @media (max-width: 639px) {
+    $card-width: 288px;
+    justify-content: center;
+    grid-template-columns: repeat(1, $card-width);
+  }
+}

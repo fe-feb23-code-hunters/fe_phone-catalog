@@ -21,7 +21,7 @@ const App = () => (
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<Navigate to="/" replace />} />
 
-          <Route path="/category">
+          <Route path="/catalog">
             <Route index element={<Catalog />} />
             <Route path=":productId" element={<Product />} />
           </Route>

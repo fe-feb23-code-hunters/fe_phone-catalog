@@ -1,5 +1,7 @@
 @import url(../../styles/fonts/fonts.scss);
 
+$card-width: 272px;
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +10,7 @@
 
 .card {
   box-sizing: border-box;
-  max-width: 272px;
+  max-width: $card-width;
   width: 100%;
   border: 1px solid #e2e6e9;
 
