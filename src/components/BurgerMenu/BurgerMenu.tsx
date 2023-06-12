@@ -39,9 +39,9 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
                 className={logoImg}
               />
             </Link>
-            <Link to="/" className={closeLink} onClick={handleClick}>
+            <button type="button" className={closeLink} onClick={handleClick}>
               <Close />
-            </Link>
+            </button>
           </div>
 
           <ul className={navList}>
@@ -52,7 +52,7 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
             </li>
 
             <li className={navItem}>
-              <Link to="/phone" className={navLink}>
+              <Link to="/phones" className={navLink}>
                 Phones
               </Link>
             </li>
