@@ -27,7 +27,7 @@ export const BurgerMenu = () => {
           <div className={topActions}>
             <Link to="/" className="logo">
               <img
-                src={`${process.env.PUBLIC_URL}/img/logo/logo.png`}
+                src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
                 alt="Nice Gadgets Logo"
                 className={logoImg}
               />

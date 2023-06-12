@@ -1,0 +1,48 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.nav__link {
+  text-decoration: none;
+  color: $secondary-color;
+  @include uppercased-text;
+  
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  padding: 18px 0;
+
+  @include onDesktop {
+    padding: 25px 0;
+  }
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &--active {
+    color: $primary-color;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      content: "";
+      height: 3px;
+      background: $primary-color;
+      border-radius: 4px;
+      width: 100%;
+      animation: linkAnimation 0.3s linear forwards;
+    }
+  }
+}
+
+@keyframes linkAnimation {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 0;
+  }
+}

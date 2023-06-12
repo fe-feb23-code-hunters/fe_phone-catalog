@@ -37,7 +37,7 @@ export const Footer = () => {
         <div>
           <a href="/#">
             <img
-              src={`${process.env.PUBLIC_URL}/img/logo/logo.png`}
+              src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
               alt="Nice Gadgets"
               className={footerLogo}
             />

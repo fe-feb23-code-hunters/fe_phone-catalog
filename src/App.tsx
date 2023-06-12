@@ -8,12 +8,11 @@ import { FavouritePage } from './Pages/FavouritePage';
 import { Cart } from './Pages/Cart';
 import { PageNotFound } from './Pages/PageNotFound';
 import { HomePage } from './Pages/HomePage';
+import { Header } from './components/Header';
 
 const App = () => (
   <div className="App">
-    <header>
-      <h1>Here must be header</h1>
-    </header>
+    <Header />
 
     <main>
       <Routes>
@@ -31,9 +30,7 @@ const App = () => (
       </Routes>
     </main>
 
-    <footer>
-      <Footer />
-    </footer>
+    <Footer />
   </div>
 );
 
