@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './productCard.module.scss';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
+import { CartButton } from '../ui/cartButton/cartButton';
 
 type Props = {
   imgURL: string,
@@ -49,9 +50,7 @@ export const ProductCard: React.FC<Props> = ({
           <p className={classes.card__specification__value}>{`${ram}GB`}</p>
         </div>
         <div className={classes.card__buttons}>
-          <button className={classes.card__buttons__cart} type="button">
-            Add to cart
-          </button>
+          <CartButton />
           <div
             className={classes.card__buttons__favorite}
           >
