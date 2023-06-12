@@ -4,6 +4,8 @@
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/utils/vars" as *;
 
+$card-width: 272px;
+
 .icon {
   height: $icon-size;
   margin-right: 8px;
@@ -56,4 +58,42 @@
   }
 }
 
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(4, $card-width);
+  padding: 24px;
+  margin: 0 auto;
+  max-width: 1200px;
+  gap: 16px;
+
+  @media (max-width: 1199px) {
+    $card-width: 229px;
+    justify-content: center;
+    grid-template-columns: repeat(3, $card-width);
+  }
+
+  @media (max-width: 767px) {
+    $card-width: 288px;
+    grid-template-columns: repeat(2, $card-width);
+  }
+
+  @media (max-width: 639px) {
+    $card-width: 288px;
+    justify-content: center;
+    grid-template-columns: repeat(1, $card-width);
+  }
+
+  &__card {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 506px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  &__card:not(:nth-child(4n)) {
+    gap: 0;
+  }
+}
 

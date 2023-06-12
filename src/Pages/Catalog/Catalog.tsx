@@ -26,6 +26,7 @@ const Catalog: React.FC = () => {
     icon,
     title,
     text,
+    catalog,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
     grid__mobile: gridMobile,
@@ -46,6 +47,7 @@ const Catalog: React.FC = () => {
     section__margin: sectionMargin,
     container__margin_text: textMargin,
     option__margin: optionMargin,
+    catalog__card: catalogCard,
   } = classes;
 
   const [selectedOptionSort, setSelectedOptionSort] = useState<DropdownOption>(
@@ -152,6 +154,29 @@ const Catalog: React.FC = () => {
               label="Items on page"
             />
           </div>
+        </div>
+      </div>
+      <div className={cn(catalog)}>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
+        </div>
+        <div className={catalogCard}>
+          Product card
         </div>
       </div>
     </>
