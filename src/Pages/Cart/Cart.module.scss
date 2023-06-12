@@ -22,7 +22,6 @@
   }
 }
 
-
 .checkout {
   display: flex;
   flex-direction: column;
@@ -30,7 +29,6 @@
   border: 1px solid $elements-color;
   justify-content: center;
   align-items: center;
-
 
   &__value {
     @include desktop-tablet-h2;
@@ -67,4 +65,3 @@
     }
   }
 }
-
