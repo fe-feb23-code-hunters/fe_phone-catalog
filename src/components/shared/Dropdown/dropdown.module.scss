@@ -1,0 +1,99 @@
+@use "../../../styles/utils/vars" as *;
+@use "../../../styles/fonts/typography.scss" as *;
+
+$height-default: 40px;
+$indent-default: 4px;
+
+@mixin dropdown-text {
+  @include button-text;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 12px;
+  font-weight: 500;
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+
+  &__label {
+    @include small-text;
+
+    color: $secondary-color;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: default;
+  }
+
+  &__button {
+    @include dropdown-text;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: $height-default;
+    margin-top: $indent-default;
+    padding: 10px;
+    background-color: $white-color;
+    color: $primary-color;
+    border: 1px solid $icons-color;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $hover-background-color;
+      border: 1px solid $secondary-color;
+    }
+
+    &:focus {
+      border: 1px solid $primary-color;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 8px 0;
+    background-color: $white-color;
+    border: 1px solid $elements-color;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+
+    &--open {
+      margin-top: $indent-default;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      transform: scaleY(1);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__item {
+    @include dropdown-text;
+
+    height: $height-default;
+    list-style: none;
+    color: $secondary-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $hover-background-color;
+      color: $primary-color;
+    }
+  }
+}
+
+.arrow {
+  width: $icon-size;
+  height: $icon-size;
+  transform: rotate(90deg);
+
+  &__up {
+    transform: rotate(270deg);
+  }
+}

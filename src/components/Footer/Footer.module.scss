@@ -1,0 +1,122 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+$button-size: 32px;
+$footer-padding: 32px;
+$element-transition: 0.5s ease-in-out;
+
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white-color;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 320px;
+  padding: 35px 16px;
+  box-shadow: 0 -1px 0 $elements-color;
+
+  @include onTablet {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+
+    padding: $footer-padding;
+    height: 96px;
+  }
+
+  @include onDesktop {
+    padding: $footer-padding 152px;
+  }
+
+  &__top-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-message {
+      @include small-text;
+      color: $secondary-color;
+      letter-spacing: 0.1em;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: color $element-transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &-arrow {
+      transform: rotate(180deg);
+    }
+
+    &-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: $button-size;
+      height: $button-size;
+      padding: 0;
+      border: 1px solid $icons-color;
+      background-color: $white-color;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $primary-color;
+        transition: border-color $element-transition;
+      }
+    }
+  }
+
+  &__logo {
+    height: 30px;
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    @include onTablet {
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &-item {
+      @include onTablet {
+        margin-right: 15px;
+      }
+
+      @include onDesktop {
+        margin-right: 105px;
+      }
+    }
+
+    &-link {
+      text-decoration: none;
+      color: $secondary-color;
+      @include uppercased-text;
+
+      display: inline-block;
+      padding: 15px 0;
+      transition: color 0.5s ease-in-out;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
