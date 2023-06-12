@@ -13,6 +13,7 @@
 .container__top {
   margin-top: 24px;
 }
+
 .container__center {
   display: flex;
   align-items: center;
@@ -35,7 +36,7 @@
   margin-top: 40px;
 
   @include onMobile {
-    margin-top: 24px
+    margin-top: 24px;
   }
 }
 
@@ -83,4 +84,3 @@
     grid-template-columns: repeat(1, $card-width);
   }
 }
-
