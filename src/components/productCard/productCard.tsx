@@ -27,7 +27,7 @@ export const ProductCard: React.FC<Props> = ({
       <div className={classes.card__wrapper}>
         <img
           className={classes.card__image}
-          src={imgURL}
+          src={`${process.env.PUBLIC_URL}${imgURL}`}
           alt="phone"
         />
         <h2 className={classes.card__title}>

@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -6,6 +8,7 @@ import Home from '../../icons/Home/Home';
 import Arrow from '../../icons/Arrow/Arrow';
 import Dropdown from '../../components/shared/Dropdown/Dropdown';
 import { DropdownOption } from '../../types/common';
+import { ProductCard } from '../../components/productCard/productCard';
 
 const SORT_OPTIONS = [
   { value: 'option1', label: 'Newest' },
@@ -47,7 +50,6 @@ const Catalog: React.FC = () => {
     section__margin: sectionMargin,
     container__margin_text: textMargin,
     option__margin: optionMargin,
-    catalog__card: catalogCard,
   } = classes;
 
   const [selectedOptionSort, setSelectedOptionSort] = useState<DropdownOption>(
@@ -157,27 +159,88 @@ const Catalog: React.FC = () => {
         </div>
       </div>
       <div className={cn(catalog)}>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
-        <div className={catalogCard}>
-          Product card
-        </div>
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          // eslint-disable-next-line max-len
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
+        <ProductCard
+          title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+          imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+          price={1099}
+          oldPrice={1199}
+          screen="6.2 IPS"
+          capacity={128}
+          ram={8}
+        />
       </div>
     </>
   );

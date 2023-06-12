@@ -3,8 +3,7 @@
 @use "../../styles/utils/grid.scss" as *;
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/utils/vars" as *;
-
-$card-width: 272px;
+@use "../../components/productCard/productCard.module.scss" as *;
 
 .icon {
   height: $icon-size;
@@ -74,6 +73,7 @@ $card-width: 272px;
 
   @media (max-width: 767px) {
     $card-width: 288px;
+    justify-content: center;
     grid-template-columns: repeat(2, $card-width);
   }
 
@@ -81,19 +81,6 @@ $card-width: 272px;
     $card-width: 288px;
     justify-content: center;
     grid-template-columns: repeat(1, $card-width);
-  }
-
-  &__card {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 506px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  &__card:not(:nth-child(4n)) {
-    gap: 0;
   }
 }
 
