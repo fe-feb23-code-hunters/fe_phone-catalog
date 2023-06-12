@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+// import cn from 'classnames';
 import { PageNavigation } from '../PageNavigation';
 import classes from './Header.module.scss';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 import Menu from '../../icons/Menu';
+import { BurgerMenu } from '../BurgerMenu';
 
 const {
   header,
@@ -15,35 +18,48 @@ const {
 } = classes;
 
 export const Header = () => {
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
+
+  const handleMenuButtonClick = () => {
+    setShowBurgerMenu(!showBurgerMenu);
+  };
+
   return (
-    <header className={header}>
-      <div className={headerNavContainer}>
-        <Link to="/">
-          <img
-            src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
-            alt="Nice Gadgets"
-            className={headerLogo}
-          />
-        </Link>
+    <>
+      <header className={header}>
+        <div className={headerNavContainer}>
+          <Link to="/">
+            <img
+              src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
+              alt="Nice Gadgets"
+              className={headerLogo}
+            />
+          </Link>
 
-        <PageNavigation />
-      </div>
+          <PageNavigation />
+        </div>
 
-      <div className={headerIconsContainer}>
-        <Link to="/favourites" className={headerBarIcon}>
-          <HeartOutlined />
-        </Link>
-        <Link to="/cart" className={headerBarIcon}>
-          <ShoppingBag />
-        </Link>
-      </div>
+        <div className={headerIconsContainer}>
+          <Link to="/favourites" className={headerBarIcon}>
+            <HeartOutlined />
+          </Link>
+          <Link to="/cart" className={headerBarIcon}>
+            <ShoppingBag />
+          </Link>
+        </div>
 
-      <button
-        className={headerMenuButton}
-        type="button"
-      >
-        <Menu />
-      </button>
-    </header>
+        <Link
+          to="#menu"
+          className={headerMenuButton}
+          onClick={handleMenuButtonClick}
+        >
+          <Menu />
+        </Link>
+      </header>
+      <BurgerMenu
+        handleClick={handleMenuButtonClick}
+        isActive={showBurgerMenu}
+      />
+    </>
   );
 };
