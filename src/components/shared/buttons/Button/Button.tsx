@@ -6,11 +6,18 @@ interface Props {
   label: string;
   onClick: () => void;
   isSelected?: boolean;
+  height?: string;
 }
 
-const Button: React.FC<Props> = ({ label, onClick, isSelected }) => (
+const Button: React.FC<Props> = ({
+  label,
+  onClick,
+  isSelected,
+  height,
+}) => (
   <button
     type="button"
+    style={{ height }}
     className={cn(classes.button, {
       [classes.higlighted]: isSelected,
     })}

@@ -31,7 +31,6 @@
   },
   "lint-staged": {
     "*.(ts|tsx|js|jsx)": [
-      "prettier --write",
       "npm run lint"
     ],
     "*.(scss)": [
