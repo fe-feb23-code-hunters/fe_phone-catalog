@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import { Link } from 'react-router-dom';
 import Arrow from '../../icons/Arrow';
 import classes from './Footer.module.scss';
 
@@ -35,30 +36,30 @@ export const Footer = () => {
     <div className={container}>
       <footer className={footer}>
         <div>
-          <a href="/#">
+          <Link to="/#">
             <img
               src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
               alt="Nice Gadgets"
               className={footerLogo}
             />
-          </a>
+          </Link>
         </div>
 
         <ul className={navList}>
           <li className={navlistItem}>
-            <a href="/#" className={navListLink}>
+            <Link to="/github" className={navListLink}>
               github
-            </a>
+            </Link>
           </li>
           <li className={navlistItem}>
-            <a href="/#" className={navListLink}>
+            <Link to="/contacts" className={navListLink}>
               contacts
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/#" className={navListLink}>
+            <Link to="/rights" className={navListLink}>
               rights
-            </a>
+            </Link>
           </li>
         </ul>
 
