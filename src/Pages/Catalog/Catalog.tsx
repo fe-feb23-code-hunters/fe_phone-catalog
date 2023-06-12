@@ -8,7 +8,7 @@ import Home from '../../icons/Home/Home';
 import Arrow from '../../icons/Arrow/Arrow';
 import Dropdown from '../../components/shared/Dropdown/Dropdown';
 import { DropdownOption } from '../../types/common';
-import ProductCard from '../../components/ProductCard';
+import ProductCard from '../../components/productCard';
 import Pagination from '../../components/shared/Pagination';
 
 const SORT_OPTIONS = [
