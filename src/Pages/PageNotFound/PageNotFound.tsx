@@ -20,7 +20,9 @@ const PageNotFound: React.FC = () => (
     <div className={classes.description}>
       <h3 className={classes.text__title}>Ooops, looks like a ghost!</h3>
       <h4 className={classes.text__body}>
-        The page you are looking for can&apos;t be found. Go home by &nbsp;
+        The page you are looking for can&apos;t be found.
+        <br />
+        Go home by &nbsp;
         <Link className={classes.text__body} to="/">clicking here!</Link>
       </h4>
     </div>
