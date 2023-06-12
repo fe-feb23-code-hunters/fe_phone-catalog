@@ -6,7 +6,7 @@ interface Props {
   label: string;
   onClick: () => void;
   isSelected?: boolean;
-  height?: string
+  height?: string;
 }
 
 const Button: React.FC<Props> = ({

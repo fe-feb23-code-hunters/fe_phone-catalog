@@ -61,7 +61,9 @@ const Cart: React.FC = () => {
         >
           <div className={checkout}>
             <h2 className={checkoutValue}>{`$${value}`}</h2>
-            <h3 className={checkoutCount}>{`Total for ${cart.length} items`}</h3>
+            <h3 className={checkoutCount}>
+              {`Total for ${cart.length} items`}
+            </h3>
             <div className={checkoutButton}>
               <Button label="Checkout" onClick={goBack} height="48px" />
             </div>

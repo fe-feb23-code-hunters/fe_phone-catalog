@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import cn from 'classnames';
 import { PageNavigation } from '../PageNavigation';
 import classes from './Header.module.scss';
@@ -7,6 +7,8 @@ import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 import Menu from '../../icons/Menu';
 import { BurgerMenu } from '../BurgerMenu';
+import IconWithCounter from '../shared/IconWithCounter';
+import { CartContext } from '../../providers/CartProvider/CartProvider';
 
 const {
   header,
@@ -18,6 +20,7 @@ const {
 } = classes;
 
 export const Header = () => {
+  const { cart } = useContext(CartContext);
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const handleMenuButtonClick = () => {
@@ -44,7 +47,9 @@ export const Header = () => {
             <HeartOutlined />
           </Link>
           <Link to="/cart" className={headerBarIcon}>
-            <ShoppingBag />
+            <IconWithCounter count={cart.length}>
+              <ShoppingBag />
+            </IconWithCounter>
           </Link>
         </div>
 

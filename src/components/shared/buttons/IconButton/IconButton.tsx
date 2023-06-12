@@ -26,7 +26,11 @@ const IconsButton: React.FC<PropsWithChildren<IconButtonProps>> = ({
       [classes.filled]: isFilled,
       [classes.large]: isLarge,
     })}
-    onClick={onClick}
+    onClick={() => {
+      if (!isDisabled) {
+        onClick();
+      }
+    }}
   >
     {children}
   </button>

@@ -1,19 +1,22 @@
-import React from 'react';
-import classes from './productCard.module.scss';
-import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
-import { CartButton } from '../ui/cartButton/cartButton';
+import React, { useContext, useState } from 'react';
+import classes from './product-card.module.scss';
+import Button from '../shared/buttons/Button';
+import LikeButton from '../shared/buttons/LikeButton';
+import { CartContext } from '../../providers/CartProvider/CartProvider';
 
-type Props = {
-  imgURL: string,
-  price: number,
-  screen: string,
-  oldPrice: number,
-  capacity: number,
-  ram: number,
-  title: string,
-};
+interface Props {
+  id: string;
+  imgURL: string;
+  price: number;
+  screen: string;
+  oldPrice: number;
+  capacity: number;
+  ram: number;
+  title: string;
+}
 
-export const ProductCard: React.FC<Props> = ({
+const ProductCard: React.FC<Props> = ({
+  id,
   imgURL,
   price,
   oldPrice,
@@ -22,6 +25,26 @@ export const ProductCard: React.FC<Props> = ({
   ram,
   title,
 }) => {
+  const [isInFavorite, setIsInFavorite] = useState(false);
+
+  const { cart, addToCart, deleteFromCart } = useContext(CartContext);
+
+  const doesExistInCart = cart.findIndex((product) => product.id === id) !== -1;
+
+  const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
+
+  const handleClick = () => {
+    if (doesExistInCart) {
+      deleteFromCart(id);
+    } else {
+      addToCart(id);
+    }
+  };
+
+  const handleFavorite = () => {
+    setIsInFavorite((prevState) => !prevState);
+  };
+
   return (
     <div className={classes.card}>
       <div className={classes.card__wrapper}>
@@ -30,9 +53,7 @@ export const ProductCard: React.FC<Props> = ({
           src={`${process.env.PUBLIC_URL}${imgURL}`}
           alt="phone"
         />
-        <h2 className={classes.card__title}>
-          {title}
-        </h2>
+        <h2 className={classes.card__title}>{title}</h2>
         <div className={classes.card__price__wrapper}>
           <h3 className={classes.card__price}>{`$${price}`}</h3>
           <h3 className={classes.card__price__old}>{`$${oldPrice}`}</h3>
@@ -43,21 +64,25 @@ export const ProductCard: React.FC<Props> = ({
         </div>
         <div className={classes.card__specification__wrapper}>
           <p className={classes.card__specification__title}>Capacity</p>
-          <p className={classes.card__specification__value}>{`${capacity}GB`}</p>
+          <p className={classes.card__specification__value}>
+            {`${capacity}GB`}
+          </p>
         </div>
         <div className={classes.card__specification__wrapper}>
           <p className={classes.card__specification__title}>RAM</p>
           <p className={classes.card__specification__value}>{`${ram}GB`}</p>
         </div>
-        <div className={classes.card__buttons}>
-          <CartButton />
-          <div
-            className={classes.card__buttons__favorite}
-          >
-            <HeartOutlined />
-          </div>
+        <div className={classes.card__specification__buttons}>
+          <Button
+            label={buttonLabel}
+            onClick={handleClick}
+            isSelected={doesExistInCart}
+          />
+          <LikeButton onClick={handleFavorite} isSelected={isInFavorite} />
         </div>
       </div>
     </div>
   );
 };
+
+export default ProductCard;

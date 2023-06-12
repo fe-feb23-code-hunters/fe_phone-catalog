@@ -48,7 +48,7 @@ $button-size-large: 40px;
   }
 
   &.large {
-    height: $button-size-large;
-    width: $button-size-large;
+    min-height: $button-size-large;
+    min-width: $button-size-large;
   }
 }
