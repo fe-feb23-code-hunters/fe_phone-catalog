@@ -23,7 +23,9 @@ const PageNotFound: React.FC = () => (
         The page you are looking for can&apos;t be found.
         <br />
         Go home by &nbsp;
-        <Link className={classes.text__body} to="/">clicking here!</Link>
+        <Link className={classes.text__body} to="/">
+          clicking here!
+        </Link>
       </h4>
     </div>
   </div>

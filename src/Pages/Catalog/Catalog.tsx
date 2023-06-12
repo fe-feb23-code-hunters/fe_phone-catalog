@@ -8,7 +8,8 @@ import Home from '../../icons/Home/Home';
 import Arrow from '../../icons/Arrow/Arrow';
 import Dropdown from '../../components/shared/Dropdown/Dropdown';
 import { DropdownOption } from '../../types/common';
-import { ProductCard } from '../../components/productCard/productCard';
+import ProductCard from '../../components/ProductCard';
+import Pagination from '../../components/shared/Pagination';
 
 const SORT_OPTIONS = [
   { value: 'option1', label: 'Newest' },
@@ -52,6 +53,7 @@ const Catalog: React.FC = () => {
     option__margin: optionMargin,
   } = classes;
 
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedOptionSort, setSelectedOptionSort] = useState<DropdownOption>(
     SORT_OPTIONS[0],
   );
@@ -67,6 +69,12 @@ const Catalog: React.FC = () => {
   const onDropdownChangeItems = (newOption: DropdownOption) => {
     setSelectedOptionItems(newOption);
   };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const totalPages = 10;
 
   return (
     <>
@@ -86,9 +94,7 @@ const Catalog: React.FC = () => {
                 <Home />
               </Link>
               <Arrow />
-              <p className={cn(text, disabledText)}>
-                Phones
-              </p>
+              <p className={cn(text, disabledText)}>Phones</p>
             </div>
           </div>
         </div>
@@ -160,6 +166,7 @@ const Catalog: React.FC = () => {
       </div>
       <div className={cn(catalog)}>
         <ProductCard
+          id="0"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -169,6 +176,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="1"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -178,6 +186,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="2"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           // eslint-disable-next-line max-len
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
@@ -188,6 +197,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="3"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -197,6 +207,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="4"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -206,6 +217,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="5"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -215,6 +227,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="6"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -224,6 +237,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="7"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -233,6 +247,7 @@ const Catalog: React.FC = () => {
           ram={8}
         />
         <ProductCard
+          id="8"
           title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
           imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
           price={1099}
@@ -242,6 +257,12 @@ const Catalog: React.FC = () => {
           ram={8}
         />
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };

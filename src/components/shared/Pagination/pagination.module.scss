@@ -1,0 +1,17 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.innerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrowDirection {
+  transform: rotate(180deg);
+}

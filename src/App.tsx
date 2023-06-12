@@ -12,27 +12,25 @@ import { Footer } from './components/Footer';
 
 const App = () => (
   <AppProvider>
-    <div className="App">
-      <Header />
+    <Header />
 
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
+    <main className="mainContainer">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
 
-          <Route path="/phones">
-            <Route index element={<Catalog />} />
-            <Route path=":productId" element={<Product />} />
-          </Route>
+        <Route path="/phones">
+          <Route index element={<Catalog />} />
+          <Route path=":productId" element={<Product />} />
+        </Route>
 
-          <Route path="/favourites" element={<FavouritePage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </main>
+        <Route path="/favourites" element={<FavouritePage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </main>
 
-      <Footer />
-    </div>
+    <Footer />
   </AppProvider>
 );
 

@@ -15,9 +15,11 @@ const IconWithCounter: React.FC<PropsWithChildren<Props>> = ({
     <div className={classes.container}>
       {children}
 
-      <div className={classes.counter}>
-        <span className={classes.label}>{countLabel}</span>
-      </div>
+      {countLabel > 0 && (
+        <div className={classes.counter}>
+          <span className={classes.label}>{countLabel}</span>
+        </div>
+      )}
     </div>
   );
 };

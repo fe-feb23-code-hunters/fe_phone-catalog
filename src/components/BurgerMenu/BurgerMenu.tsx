@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
+import { useContext, useEffect } from 'react';
+import { useLockedBody } from 'usehooks-ts';
 import classes from './BurgerMenu.module.scss';
 import Close from '../../icons/Close/Close';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
+import IconWithCounter from '../shared/IconWithCounter';
+import { CartContext } from '../../providers/CartProvider/CartProvider';
 
 interface Props {
   handleClick: () => void;
@@ -27,12 +31,20 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
     'burger--active': active,
   } = classes;
 
+  const { cart } = useContext(CartContext);
+
+  const [, setLocked] = useLockedBody(false, 'root');
+
+  useEffect(() => {
+    setLocked(isActive);
+  }, [isActive]);
+
   return (
     <nav className={cn(burger, { [active]: isActive })} id="menu">
       <div className={container}>
         <div className={content}>
           <div className={topActions}>
-            <Link to="/" className="logo">
+            <Link to="/" className="logo" onClick={handleClick}>
               <img
                 src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
                 alt="Nice Gadgets Logo"
@@ -46,37 +58,43 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
 
           <ul className={navList}>
             <li className={navItem}>
-              <Link to="/" className={navLink}>
+              <Link to="/" className={navLink} onClick={handleClick}>
                 Home
               </Link>
             </li>
 
             <li className={navItem}>
-              <Link to="/phones" className={navLink}>
+              <Link to="/phones" className={navLink} onClick={handleClick}>
                 Phones
               </Link>
             </li>
 
             <li className={navItem}>
-              <Link to="/tablets" className={navLink}>
+              <Link to="/tablets" className={navLink} onClick={handleClick}>
                 Tablets
               </Link>
             </li>
 
             <li className={navItem}>
-              <Link to="/accesories" className={navLink}>
+              <Link to="/accesories" className={navLink} onClick={handleClick}>
                 Accesories
               </Link>
             </li>
           </ul>
 
           <div className={bottomContainer}>
-            <Link to="/favourite" className={bottomIcon}>
+            <Link to="/favourite" className={bottomIcon} onClick={handleClick}>
               <HeartOutlined />
             </Link>
 
-            <Link to="/shoppingbag" className={bottomIconLeft}>
-              <ShoppingBag />
+            <Link
+              to="/shoppingbag"
+              className={bottomIconLeft}
+              onClick={handleClick}
+            >
+              <IconWithCounter count={cart.length}>
+                <ShoppingBag />
+              </IconWithCounter>
             </Link>
           </div>
         </div>

@@ -3,7 +3,8 @@
 @use "../../styles/utils/grid.scss" as *;
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/utils/vars" as *;
-@use "../../components/productCard/productCard.module.scss" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../components/ProductCard/product-card.module.scss" as *;
 
 .icon {
   height: $icon-size;
