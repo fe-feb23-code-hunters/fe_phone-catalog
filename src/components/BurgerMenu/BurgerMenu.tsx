@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import classes from './BurgerMenu.module.scss';
 import Close from '../../icons/Close/Close';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 
-export const BurgerMenu = () => {
+interface Props {
+  handleClick: () => void;
+  isActive: boolean;
+}
+
+export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
   const {
     burger,
     container,
@@ -18,21 +24,22 @@ export const BurgerMenu = () => {
     burger__bottom: bottomContainer,
     burger__bottom_icon: bottomIcon,
     burger__bottom_icon__left: bottomIconLeft,
+    'burger--active': active,
   } = classes;
 
   return (
-    <nav className={burger} id="menu">
+    <nav className={cn(burger, { [active]: isActive })} id="menu">
       <div className={container}>
         <div className={content}>
           <div className={topActions}>
             <Link to="/" className="logo">
               <img
-                src={`${process.env.PUBLIC_URL}/img/logo/logo.png`}
+                src={`${process.env.PUBLIC_URL}/img/logo/logo.svg`}
                 alt="Nice Gadgets Logo"
                 className={logoImg}
               />
             </Link>
-            <Link to="/" className={closeLink}>
+            <Link to="/" className={closeLink} onClick={handleClick}>
               <Close />
             </Link>
           </div>

@@ -3,25 +3,26 @@
 @use "../../styles/utils/mixins" as *;
 
 $bottom-height: 64px;
-$top-height: 48px;
+$top-height: 50px;
 $padding-top: 16px;
 $burger-top-margin_bottom: 32px;
 $burger-item-margin: 24px;
 $burger-icon-padding: 22px 72px;
 
-// waiting for header
 .burger {
-  /*   position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 999;
+  background-color: $white-color;
 
   transform: translateX(-100%);
   transition: transform 0.5s;
 
-  &:target {
-    transform: translate(0);
-  } */
+  &--active {
+    transform: translateX(0);
+  }
 
   &__content {
     height: 100vh;
@@ -34,14 +35,14 @@ $burger-icon-padding: 22px 72px;
     padding-left: $padding-top;
     margin-bottom: $burger-top-margin_bottom;
 
-    border-bottom: 1px solid $secondary-color;
+    border-bottom: 1px solid $elements-color;
 
     &_close {
       display: block;
       height: $top-height;
       padding: $padding-top;
 
-      border-left: 1px solid $secondary-color;
+      border-left: 1px solid $elements-color;
     }
   }
 
@@ -94,12 +95,12 @@ $burger-icon-padding: 22px 72px;
 
       cursor: pointer;
       border: 1px solid transparent;
-      border-top: 1px solid $secondary-color;
+      border-top: 1px solid $elements-color;
       padding: $burger-icon-padding;
       text-align: center;
 
       &_left {
-        border-left: 1px solid $secondary-color;
+        border-left: 1px solid $elements-color;
       }
 
       &:active {
@@ -128,8 +129,8 @@ $burger-icon-padding: 22px 72px;
 .logo {
   &__img {
     @include onMobile {
-      height: 20.8px;
-      width: 64px;
+      height: 25px;
+      width: 65px;
     }
   }
 }
