@@ -1,0 +1,76 @@
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/utils/vars" as *;
+
+$small-device-size: 50px;
+$large-device-size: 65px;
+$small-logo-width: 65px;
+$small-logo-height: 25px;
+$large-logo-width: 80px;
+$large-logo-height: 30px;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $small-device-size;
+  width: 100%;
+  box-shadow: 0px 1px 0px $elements-color;
+
+  @include onDesktop {
+    height: $large-device-size;
+  }
+
+  &__nav-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: $small-logo-width;
+    height: $small-logo-height;
+    margin-left: 16px;
+
+    @include onDesktop {
+      width: $large-logo-width;
+      height: $large-logo-height;
+      margin-left: 24px;
+    }
+  }
+
+  &__icons-container {
+    display: none;
+
+    @include onTablet {
+      display: flex;
+    }
+  }
+
+  &__bar-icon {
+    display: flex;
+    box-shadow: -1px 0px 0px $elements-color;
+    width: $small-device-size;
+    height: $small-device-size;
+    justify-content: center;
+    align-items: center;
+
+    @include onDesktop {
+      width: $large-device-size;
+      height: $large-device-size;
+    }
+  }
+
+  &__menu-button {
+    display: flex;
+    box-shadow: -1px 0px 0px $elements-color;
+    width: $small-device-size;
+    height: $small-device-size;
+    justify-content: center;
+    align-items: center;
+    background-color: $white-color;
+    border: none;
+
+    @include onTablet {
+      display: none;
+    }
+  }
+}
