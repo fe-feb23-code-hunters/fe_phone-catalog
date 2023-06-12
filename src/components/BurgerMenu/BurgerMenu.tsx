@@ -71,11 +71,11 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
           </ul>
 
           <div className={bottomContainer}>
-            <Link to="/favourite" className={bottomIcon}>
+            <Link to="/favourites" className={bottomIcon}>
               <HeartOutlined />
             </Link>
 
-            <Link to="/shoppingbag" className={bottomIconLeft}>
+            <Link to="/cart" className={bottomIconLeft}>
               <ShoppingBag />
             </Link>
           </div>
