@@ -38,6 +38,8 @@ $burger-icon-padding: 22px 72px;
     border-bottom: 1px solid $elements-color;
 
     &_close {
+      border: 1px solid transparent;
+      background-color: $white-color;
       display: block;
       height: $top-height;
       padding: $padding-top;
