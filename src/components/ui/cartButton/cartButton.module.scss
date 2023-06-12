@@ -1,0 +1,19 @@
+.cart__button {
+  font-family: "Mont", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 10px 48px 9px;
+  height: 40px;
+  background: #313237;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 3px 13px rgba(23, 32, 49, 0.26);
+  }
+ 
+}
