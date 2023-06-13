@@ -1,18 +1,15 @@
 {
   "files": {
-    "main.css": "/fe_phone-catalog/static/css/main.02a490d0.css",
-    "main.js": "/fe_phone-catalog/static/js/main.d60ffe64.js",
-    "static/media/Carousel_Second.jpg": "/fe_phone-catalog/static/media/Carousel_Second.2e93495e00ff71b90de5.jpg",
+    "main.css": "/fe_phone-catalog/static/css/main.76b3990c.css",
+    "main.js": "/fe_phone-catalog/static/js/main.cee767ef.js",
     "static/media/Mont-Regular.otf": "/fe_phone-catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-Bold.otf": "/fe_phone-catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
-    "static/media/Carousel_Front.jpg": "/fe_phone-catalog/static/media/Carousel_Front.59141ff72c5017849dc2.jpg",
-    "static/media/Carousel_Third.jpeg": "/fe_phone-catalog/static/media/Carousel_Third.123647843fc2c3bf4197.jpeg",
     "index.html": "/fe_phone-catalog/index.html",
-    "main.02a490d0.css.map": "/fe_phone-catalog/static/css/main.02a490d0.css.map",
-    "main.d60ffe64.js.map": "/fe_phone-catalog/static/js/main.d60ffe64.js.map"
+    "main.76b3990c.css.map": "/fe_phone-catalog/static/css/main.76b3990c.css.map",
+    "main.cee767ef.js.map": "/fe_phone-catalog/static/js/main.cee767ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.02a490d0.css",
-    "static/js/main.d60ffe64.js"
+    "static/css/main.76b3990c.css",
+    "static/js/main.cee767ef.js"
   ]
 }
