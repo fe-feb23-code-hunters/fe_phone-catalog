@@ -31,6 +31,7 @@ const HomePage: React.FC = () => {
     container,
     grid,
     link,
+    main__title: mainTitle,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
     grid__mobile: gridMobile,
@@ -51,7 +52,20 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <div className={container}>
+        <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
+          <div
+            className={cn(
+              gridItem,
+              gridMobileFullSize,
+              gridTabletFullSize,
+              gridDesktopFullSize,
+            )}
+          >
+            <h1 className={mainTitle}>Welcome to Nice Gadgets store!</h1>
+          </div>
+        </div>
+      </div>
 
       {/* Products for review, delete this */}
       {products.map((product: { id: string; name: string }) => (
@@ -69,7 +83,7 @@ const HomePage: React.FC = () => {
         onChange={onDropdownChange}
         label="Description"
       />
-      <div className={cn(container)}>
+      <div className={container}>
         <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
           <div
             className={cn(
