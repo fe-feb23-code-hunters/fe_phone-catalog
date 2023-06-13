@@ -90,20 +90,20 @@ $burger-icon-padding: 22px 72px;
     height: $bottom-height;
 
     align-items: center;
+    justify-content: center;
 
     &_icon {
+      display: flex;
       height: $bottom-height;
-      text-align: center;
       width: 50%;
 
       cursor: pointer;
       border: 1px solid transparent;
       border-top: 1px solid $elements-color;
       padding: $burger-icon-padding;
-      text-align: center;
+      justify-content: center;
 
       &_left {
-        text-align: center;
         border-left: 1px solid $elements-color;
       }
 
