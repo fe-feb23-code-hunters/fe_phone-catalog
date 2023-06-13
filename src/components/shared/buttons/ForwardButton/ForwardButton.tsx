@@ -6,7 +6,7 @@ interface Props {
   onClick: () => void;
 }
 
-const ForwardButton: React.FC<Props> = ({ label = 'Back', onClick }) => (
+const ForwardButton: React.FC<Props> = ({ label = 'Forward', onClick }) => (
   <button type="button" onClick={onClick} className={classes.button}>
     <Arrow className={classes.icon} />
     {label}
