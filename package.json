@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
     "typescript": "^4.9.5",
     "usehooks-ts": "^2.9.1"
   },
@@ -58,6 +59,7 @@
     "@mate-academy/eslint-config-react": "^0.0.9",
     "@mate-academy/eslint-config-react-typescript": "^1.0.11",
     "@mate-academy/stylelint-config": "^0.0.9",
+    "@types/react-transition-group": "^4.4.6",
     "eslint": "^8.42.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.2",

@@ -1,12 +1,15 @@
-import { useContext } from 'react';
+/* eslint-disable max-len */
+import { useContext, useState } from 'react';
 import cn from 'classnames';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import BackButton from '../../components/shared/buttons/BackButton/BackButton';
 import classes from './Cart.module.scss';
 import Button from '../../components/shared/buttons/Button/Button';
+import Modal from '../../components/Modal/Modal';
 
 const Cart: React.FC = () => {
   const { cart, deleteFromCart } = useContext(CartContext);
+  const [showModal, setShowModal] = useState(false);
 
   const goBack = () => {
     window.history.back();
@@ -65,11 +68,21 @@ const Cart: React.FC = () => {
               {`Total for ${cart.length} items`}
             </h3>
             <div className={checkoutButton}>
-              <Button label="Checkout" onClick={goBack} height="48px" />
+              <Button
+                label="Checkout"
+                onClick={() => setShowModal(true)}
+                height="48px"
+              />
             </div>
           </div>
         </div>
       </div>
+      <Modal
+        title="Thank you for your purchase"
+        onClose={() => setShowModal(false)}
+        showModal={showModal}
+        description="Please enjoy 20% off your next order with promocode: "
+      />
     </div>
   );
 };
