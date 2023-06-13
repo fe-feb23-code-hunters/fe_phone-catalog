@@ -26,3 +26,12 @@ $rectagle-color-third: #973D5F;
 .link {
   text-decoration: none;
 }
+
+.main__title {
+  margin: 0;
+  @include desktop-tablet-h1;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}

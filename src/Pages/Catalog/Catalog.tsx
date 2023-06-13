@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import classes from './Catalog.module.scss';
+import classes from './catalog.module.scss';
 import Home from '../../icons/Home/Home';
 import Dropdown from '../../components/shared/Dropdown/Dropdown';
 import { DropdownOption } from '../../types/common';

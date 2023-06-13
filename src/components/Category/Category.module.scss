@@ -26,6 +26,12 @@
   width: 100%;
   object-fit: contain;
   object-position: right bottom;
+
+  transition: transform 0.3s ease-in;
+
+  &:hover {
+    transform: scale(105%);
+  }
 }
 
 .category {
