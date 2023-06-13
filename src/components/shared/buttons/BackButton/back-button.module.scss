@@ -3,10 +3,8 @@
 
 .button {
   @include small-text;
-
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 9px;
   color: $secondary-color;
   background-color: transparent;
@@ -16,6 +14,9 @@
   cursor: pointer;
 
   .icon {
+    position: relative;
+    top: -1.45px;
+    left: 0;
     transform: rotate(180deg);
   }
 
