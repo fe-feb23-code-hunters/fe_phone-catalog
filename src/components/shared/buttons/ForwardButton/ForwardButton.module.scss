@@ -10,17 +10,15 @@
   background-color: transparent;
   border-color: transparent;
   font-weight: 500;
-  transition: color ease-in-out 3ms;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+  height: 16px;
 
   .icon {
     position: relative;
     top: -1.45px;
     left: 0;
-    transform: rotate(180deg);
-  }
-
-  &:hover {
-    color: $primary-color;
+    transform: rotate(0deg);
   }
 }

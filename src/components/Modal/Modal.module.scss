@@ -1,0 +1,59 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography.scss" as *;
+
+$padding: 10px;
+$icon: 50px;
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $hover-background-color-alpha;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+
+  &--active {
+    opacity: 1;
+  }
+
+  &__content {
+    width: 370px;
+    text-align: center;
+    justify-content: center;
+    background-color: $elements-color;
+
+    @include onMobile {
+      width: 300px;
+    }
+  }
+
+  &__header {
+    padding: $padding;
+  }
+
+  &__title {
+    @include desktop-tablet-h4;
+    margin: 0;
+  }
+
+  &__body {
+    @include body-text;
+    padding: $padding;
+  }
+
+  &__footer {
+    padding: $padding;
+  }
+}
+
+.icon {
+  margin-top: $padding;
+  height: $icon;
+  width: $icon;
+}

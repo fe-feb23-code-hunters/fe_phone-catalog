@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import classes from './catalog.module.scss';
+import classes from './Catalog.module.scss';
 import Home from '../../icons/Home/Home';
-import Arrow from '../../icons/Arrow/Arrow';
 import Dropdown from '../../components/shared/Dropdown/Dropdown';
 import { DropdownOption } from '../../types/common';
 import ProductCard from '../../components/productCard';
 import Pagination from '../../components/shared/Pagination';
+import ForwardButton from '../../components/shared/buttons/ForwardButton/ForwardButton';
 
 const SORT_OPTIONS = [
   { value: 'option1', label: 'Newest' },
@@ -44,7 +44,6 @@ const Catalog: React.FC = () => {
     grid__item__mobile_3_4: gridMobileEnd,
     grid__item__tablet_5_7: gridTabletQuarter,
     grid__item__desktop_5_7: gridDesktopQuarter,
-    text__disabled: disabledText,
     icon__history: iconHistory,
     container__center: containerCenter,
     container__top: containerTop,
@@ -93,8 +92,7 @@ const Catalog: React.FC = () => {
               <Link to="/" className={icon}>
                 <Home />
               </Link>
-              <Arrow />
-              <p className={cn(text, disabledText)}>Phones</p>
+              <ForwardButton onClick={() => 'click me'} label="Phones" />
             </div>
           </div>
         </div>

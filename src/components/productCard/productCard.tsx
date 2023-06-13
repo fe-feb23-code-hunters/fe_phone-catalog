@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './product-card.module.scss';
 import Button from '../shared/buttons/Button';
 import LikeButton from '../shared/buttons/LikeButton';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
+// eslint-disable-next-line max-len
+import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 
 interface Props {
   id: string;
@@ -26,11 +28,18 @@ const ProductCard: React.FC<Props> = ({
   ram,
   title,
 }) => {
-  const [isInFavorite, setIsInFavorite] = useState(false);
-
   const { cart, addToCart, deleteFromCart } = useContext(CartContext);
+  const {
+    favourites,
+    addToFavourites,
+    deleteFromFavourites,
+  } = useContext(FavouritesContext);
 
   const doesExistInCart = cart.findIndex((product) => product.id === id) !== -1;
+
+  const doesExistInFavourites = favourites.findIndex(
+    (product) => product.id === id,
+  ) !== -1;
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
@@ -43,7 +52,11 @@ const ProductCard: React.FC<Props> = ({
   };
 
   const handleAddToFavourites = () => {
-    setIsInFavorite((prevState) => !prevState);
+    if (doesExistInFavourites) {
+      deleteFromFavourites(id);
+    } else {
+      addToFavourites(id);
+    }
   };
 
   return (
@@ -81,7 +94,7 @@ const ProductCard: React.FC<Props> = ({
           />
           <LikeButton
             onClick={handleAddToFavourites}
-            isSelected={isInFavorite}
+            isSelected={doesExistInFavourites}
           />
         </div>
       </div>
