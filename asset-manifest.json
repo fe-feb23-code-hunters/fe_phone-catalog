@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/fe_phone-catalog/static/css/main.7f8c58b2.css",
-    "main.js": "/fe_phone-catalog/static/js/main.8e2c1a68.js",
+    "main.css": "/fe_phone-catalog/static/css/main.17de051d.css",
+    "main.js": "/fe_phone-catalog/static/js/main.cee767ef.js",
     "static/media/Mont-Regular.otf": "/fe_phone-catalog/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/Mont-Bold.otf": "/fe_phone-catalog/static/media/Mont-Bold.03c8c2f6127c1da0fc39.otf",
     "index.html": "/fe_phone-catalog/index.html",
-    "main.7f8c58b2.css.map": "/fe_phone-catalog/static/css/main.7f8c58b2.css.map",
-    "main.8e2c1a68.js.map": "/fe_phone-catalog/static/js/main.8e2c1a68.js.map"
+    "main.17de051d.css.map": "/fe_phone-catalog/static/css/main.17de051d.css.map",
+    "main.cee767ef.js.map": "/fe_phone-catalog/static/js/main.cee767ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f8c58b2.css",
-    "static/js/main.8e2c1a68.js"
+    "static/css/main.17de051d.css",
+    "static/js/main.cee767ef.js"
   ]
 }
