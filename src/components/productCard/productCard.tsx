@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './product-card.module.scss';
 import Button from '../shared/buttons/Button';
 import LikeButton from '../shared/buttons/LikeButton';
@@ -33,7 +34,7 @@ const ProductCard: React.FC<Props> = ({
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
-  const handleClick = () => {
+  const handleAddToCart = () => {
     if (doesExistInCart) {
       deleteFromCart(id);
     } else {
@@ -41,12 +42,12 @@ const ProductCard: React.FC<Props> = ({
     }
   };
 
-  const handleFavorite = () => {
+  const handleAddToFavourites = () => {
     setIsInFavorite((prevState) => !prevState);
   };
 
   return (
-    <div className={classes.card}>
+    <Link to={`/phones/${id}`} className={classes.card}>
       <div className={classes.card__wrapper}>
         <img
           className={classes.card__image}
@@ -75,13 +76,16 @@ const ProductCard: React.FC<Props> = ({
         <div className={classes.card__specification__buttons}>
           <Button
             label={buttonLabel}
-            onClick={handleClick}
+            onClick={handleAddToCart}
             isSelected={doesExistInCart}
           />
-          <LikeButton onClick={handleFavorite} isSelected={isInFavorite} />
+          <LikeButton
+            onClick={handleAddToFavourites}
+            isSelected={isInFavorite}
+          />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
