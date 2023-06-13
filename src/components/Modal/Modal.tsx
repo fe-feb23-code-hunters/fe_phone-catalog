@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useNavigate } from 'react-router-dom';
+import { useLockedBody } from 'usehooks-ts';
+import cn from 'classnames';
 import Button from '../shared/buttons/Button/Button';
 import classes from './Modal.module.scss';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
@@ -22,7 +24,7 @@ const Modal: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleCloseModal = (e: any) => {
+  const handleCloseModal = (e: KeyboardEvent) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
       navigate('/');
@@ -33,6 +35,12 @@ const Modal: React.FC<Props> = ({
     onClose();
     navigate('/');
   };
+
+  const [, setLocked] = useLockedBody(false, 'root');
+
+  useEffect(() => {
+    setLocked(showModal);
+  }, [showModal]);
 
   useEffect(() => {
     document.body.addEventListener('keydown', handleCloseModal);
@@ -50,6 +58,7 @@ const Modal: React.FC<Props> = ({
     modal__title: modalTitle,
     modal__body: modalBody,
     modal__footer: modalFooter,
+    'modal--active': active,
   } = classes;
 
   return (
@@ -60,7 +69,7 @@ const Modal: React.FC<Props> = ({
       onExited={() => showModal}
       timeout={{ enter: 0, exit: 0 }}
     >
-      <div className={modal} onClick={onClose}>
+      <div className={cn(modal, { [active]: showModal })} onClick={onClose}>
         <div className={modalContent} onClick={(e) => e.stopPropagation()}>
           <div>
             <ShoppingBag className={icon} />
@@ -72,6 +81,7 @@ const Modal: React.FC<Props> = ({
           </div>
           <div className={modalBody}>
             {description}
+            <strong>CODEHUNTERS_TOP</strong>
           </div>
           <div className={modalFooter}>
             <Button onClick={closeModal} label="Close" height="48px" />

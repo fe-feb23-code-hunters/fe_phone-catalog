@@ -78,10 +78,10 @@ const Cart: React.FC = () => {
         </div>
       </div>
       <Modal
-        title="Thank you for purchase"
+        title="Thank you for your purchase"
         onClose={() => setShowModal(false)}
         showModal={showModal}
-        description="Thank you for your purchase. Seriously. There’s no such thing as too much small business support. Please enjoy 20% off your next order with code CODEHUNTERS_TOP"
+        description="Please enjoy 20% off your next order with promocode: "
       />
     </div>
   );

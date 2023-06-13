@@ -16,9 +16,14 @@ $icon: 50px;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
+  opacity: 0;
+
+  &--active {
+    opacity: 1;
+  }
 
   &__content {
-    width: 500px;
+    width: 370px;
     text-align: center;
     justify-content: center;
     background-color: $elements-color;
@@ -40,8 +45,6 @@ $icon: 50px;
   &__body {
     @include body-text;
     padding: $padding;
-    border-top: 1px solid $white-color;
-    border-bottom: 1px solid $white-color;
   }
 
   &__footer {
