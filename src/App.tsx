@@ -9,17 +9,10 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import BackButton from './components/shared/buttons/BackButton';
 
 const App = () => (
   <AppProvider>
     <Header />
-    <BackButton
-      onClick={() => {
-        'hello';
-      }}
-    />
-
     <main className="mainContainer">
       <Routes>
         <Route path="/" element={<HomePage />} />
