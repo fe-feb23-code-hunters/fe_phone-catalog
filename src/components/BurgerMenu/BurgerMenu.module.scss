@@ -93,6 +93,7 @@ $burger-icon-padding: 22px 72px;
 
     &_icon {
       height: $bottom-height;
+      text-align: center;
       width: 50%;
 
       cursor: pointer;
@@ -102,6 +103,7 @@ $burger-icon-padding: 22px 72px;
       text-align: center;
 
       &_left {
+        text-align: center;
         border-left: 1px solid $elements-color;
       }
 
