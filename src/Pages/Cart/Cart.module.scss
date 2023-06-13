@@ -51,8 +51,12 @@
 
     position: relative;
     margin-top: 25px;
-    width: 320px;
+    width: 90%;
     height: 73px;
+
+    @include onDesktop {
+      max-width: 320px;
+    }
 
     &::before {
       content: "";
