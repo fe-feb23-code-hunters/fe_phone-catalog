@@ -14,13 +14,13 @@ type Props = {
 };
 
 export const ProductCard: React.FC<Props> = ({
-  imgURL,
-  price,
-  oldPrice,
-  screen,
-  capacity,
-  ram,
-  title,
+  imgURL = '#',
+  price = 1000,
+  oldPrice = 5000,
+  screen = 5.5,
+  capacity = 'null',
+  ram = 4,
+  title = 'hello world',
 }) => {
   return (
     <div className={classes.card}>
