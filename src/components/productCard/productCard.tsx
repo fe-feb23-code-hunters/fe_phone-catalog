@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { MouseEventHandler, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './product-card.module.scss';
 import Button from '../shared/buttons/Button';
 import LikeButton from '../shared/buttons/LikeButton';
@@ -13,8 +13,8 @@ interface Props {
   price: number;
   screen: string;
   oldPrice: number;
-  capacity: number;
-  ram: number;
+  capacity: string;
+  ram: string;
   title: string;
 }
 
@@ -28,6 +28,8 @@ const ProductCard: React.FC<Props> = ({
   ram,
   title,
 }) => {
+  const navigate = useNavigate();
+
   const { cart, addToCart, deleteFromCart } = useContext(CartContext);
   const {
     favourites,
@@ -43,7 +45,9 @@ const ProductCard: React.FC<Props> = ({
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
-  const handleAddToCart = () => {
+  const handleAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
     if (doesExistInCart) {
       deleteFromCart(id);
     } else {
@@ -51,7 +55,11 @@ const ProductCard: React.FC<Props> = ({
     }
   };
 
-  const handleAddToFavourites = () => {
+  const handleAddToFavourites: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
+    event.stopPropagation();
+
     if (doesExistInFavourites) {
       deleteFromFavourites(id);
     } else {
@@ -59,12 +67,16 @@ const ProductCard: React.FC<Props> = ({
     }
   };
 
+  const handleCardClick = () => {
+    navigate(`/phones/${id}`);
+  };
+
   return (
-    <Link to={`/phones/${id}`} className={classes.card}>
+    <button type="button" className={classes.card} onClick={handleCardClick}>
       <div className={classes.card__wrapper}>
         <img
           className={classes.card__image}
-          src={`${process.env.PUBLIC_URL}${imgURL}`}
+          src={`${process.env.REACT_APP_API_PATH}/${imgURL}`}
           alt="phone"
         />
         <h2 className={classes.card__title}>{title}</h2>
@@ -78,13 +90,11 @@ const ProductCard: React.FC<Props> = ({
         </div>
         <div className={classes.card__specification__wrapper}>
           <p className={classes.card__specification__title}>Capacity</p>
-          <p className={classes.card__specification__value}>
-            {`${capacity}GB`}
-          </p>
+          <p className={classes.card__specification__value}>{capacity}</p>
         </div>
         <div className={classes.card__specification__wrapper}>
           <p className={classes.card__specification__title}>RAM</p>
-          <p className={classes.card__specification__value}>{`${ram}GB`}</p>
+          <p className={classes.card__specification__value}>{ram}</p>
         </div>
         <div className={classes.card__specification__buttons}>
           <Button
@@ -98,7 +108,7 @@ const ProductCard: React.FC<Props> = ({
           />
         </div>
       </div>
-    </Link>
+    </button>
   );
 };
 

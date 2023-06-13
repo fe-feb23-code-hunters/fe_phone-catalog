@@ -1,10 +1,15 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { fetchAllProducts } from '../../api/products.api';
+import { Product } from '../../types/product';
 
-export const ProductsContext = React.createContext({ products: [] });
+interface Context {
+  products: Product[];
+}
+
+export const ProductsContext = React.createContext<Context>({ products: [] });
 
 const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   const setupProducts = async () => {
     const { products: fetchedProducts } = await fetchAllProducts();

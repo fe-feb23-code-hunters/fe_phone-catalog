@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import './styles/App.scss';
 import HomePage from './Pages/HomePage';
 import Catalog from './Pages/Catalog';
-import Product from './Pages/Product';
+import ProductDetails from './Pages/ProductDetails';
 import FavouritePage from './Pages/FavouritePage';
 import Cart from './Pages/Cart';
 import PageNotFound from './Pages/PageNotFound';
@@ -21,7 +21,7 @@ const App = () => (
 
         <Route path="/phones">
           <Route index element={<Catalog />} />
-          <Route path=":productId" element={<Product />} />
+          <Route path=":productId" element={<ProductDetails />} />
         </Route>
 
         <Route path="/favourites" element={<FavouritePage />} />

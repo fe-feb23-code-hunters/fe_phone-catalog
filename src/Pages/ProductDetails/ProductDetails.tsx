@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../../api/products.api';
+import { Product } from '../../types/product';
 
-const Product: React.FC = () => {
+const ProductDetails: React.FC = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState({});
-  const [error, setError] = useState<null | Error>(null);
+
+  const [product, setProduct] = useState<Product | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchProduct = async () => {
     try {
@@ -14,8 +16,8 @@ const Product: React.FC = () => {
 
         setProduct(fetchedProduct);
       }
-    } catch (err: any) {
-      setError(err);
+    } catch (err) {
+      setError(err as Error);
     }
   };
 
@@ -27,10 +29,10 @@ const Product: React.FC = () => {
     <div>
       <h1>Product</h1>
 
-      {JSON.stringify(product)}
+      {product?.name}
       {error && `Error: ${error}`}
     </div>
   );
 };
 
-export default Product;
+export default ProductDetails;

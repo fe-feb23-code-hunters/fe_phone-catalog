@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import React, { PropsWithChildren } from 'react';
+import React, { MouseEventHandler, PropsWithChildren } from 'react';
 import classes from './icon-button.module.scss';
 
 export interface IconButtonProps {
@@ -7,7 +7,7 @@ export interface IconButtonProps {
   isSelected?: boolean;
   isFilled?: boolean;
   isLarge?: boolean;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>
 }
 
 const IconsButton: React.FC<PropsWithChildren<IconButtonProps>> = ({
@@ -26,9 +26,9 @@ const IconsButton: React.FC<PropsWithChildren<IconButtonProps>> = ({
       [classes.filled]: isFilled,
       [classes.large]: isLarge,
     })}
-    onClick={() => {
+    onClick={(event) => {
       if (!isDisabled) {
-        onClick();
+        onClick(event);
       }
     }}
   >
