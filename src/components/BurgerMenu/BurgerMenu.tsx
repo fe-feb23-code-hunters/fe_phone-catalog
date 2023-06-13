@@ -8,6 +8,8 @@ import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
 import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 import IconWithCounter from '../shared/IconWithCounter';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
+// eslint-disable-next-line max-len
+import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 
 interface Props {
   handleClick: () => void;
@@ -32,6 +34,7 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
   } = classes;
 
   const { cart } = useContext(CartContext);
+  const { favourites } = useContext(FavouritesContext);
 
   const [, setLocked] = useLockedBody(false, 'root');
 
@@ -84,7 +87,9 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
 
           <div className={bottomContainer}>
             <Link to="/favourites" className={bottomIcon} onClick={handleClick}>
-              <HeartOutlined />
+              <IconWithCounter count={favourites.length}>
+                <HeartOutlined />
+              </IconWithCounter>
             </Link>
 
             <Link to="/cart" className={bottomIconLeft} onClick={handleClick}>

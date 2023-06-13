@@ -9,6 +9,8 @@ import Menu from '../../icons/Menu';
 import { BurgerMenu } from '../BurgerMenu';
 import IconWithCounter from '../shared/IconWithCounter';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
+// eslint-disable-next-line max-len
+import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 
 const {
   header,
@@ -21,6 +23,7 @@ const {
 
 export const Header = () => {
   const { cart } = useContext(CartContext);
+  const { favourites } = useContext(FavouritesContext);
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const handleMenuButtonClick = () => {
@@ -44,7 +47,9 @@ export const Header = () => {
 
         <div className={headerIconsContainer}>
           <Link to="/favourites" className={headerBarIcon}>
-            <HeartOutlined />
+            <IconWithCounter count={favourites.length}>
+              <HeartOutlined />
+            </IconWithCounter>
           </Link>
           <Link to="/cart" className={headerBarIcon}>
             <IconWithCounter count={cart.length}>
