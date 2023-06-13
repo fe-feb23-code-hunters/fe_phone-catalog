@@ -1,0 +1,28 @@
+@use "../../styles/utils/grid.scss" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/App.scss" as *;
+
+$rectagle-color-first: #6D6474;
+$rectagle-color-second: #8D8D92;
+$rectagle-color-third: #973D5F;
+
+.container__top {
+  margin-top: 24px;
+}
+
+.img {
+  object-position: right top;
+}
+
+.category__title {
+  color: $primary-color;
+  @include desktop-tablet-h2;
+
+  margin-top: 24px;
+}
+
+.link {
+  text-decoration: none;
+}
