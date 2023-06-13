@@ -1,10 +1,13 @@
 import React, { PropsWithChildren } from 'react';
 import CartProvider from '../CartProvider';
+import FavouritesProvider from '../FavouritesProvider/FavouritesProvider';
 import ProductsProvider from '../ProductsProvider';
 
 const AppProvider: React.FC<PropsWithChildren> = ({ children }) => (
   <ProductsProvider>
-    <CartProvider>{children}</CartProvider>
+    <CartProvider>
+      <FavouritesProvider>{children}</FavouritesProvider>
+    </CartProvider>
   </ProductsProvider>
 );
 
