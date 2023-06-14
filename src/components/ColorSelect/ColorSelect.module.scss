@@ -5,10 +5,28 @@
 @use "../../styles/App.scss" as *;
 
 .color__body {
-  display: flex;
   width: 100%;
 }
+
 .color__container {
   display: flex;
+  margin:8px 0 24px;
+}
+
+.color__title {
+  display: flex;
+  justify-content: space-between;
+  @include body-text;
+
+  color: $secondary-color;
+}
+
+.color__button {
   margin-right: 8px;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: $elements-color;
 }
