@@ -20,6 +20,13 @@
     column-gap: 16px;
   }
 
+  &__row-mobile {
+    @include onMobile {
+      grid-template-rows: repeat(3, 1fr);
+      row-gap: 32px;
+    }
+  }
+
   &__desktop {
     @include onDesktop {
       display: grid;
