@@ -1,6 +1,7 @@
 @use "../../styles/utils/mixins" as *;
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/utils/vars" as *;
+@use "../../styles/utils/grid.scss" as *;
 
 .rectagle {
   max-height: 288px;
