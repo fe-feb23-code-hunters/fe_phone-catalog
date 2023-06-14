@@ -9,6 +9,8 @@ $card-width: 272px;
   width: 100%;
   border: 1px solid $elements-color;
   transition: box-shadow 0.3s ease-in-out;
+  outline: none;
+  background-color: $white-color;
   cursor: pointer;
 
   &:hover {
@@ -26,6 +28,7 @@ $card-width: 272px;
     height: 208px;
     align-self: center;
     padding-bottom: 24px;
+    object-fit: contain;
     transition: transform 0.3s ease-in-out;
 
     &:hover {

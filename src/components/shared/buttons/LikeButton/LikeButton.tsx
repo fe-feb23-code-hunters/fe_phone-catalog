@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import IconButton from '../IconButton';
 import HeartOutlined from '../../../../icons/HeartOutlined';
 import HeartFilled from '../../../../icons/HeartFilled';
@@ -6,7 +7,7 @@ import classes from './like-button.module.scss';
 interface Props {
   isSelected?: boolean;
   isLarge?: boolean;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const LikeButton: React.FC<Props> = ({

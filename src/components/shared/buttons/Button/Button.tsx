@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import classes from './button.module.scss';
 
 interface Props {
   label: string;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   isSelected?: boolean;
   height?: string;
 }
