@@ -6,13 +6,13 @@
   text-decoration: none;
   color: $secondary-color;
   @include uppercased-text;
-  
+
   position: relative;
   transition: color 0.3s ease-in-out;
-  padding: 18px 0;
+  padding: 18px 0 15px;
 
   @include onDesktop {
-    padding: 25px 0;
+    padding: 25px 0 20px;
   }
 
   &:hover {
@@ -25,7 +25,7 @@
     &::after {
       position: absolute;
       right: 0;
-      bottom: -1px;
+      bottom: -2px;
       content: "";
       height: 3px;
       background: $primary-color;
