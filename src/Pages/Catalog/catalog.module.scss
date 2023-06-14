@@ -58,10 +58,6 @@
   }
 }
 
-.link {
-  text-decoration: none;
-}
-
 .catalog {
   display: grid;
   grid-template-columns: repeat(4, $card-width);
