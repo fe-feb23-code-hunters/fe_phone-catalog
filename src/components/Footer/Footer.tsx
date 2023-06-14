@@ -47,7 +47,12 @@ export const Footer = () => {
 
         <ul className={navList}>
           <li className={navlistItem}>
-            <Link to="/github" className={navListLink}>
+            <Link
+              to="https://github.com/fe-feb23-code-hunters"
+              className={navListLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               github
             </Link>
           </li>
