@@ -68,153 +68,156 @@ const ProductDetails: React.FC = () => {
 
   return (
     <div>
-      <div className={cn(container, containerTop)}>
-        <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
-          <div
-            className={cn(
-              gridItem,
-              gridMobileFullSize,
-              gridTabletFullSize,
-              gridDesktopFullSize,
-              iconHistory,
-            )}
-          >
-            <div className={containerCenter}>
-              <Link to="/" className={icon}>
-                <Home />
-              </Link>
+      {product && (
+        <>
+          <div className={cn(container, containerTop)}>
+            <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+              <div
+                className={cn(
+                  gridItem,
+                  gridMobileFullSize,
+                  gridTabletFullSize,
+                  gridDesktopFullSize,
+                  iconHistory,
+                )}
+              >
+                <div className={containerCenter}>
+                  <Link to="/" className={icon}>
+                    <Home />
+                  </Link>
 
-              <Arrow />
+                  <Arrow />
 
-              <Link to="/phones" className={link}>
-                <p className={cn(text)}>Phones</p>
-              </Link>
+                  <Link to="/phones" className={link}>
+                    <p className={cn(text)}>Phones</p>
+                  </Link>
 
-              <Arrow />
+                  <Arrow />
 
-              <p className={cn(text, disabledText)}>Phone name</p>
-            </div>
+                  <p className={cn(text, disabledText)}>{product?.name}</p>
+                </div>
 
-            <div
-              className={cn(
-                gridItem,
-                gridMobileFullSize,
-                gridTabletFullSize,
-                gridDesktopFullSize,
-                iconHistory,
-              )}
-            >
-              <div className={buttonBack}>
-                <BackButton onClick={goBack} />
+                <div
+                  className={cn(
+                    gridItem,
+                    gridMobileFullSize,
+                    gridTabletFullSize,
+                    gridDesktopFullSize,
+                    iconHistory,
+                  )}
+                >
+                  <div className={buttonBack}>
+                    <BackButton onClick={goBack} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className={cn(container)}>
-        <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
-          <div
-            className={cn(
-              gridItem,
-              gridMobileFullSize,
-              gridTabletFullSize,
-              gridDesktopFullSize,
-            )}
-          >
-            <h1 className={title}>Phone name</h1>
+          <div className={cn(container)}>
+            <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+              <div
+                className={cn(
+                  gridItem,
+                  gridMobileFullSize,
+                  gridTabletFullSize,
+                  gridDesktopFullSize,
+                )}
+              >
+                <h1 className={title}>{product?.name}</h1>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className={cn(container, grid, sectionMargin, blockMargin)}>
-        <div
-          className={cn(
-            gridItem,
-            gridDesktopStart,
-            gridTabletStart,
-            gridMobileFullSize,
-            template,
-          )}
-        >
-          <h1 className={cn(text)}>Photo block</h1>
-        </div>
-
-        <div
-          className={cn(
-            gridItem,
-            gridDesktopEnd,
-            gridTabletEnd,
-            gridMobileFullSize,
-            template,
-          )}
-        >
-          <div className={cn(grid)}>
+          <div className={cn(container, grid, sectionMargin, blockMargin)}>
             <div
               className={cn(
                 gridItem,
                 gridDesktopStart,
                 gridTabletStart,
-                gridMobileStart,
+                gridMobileFullSize,
+                template,
               )}
             >
-              <div
-                className={cn(template)}
-              >
-                <h1 className={cn(text)}>Available colors block</h1>
-              </div>
-
-              <div
-                className={cn(template)}
-              >
-                <h1 className={cn(text)}>Select Capacity block</h1>
-              </div>
-
-              <div
-                className={cn(template)}
-              >
-                <h1 className={cn(text)}>Action block</h1>
-              </div>
+              <h1 className={cn(text)}>Photo block</h1>
             </div>
 
-            <div className={cn(gridItem, gridDesktopEnd, gridTabletEnd, gridMobileEnd)}>
-              <h1 className={cn(text)}>Id</h1>
+            <div
+              className={cn(
+                gridItem,
+                gridDesktopEnd,
+                gridTabletEnd,
+                gridMobileFullSize,
+                template,
+              )}
+            >
+              <div className={cn(grid)}>
+                <div
+                  className={cn(
+                    gridItem,
+                    gridDesktopStart,
+                    gridTabletStart,
+                    gridMobileStart,
+                  )}
+                >
+                  <div
+                    className={cn(template)}
+                  >
+                    <h1 className={cn(text)}>Available colors block</h1>
+                  </div>
+
+                  <div
+                    className={cn(template)}
+                  >
+                    <h1 className={cn(text)}>Select Capacity block</h1>
+                  </div>
+
+                  <div
+                    className={cn(template)}
+                  >
+                    <h1 className={cn(text)}>Action block</h1>
+                  </div>
+                </div>
+
+                <div className={cn(gridItem, gridDesktopEnd, gridTabletEnd, gridMobileEnd)}>
+                  <h1 className={cn(text)}>Id</h1>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className={cn(container, grid, blockMargin)}>
-        <div
-          className={cn(
-            gridItem,
-            gridDesktopStart,
-            gridTabletStart,
-            gridMobileFullSize,
-            template,
-          )}
-        >
-          <h1 className={cn(text)}>About</h1>
-        </div>
+          <div className={cn(container, grid, blockMargin)}>
+            <div
+              className={cn(
+                gridItem,
+                gridDesktopStart,
+                gridTabletStart,
+                gridMobileFullSize,
+                template,
+              )}
+            >
+              <h1 className={cn(text)}>About</h1>
+            </div>
 
-        <div
-          className={cn(
-            gridItem,
-            gridDesktopEnd,
-            gridTabletEnd,
-            gridMobileFullSize,
-            template,
-          )}
-        >
-          <h1 className={cn(text)}>Tech specs</h1>
-        </div>
-      </div>
+            <div
+              className={cn(
+                gridItem,
+                gridDesktopEnd,
+                gridTabletEnd,
+                gridMobileFullSize,
+                template,
+              )}
+            >
+              <h1 className={cn(text)}>Tech specs</h1>
+            </div>
+          </div>
 
-      <div className={cn(container, blockMargin)}>
-        <h2 className={cn(subtitle, template)}>You may also like</h2>
-      </div>
+          <div className={cn(container, blockMargin)}>
+            <h2 className={cn(subtitle, template)}>You may also like</h2>
+          </div>
+        </>
+      )}
 
-      {product?.name}
       {error && `Error: ${error}`}
     </div>
   );
