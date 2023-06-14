@@ -3,12 +3,3 @@
 @use "../../styles/utils/mixins" as *;
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/App.scss" as *;
-
-.color__body {
-  display: flex;
-  width: 100%;
-}
-.color__container {
-  display: flex;
-  margin-right: 8px;
-}
