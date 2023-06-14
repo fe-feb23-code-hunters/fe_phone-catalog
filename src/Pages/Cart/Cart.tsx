@@ -65,6 +65,8 @@ const Cart: React.FC = () => {
           )}
         >
           <CartItem />
+          <CartItem />
+          <CartItem />
         </div>
         <div
           className={cn(
