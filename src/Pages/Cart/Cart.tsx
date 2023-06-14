@@ -7,50 +7,57 @@ import classes from './Cart.module.scss';
 import Button from '../../components/shared/buttons/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { CartItem } from '../../components/CartItem';
+import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
+import { CartProduct } from '../../types/cart';
+
+const {
+  grid,
+  checkout,
+  grid__desktop: gridDesktop,
+  grid__tablet: gridTablet,
+  grid__mobile: gridMobile,
+  grid__item: gridItem,
+  grid__item__tablet_1_12: gridTabletFullSize,
+  grid__item__desktop_17_24: gridDesktopEnd,
+  grid__item__mobile_1_4: gridMobileFullSize,
+  grid__item__desktop_1_16: gridDesktopStart,
+  container,
+  title,
+  button__back: buttonBack,
+  checkout__value: checkoutValue,
+  checkout__count: checkoutCount,
+  checkout__button: checkoutButton,
+} = classes;
 
 const Cart: React.FC = () => {
-  const { cart, deleteFromCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
+  const { products } = useContext(ProductsContext);
   const [showModal, setShowModal] = useState(false);
 
   const goBack = () => {
     window.history.back();
   };
 
-  const value = cart.reduce((accum, product) => accum + product.count, 0);
+  const cartMap: { [key: string]: CartProduct } = cart.reduce(
+    (acc, cartItem) => {
+      return { ...acc, [cartItem.id]: cartItem };
+    },
+    {},
+  );
 
-  const {
-    grid,
-    checkout,
-    grid__desktop: gridDesktop,
-    grid__tablet: gridTablet,
-    grid__mobile: gridMobile,
-    grid__item: gridItem,
-    grid__item__tablet_1_12: gridTabletFullSize,
-    grid__item__desktop_17_24: gridDesktopEnd,
-    grid__item__mobile_1_4: gridMobileFullSize,
-    grid__item__desktop_1_16: gridDesktopStart,
-    container,
-    title,
-    button__back: buttonBack,
-    checkout__value: checkoutValue,
-    checkout__count: checkoutCount,
-    checkout__button: checkoutButton,
-  } = classes;
+  const cartProducts = products.filter(
+    (currentProduct) => cartMap[currentProduct.id],
+  );
+
+  const totalPrice = cartProducts.reduce(
+    (accum, { price, id }) => accum + price * cartMap[id].count,
+    0,
+  );
+
+  const totalCount = cart.reduce((accum, { count }) => accum + count, 0);
 
   return (
     <div className={container}>
-      {cart.map((product) => (
-        <div key={product.id}>
-          {`
-            id: ${product.id}
-            count: ${product.count}
-          `}
-
-          <button type="button" onClick={() => deleteFromCart(product.id)}>
-            Delete from cart
-          </button>
-        </div>
-      ))}
       <div className={buttonBack}>
         <BackButton onClick={goBack} />
       </div>
@@ -64,7 +71,18 @@ const Cart: React.FC = () => {
             gridDesktopStart,
           )}
         >
-          <CartItem />
+          {cartProducts.map(({
+            id, name, image, price,
+          }) => (
+            <CartItem
+              key={id}
+              id={id}
+              name={name}
+              image={image}
+              price={price}
+              count={cartMap[id].count}
+            />
+          ))}
         </div>
         <div
           className={cn(
@@ -75,9 +93,9 @@ const Cart: React.FC = () => {
           )}
         >
           <div className={checkout}>
-            <h2 className={checkoutValue}>{`$${value}`}</h2>
+            <h2 className={checkoutValue}>{`$${totalPrice}`}</h2>
             <h3 className={checkoutCount}>
-              {`Total for ${cart.length} items`}
+              {`Total for ${totalCount} items`}
             </h3>
             <div className={checkoutButton}>
               <Button

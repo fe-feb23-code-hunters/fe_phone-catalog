@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -23,16 +22,28 @@ const {
   'is-active-button': isActiveButton,
 } = classes;
 
-// delete when change count will be ready
-const handleClick = () => { };
+interface Props {
+  id: string;
+  image: string;
+  name: string;
+  price: number;
+  count: number;
+}
 
-export const CartItem = () => {
-  const { deleteFromCart } = useContext(CartContext);
-
-  // delete when the product will be accessible
-  const count = 1;
+export const CartItem: React.FC<Props> = ({
+  id, image, name, price, count,
+}) => {
+  const { deleteFromCart, addToCart, removeFromCart } = useContext(CartContext);
 
   const showDisabledButton = count <= 1;
+
+  const handleAdd = () => {
+    addToCart(id);
+  };
+
+  const handleRemove = () => {
+    removeFromCart(id);
+  };
 
   return (
     <div className={container}>
@@ -41,38 +52,36 @@ export const CartItem = () => {
           <button
             type="button"
             className={CardDeleteButton}
-            // add productId deleteFromCart(productId)
-            onClick={() => deleteFromCart}
+            onClick={() => deleteFromCart(id)}
           >
             <CloseLigth />
           </button>
           <Link to="/">
             <img
-              src={`${process.env.PUBLIC_URL}/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg`}
-              alt=""
+              src={`${process.env.REACT_APP_API_PATH}/${image}`}
+              alt={image}
               className={CardImg}
             />
           </Link>
           <Link to="/" className={CardProductDescription}>
-            Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+            {name}
           </Link>
         </div>
         <div className={CardInfo}>
           <div className={CardCounter}>
-            <IconsButton onClick={handleClick} isDisabled={showDisabledButton}>
-              <Minus className={cn(isDisabledButton, {
-                [isActiveButton]: count > 1,
-              })}
+            <IconsButton onClick={handleRemove} isDisabled={showDisabledButton}>
+              <Minus
+                className={cn(isDisabledButton, {
+                  [isActiveButton]: count > 1,
+                })}
               />
             </IconsButton>
-            <p className={CardCount}>
-              {count}
-            </p>
-            <IconsButton onClick={handleClick}>
+            <p className={CardCount}>{count}</p>
+            <IconsButton onClick={handleAdd}>
               <Plus />
             </IconsButton>
           </div>
-          <p className={CardPrice}>$1099</p>
+          <p className={CardPrice}>{`$${price * count}`}</p>
         </div>
       </div>
     </div>
