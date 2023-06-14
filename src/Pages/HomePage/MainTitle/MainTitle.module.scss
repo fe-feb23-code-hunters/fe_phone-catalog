@@ -1,0 +1,26 @@
+@use "../../../styles/utils/grid.scss" as *;
+@use "../../../styles/utils/vars" as *;
+@use "../../../styles/utils/mixins" as *;
+@use "../../../styles/fonts/typography.scss" as *;
+@use "../../../styles/App.scss" as *;
+
+.main__title {
+  margin: 0;
+  @include desktop-tablet-h1;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}
+
+.title-margin {
+  margin-top: 4px;
+
+  @include onTablet {
+    margin-top: 12px;
+  }
+
+  @include onDesktop {
+    margin-top: 36px;
+  }
+}
