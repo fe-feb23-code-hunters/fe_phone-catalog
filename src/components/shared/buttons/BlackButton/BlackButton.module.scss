@@ -1,0 +1,32 @@
+@use "../../../../styles/utils/vars" as *;
+@use "../../../../styles/fonts/typography" as *;
+
+.button {
+  @include button-text;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 63px;
+  background-color: $white-color;
+  border: 1px solid $icons-color;
+  color: $primary-color;
+  transition: box-shadow 0.3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $primary-color;
+    transition: border 0.3s ease-out;
+  }
+
+  &.higlighted {
+    border: 1px solid $elements-color;
+    background-color: $primary-color;
+    color: $white-color;
+
+    &:hover {
+      box-shadow: 0 3px 13px rgba(23, 32, 49, 0.05);
+    }
+  }
+}
