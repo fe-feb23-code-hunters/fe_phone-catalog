@@ -6,6 +6,7 @@ import BackButton from '../../components/shared/buttons/BackButton/BackButton';
 import classes from './Cart.module.scss';
 import Button from '../../components/shared/buttons/Button/Button';
 import Modal from '../../components/Modal/Modal';
+import { CartItem } from '../../components/CartItem';
 
 const Cart: React.FC = () => {
   const { cart, deleteFromCart } = useContext(CartContext);
@@ -27,6 +28,7 @@ const Cart: React.FC = () => {
     grid__item__tablet_1_12: gridTabletFullSize,
     grid__item__desktop_17_24: gridDesktopEnd,
     grid__item__mobile_1_4: gridMobileFullSize,
+    grid__item__desktop_1_16: gridDesktopStart,
     container,
     title,
     button__back: buttonBack,
@@ -54,6 +56,16 @@ const Cart: React.FC = () => {
       </div>
       <h1 className={title}>Cart</h1>
       <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
+        <div
+          className={cn(
+            gridItem,
+            gridMobileFullSize,
+            gridTabletFullSize,
+            gridDesktopStart,
+          )}
+        >
+          <CartItem />
+        </div>
         <div
           className={cn(
             gridItem,

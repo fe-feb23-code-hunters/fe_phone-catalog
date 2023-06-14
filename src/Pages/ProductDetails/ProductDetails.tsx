@@ -2,7 +2,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames';
-import { fetchProductById } from '../../api/products.api';
+import {
+  fetchProductById,
+  fetchRecommendedProducts,
+} from '../../api/products.api';
 import { Product } from '../../types/product';
 import classes from './productDetails.module.scss';
 import Arrow from '../../icons/Arrow';
@@ -13,6 +16,10 @@ const ProductDetails: React.FC = () => {
   const { productId } = useParams();
 
   const [product, setProduct] = useState<Product | null>(null);
+
+  // eslint-disable-next-line max-len
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+
   const [error, setError] = useState<Error | null>(null);
 
   const {
@@ -62,8 +69,21 @@ const ProductDetails: React.FC = () => {
     }
   };
 
+  const fetchRecommended = async () => {
+    try {
+      if (productId) {
+        const { products } = await fetchRecommendedProducts(productId);
+
+        setRecommendedProducts(products);
+      }
+    } catch (err) {
+      setError(err as Error);
+    }
+  };
+
   useEffect(() => {
     fetchProduct();
+    fetchRecommended();
   }, [productId]);
 
   return (
@@ -219,6 +239,9 @@ const ProductDetails: React.FC = () => {
       )}
 
       {error && `Error: ${error}`}
+      {recommendedProducts.map(recommendedProduct => {
+        return <h1 key={recommendedProduct.id}>{recommendedProduct.name}</h1>;
+      })}
     </div>
   );
 };
