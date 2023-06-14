@@ -20,31 +20,30 @@ const ProductDetails: React.FC = () => {
     grid,
     icon,
     title,
+    subtitle,
     text,
     link,
-    phone,
     template,
-    info,
-    about,
     button__back: buttonBack,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
     grid__mobile: gridMobile,
     grid__item: gridItem,
-    grid__item__mobile_1_2: gridMobileFullSize,
-    grid__item__tablet_1_6: gridTabletFullSize,
-    grid__item__desktop_1_8: gridDesktopFullSize,
-    grid__item__desktop_1_4: gridDesktopPhotoBlock,
-    grid__item__desktop_5_8: gridDesktopInfoBlock,
-    grid__item__tablet_1_4: gridTabletPhotoBlock,
-    grid__item__tablet_5_8: gridTabletInfoBlock,
-    grid__item__desktop_1_4: gridDesktopAboutBlock,
-    grid__item__desktop_5_8: gridDesktopTechSpecsBlock,
+    grid__item__mobile_1_4: gridMobileFullSize,
+    grid__item__tablet_1_12: gridTabletFullSize,
+    grid__item__desktop_1_24: gridDesktopFullSize,
+    grid__item__desktop_1_12: gridDesktopStart,
+    grid__item__desktop_13_24: gridDesktopEnd,
+    grid__item__tablet_1_7: gridTabletStart,
+    grid__item__tablet_8_12: gridTabletEnd,
+    grid__item__mobile_1_3: gridMobileStart,
+    grid__item__mobile_4_5: gridMobileEnd,
     text__disabled: disabledText,
     icon__history: iconHistory,
     container__center: containerCenter,
     container__top: containerTop,
     section__margin: sectionMargin,
+    block__margin: blockMargin,
   } = classes;
 
   const goBack = () => {
@@ -128,12 +127,13 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      <div className={cn(phone, sectionMargin)}>
+      <div className={cn(container, grid, sectionMargin, blockMargin)}>
         <div
           className={cn(
             gridItem,
-            gridDesktopPhotoBlock,
-            gridTabletPhotoBlock,
+            gridDesktopStart,
+            gridTabletStart,
+            gridMobileFullSize,
             template,
           )}
         >
@@ -143,13 +143,21 @@ const ProductDetails: React.FC = () => {
         <div
           className={cn(
             gridItem,
-            gridDesktopInfoBlock,
-            gridTabletInfoBlock,
+            gridDesktopEnd,
+            gridTabletEnd,
+            gridMobileFullSize,
             template,
           )}
         >
-          <div className={cn(info)}>
-            <div className={cn(gridItem)}>
+          <div className={cn(grid)}>
+            <div
+              className={cn(
+                gridItem,
+                gridDesktopStart,
+                gridTabletStart,
+                gridMobileStart,
+              )}
+            >
               <div
                 className={cn(template)}
               >
@@ -169,18 +177,20 @@ const ProductDetails: React.FC = () => {
               </div>
             </div>
 
-            <div className={cn(gridItem)}>
+            <div className={cn(gridItem, gridDesktopEnd, gridTabletEnd, gridMobileEnd)}>
               <h1 className={cn(text)}>Id</h1>
             </div>
           </div>
         </div>
       </div>
 
-      <div className={cn(about, sectionMargin)}>
+      <div className={cn(container, grid, blockMargin)}>
         <div
           className={cn(
             gridItem,
-            gridDesktopAboutBlock,
+            gridDesktopStart,
+            gridTabletStart,
+            gridMobileFullSize,
             template,
           )}
         >
@@ -190,7 +200,9 @@ const ProductDetails: React.FC = () => {
         <div
           className={cn(
             gridItem,
-            gridDesktopTechSpecsBlock,
+            gridDesktopEnd,
+            gridTabletEnd,
+            gridMobileFullSize,
             template,
           )}
         >
@@ -198,8 +210,8 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      <div className={cn(container, sectionMargin, template)}>
-        <h1 className={cn(title)}>You may also like</h1>
+      <div className={cn(container, blockMargin)}>
+        <h2 className={cn(subtitle, template)}>You may also like</h2>
       </div>
 
       {product?.name}
