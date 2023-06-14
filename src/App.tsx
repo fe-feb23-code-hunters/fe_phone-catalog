@@ -16,21 +16,19 @@ const App = () => (
     <Header />
 
     <main className="mainContainer">
-      <ScrollToTop>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<Navigate to="/" replace />} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<Navigate to="/" replace />} />
 
-          <Route path="/phones">
-            <Route index element={<Catalog />} />
-            <Route path=":productId" element={<ProductDetails />} />
-          </Route>
+        <Route path="/phones">
+          <Route index element={<Catalog />} />
+          <Route path=":productId" element={<ProductDetails />} />
+        </Route>
 
-          <Route path="/favourites" element={<FavouritePage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </ScrollToTop>
+        <Route path="/favourites" element={<FavouritePage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </main>
 
     <Footer />
