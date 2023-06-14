@@ -32,6 +32,7 @@ const Catalog: React.FC = () => {
     title,
     text,
     catalog,
+    link,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
     grid__mobile: gridMobile,
@@ -166,6 +167,19 @@ const Catalog: React.FC = () => {
         </div>
       </div>
       <div className={cn(catalog)}>
+        <Link to="/phones/0" className={link}>
+          <ProductCard
+            id="0"
+            title="Apple iPhone 14 Pro 128GB Silver (MQ023)"
+            imgURL="/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg"
+            price={1099}
+            oldPrice={1199}
+            screen="6.2 IPS"
+            capacity="128"
+            ram="8"
+          />
+        </Link>
+
         {products.map((product) => (
           <ProductCard
             key={product.id}

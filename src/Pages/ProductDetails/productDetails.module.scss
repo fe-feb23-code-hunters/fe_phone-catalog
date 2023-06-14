@@ -4,11 +4,13 @@
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/utils/vars" as *;
 @use "../../styles/utils/mixins" as *;
-@use "../../components/ProductCard/product-card.module.scss" as *;
 
 .icon {
   height: $icon-size;
-  margin-right: 8px;
+}
+
+.container {
+  width: 100%;
 }
 
 .container__top {
@@ -18,6 +20,7 @@
 .container__center {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .container__margin_text {
@@ -25,7 +28,7 @@
 }
 
 .title {
-  margin: 0;
+  margin: 16px 0 0;
   @include desktop-tablet-h1;
 
   @include onMobile {
@@ -35,27 +38,16 @@
 
 .section__margin {
   margin-top: 40px;
-
-  @include onMobile {
-    margin-top: 24px;
-  }
-}
-
-.option__margin {
-  margin-top: 40px;
-
-  @include onMobile {
-    margin-top: 32px;
-  }
 }
 
 .text {
   @include small-text;
-  color: $secondary-color;
+  color: $primary-color;
+  line-height: 12px;
 
   &__disabled {
-    margin-left: 8px;
     display: inline-block;
+    color: $secondary-color;
   }
 }
 
@@ -63,29 +55,61 @@
   text-decoration: none;
 }
 
-.catalog {
+.button__back {
+  padding: 0;
+  margin-top: 40px;
+
+  @include onMobile {
+    margin-top: 24px;
+  }
+}
+
+.phone {
   display: grid;
-  grid-template-columns: repeat(4, $card-width);
-  padding: 24px;
+  grid-template-columns: repeat(8, 1fr);
   margin: 0 auto;
+  padding: 24px;
   max-width: 1200px;
-  gap: 16px;
+  gap: 64px;
 
   @media (max-width: 1199px) {
-    $card-width: 229px;
     justify-content: center;
-    grid-template-columns: repeat(3, $card-width);
+    grid-template-columns: repeat(8, 1fr);
   }
 
   @media (max-width: 767px) {
-    $card-width: 288px;
     justify-content: center;
-    grid-template-columns: repeat(2, $card-width);
+    grid-template-columns: repeat(8, 1fr);
   }
 
   @media (max-width: 639px) {
-    $card-width: 288px;
     justify-content: center;
-    grid-template-columns: repeat(1, $card-width);
+    grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.about {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  margin: 0 auto;
+  padding: 24px;
+  max-width: 1200px;
+  gap: 64px;
+
+  @media (max-width: 1199px) {
+    justify-content: center;
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.template {
+  border: solid 1px black;
 }
