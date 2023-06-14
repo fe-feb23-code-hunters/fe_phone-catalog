@@ -9,6 +9,16 @@ export const fetchAllProducts = async (): Promise<{ products: Product[] }> => {
   return result.data;
 };
 
+export const fetchRecommendedProducts = async (
+  productId: string,
+): Promise<{ products: Product[] }> => {
+  const result = await axios.get(
+    `${API_PATH}/products/${productId}/recommended`,
+  );
+
+  return result.data;
+};
+
 export const fetchProductById = async (productId: string): Promise<Product> => {
   const result = await axios.get(`${API_PATH}/products/${productId}`);
 
