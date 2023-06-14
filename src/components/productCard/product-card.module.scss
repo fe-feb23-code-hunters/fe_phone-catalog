@@ -38,6 +38,7 @@ $card-width: 272px;
 
   &__title {
     @include body-text;
+    text-align: left;
     color: $primary-color;
   }
 
