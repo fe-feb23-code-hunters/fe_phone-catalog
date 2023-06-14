@@ -4,6 +4,8 @@ import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvid
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import Dropdown from '../../components/shared/Dropdown';
 import { DropdownOption } from '../../types/common';
+import CategorySection from './CategorySection/CategorySection';
+import MainTitle from './MainTitle/MainTitle';
 
 const DUMMY_OPTIONS = [
   { value: 'option1', label: 'Option 1' },
@@ -25,8 +27,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
-
+      <MainTitle />
       {/* Products for review, delete this */}
       {products.map((product: { id: string; name: string }) => (
         <div key={product.id}>
@@ -43,6 +44,7 @@ const HomePage: React.FC = () => {
         onChange={onDropdownChange}
         label="Description"
       />
+      <CategorySection />
     </div>
   );
 };

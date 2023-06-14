@@ -1,0 +1,56 @@
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/grid.scss" as *;
+
+.rectagle {
+  max-height: 288px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  @include onTablet {
+    min-height: 187px;
+    width: 100%;
+  }
+
+  @include onDesktop {
+    max-height: 368px;
+    width: 100%;
+  }
+}
+
+.img {
+  display: block;
+  margin-top: 10px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+
+  transition: transform 0.3s ease-in;
+
+  &:hover {
+    transform: scale(105%);
+  }
+}
+
+.category {
+  &__subtitle {
+    text-decoration: transparent;
+    margin-top: 24px;
+
+    @include desktop-tablet-h4;
+
+    color: $primary-color;
+  }
+
+  &__body-text {
+    margin-top: 4px;
+
+    @include body-text;
+
+    text-decoration: none;
+    color: $secondary-color;
+  }
+}

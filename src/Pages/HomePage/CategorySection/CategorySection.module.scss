@@ -1,0 +1,33 @@
+@use "../../../styles/utils/grid.scss" as *;
+@use "../../../styles/utils/vars" as *;
+@use "../../../styles/utils/mixins" as *;
+@use "../../../styles/fonts/typography.scss" as *;
+@use "../../../styles/App.scss" as *;
+
+.container__top {
+  margin-top: 24px;
+}
+
+.img {
+  object-position: right top;
+}
+
+.category__title {
+  color: $primary-color;
+  @include desktop-tablet-h2;
+
+  margin-top: 24px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.main__title {
+  margin: 0;
+  @include desktop-tablet-h1;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}
