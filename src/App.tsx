@@ -9,7 +9,6 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
 
 const App = () => (
   <AppProvider>
