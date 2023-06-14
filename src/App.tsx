@@ -9,25 +9,28 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => (
   <AppProvider>
     <Header />
 
     <main className="mainContainer">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<Navigate to="/" replace />} />
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
 
-        <Route path="/phones">
-          <Route index element={<Catalog />} />
-          <Route path=":productId" element={<ProductDetails />} />
-        </Route>
+          <Route path="/phones">
+            <Route index element={<Catalog />} />
+            <Route path=":productId" element={<ProductDetails />} />
+          </Route>
 
-        <Route path="/favourites" element={<FavouritePage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+          <Route path="/favourites" element={<FavouritePage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </ScrollToTop>
     </main>
 
     <Footer />

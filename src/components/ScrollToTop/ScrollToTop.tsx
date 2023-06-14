@@ -1,5 +1,15 @@
-const ScrollToTop = () => {
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+import { ReactNode, useEffect } from 'react';
+
+type Props = {
+  children: ReactNode;
+};
+
+const ScrollToTop: React.FC<Props> = ({ children }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return <>{children}</>;
 };
 
 export default ScrollToTop;
