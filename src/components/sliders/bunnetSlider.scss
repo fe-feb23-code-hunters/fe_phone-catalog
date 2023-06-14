@@ -1,0 +1,54 @@
+.bunner__wrapper {
+    text-align: center;
+    max-width: 1136px;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+}
+ .bunner {
+    padding-bottom: 34px;
+    object-fit: cover;
+    width: 1040px;
+    min-height: 400px;
+ }
+
+ .swiper-button-prev::after,
+ .swiper-button-next::after {
+    height: 400px;
+    box-sizing: border-box;
+    border: 1px solid #B4BDC4;
+    color: black;
+    font-family: none;
+    content: '';
+    background-image: url(./sliderArrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 32px;
+    font-size: 25px;
+    text-align: center;
+ }
+
+ .swiper-button-next::after {
+    transform: rotate(180deg);
+ }
+
+ .swiper-button-prev,
+ .swiper-button-next {
+    height: auto;
+    top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ }
+
+ .swiper-pagination-bullet {
+    border-radius: 0;
+    width: 14px;
+    height: 4px;
+    background: #e2e6e9;
+
+    &-active {
+        background: black;
+    }
+ }
