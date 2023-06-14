@@ -4,7 +4,7 @@ import classes from './MainTitle.module.scss';
 const MainTitle = () => {
   const {
     container,
-    'container__top-margin': containerMarginTop,
+    'title-margin': titleMargin,
     grid,
     main__title: mainTitle,
     grid__desktop: gridDesktop,
@@ -17,7 +17,7 @@ const MainTitle = () => {
   } = classes;
 
   return (
-    <div className={cn(container, containerMarginTop)}>
+    <div className={cn(container, titleMargin)}>
       <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
         <div
           className={cn(
