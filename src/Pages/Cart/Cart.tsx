@@ -56,6 +56,8 @@ const Cart: React.FC = () => {
 
   const totalCount = cart.reduce((accum, { count }) => accum + count, 0);
 
+  const isModal = totalPrice === 0;
+
   return (
     <div className={container}>
       <div className={buttonBack}>
@@ -112,7 +114,18 @@ const Cart: React.FC = () => {
         onClose={() => setShowModal(false)}
         showModal={showModal}
         description="Please enjoy 20% off your next order with promocode: "
+        promo="CODEHUNTERS_TOP"
+        navigation="/"
       />
+      {isModal && (
+        <Modal
+          title="Something going wrong!"
+          onClose={() => setShowModal(false)}
+          showModal={showModal}
+          description="If you wish to make a payment to us, please add a product to your cart"
+          navigation="/phones"
+        />
+      )}
     </div>
   );
 };
