@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import classes from './CategorySection.module.scss';
 import Category from '../../../components/Category/Category';
+import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
 
 const CategorySection = () => {
   const {
@@ -60,7 +61,7 @@ const CategorySection = () => {
             gridDesktopStart,
           )}
         >
-          <Link to="/phones" className={link}>
+          <Link to="/phones" className={link} onClick={ScrollToTop}>
             <Category
               imgUrl="/img/banners/categories/Category_Phones.jpg"
               altImg="Phones category"
@@ -78,7 +79,7 @@ const CategorySection = () => {
             gridDesktopMiddle,
           )}
         >
-          <Link to="/tablets" className={link}>
+          <Link to="/tablets" className={link} onClick={ScrollToTop}>
             <Category
               imgUrl="/img/banners/categories/Category_Tablets.jpg"
               altImg="Tablets category"
@@ -97,7 +98,7 @@ const CategorySection = () => {
             gridDesktopEnd,
           )}
         >
-          <Link to="/accessories" className={link}>
+          <Link to="/accessories" className={link} onClick={ScrollToTop}>
             <Category
               imgUrl="/img/banners/categories/Category_Accessories.jpg"
               altImg="Accessories category"
