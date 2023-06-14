@@ -4,18 +4,21 @@ import {
   getCart,
   addToCart as addProduct,
   deleteFromCart as deleteProduct,
+  removeFromCart as removeProduct,
 } from '../../utils/cart-storage.utils';
 
 interface Context {
   cart: CartProduct[];
   addToCart: (productId: string) => void;
   deleteFromCart: (productId: string) => void;
+  removeFromCart: (productId: string) => void;
 }
 
 export const CartContext = React.createContext<Context>({
   cart: [],
   addToCart: () => {},
   deleteFromCart: () => {},
+  removeFromCart: () => {},
 });
 
 const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -24,7 +27,19 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const addToCart = (productId: string) => {
     const product = addProduct(productId);
 
-    setCart((oldCart) => [...oldCart, product]);
+    setCart((oldCart) => {
+      const indexOfProduct = oldCart.findIndex((p) => p.id === product.id);
+
+      if (indexOfProduct === -1) {
+        return [...oldCart, product];
+      }
+
+      const copyCart = [...oldCart];
+
+      copyCart[indexOfProduct] = product;
+
+      return copyCart;
+    });
   };
 
   const deleteFromCart = (productId: string) => {
@@ -37,6 +52,26 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
+  const removeFromCart = (productId: string) => {
+    const product = removeProduct(productId);
+
+    if (product) {
+      setCart((oldCart) => {
+        const indexOfProduct = oldCart.findIndex((p) => p.id === product.id);
+
+        if (indexOfProduct === -1) {
+          return [...oldCart, product];
+        }
+
+        const copyCart = [...oldCart];
+
+        copyCart[indexOfProduct] = product;
+
+        return copyCart;
+      });
+    }
+  };
+
   useEffect(() => {
     const storedCart = getCart();
 
@@ -44,7 +79,11 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, deleteFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart, addToCart, removeFromCart, deleteFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
