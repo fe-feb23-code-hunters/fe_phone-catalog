@@ -8,6 +8,12 @@ $small-logo-height: 25px;
 $large-logo-width: 80px;
 $large-logo-height: 30px;
 
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -15,6 +21,7 @@ $large-logo-height: 30px;
   height: $small-device-size;
   width: 100%;
   box-shadow: 0 1px 0 $elements-color;
+  background-color: $white-color;
 
   @include onDesktop {
     height: $large-device-size;
