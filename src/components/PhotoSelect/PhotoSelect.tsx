@@ -1,20 +1,15 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import cn from 'classnames';
 import classes from './PhotoSelect.module.scss';
+import { Phone } from '../../types/phone';
 
 interface Props {
-  name: string;
-  values: string[] | undefined;
-  selectedPhoto: string | null;
-  onSelectPhoto: (newPhoto: string) => void;
+  phone: Phone,
 }
 
-const PhotoSelect: FC<Props> = ({
-  name,
-  values,
-  selectedPhoto,
-  onSelectPhoto,
-}) => {
+const PhotoSelect: FC<Props> = ({ phone }) => {
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+
   const {
     preview,
     photo,
@@ -24,23 +19,27 @@ const PhotoSelect: FC<Props> = ({
     main_photo__container: selectedPhotoContainer,
   } = classes;
 
+  const onSelectPhoto = (newPhoto: string) => {
+    setSelectedPhoto(newPhoto);
+  };
+
   return (
     <div className={photoContainer}>
       <div className={previewContainer}>
-        {values && values.map((value) => {
+        {phone.images.map((image) => {
           return (
             <button
               className={cn(
                 preview,
-                { [isSelected]: value === selectedPhoto },
+                { [isSelected]: image === selectedPhoto },
               )}
               type="button"
-              onClick={() => onSelectPhoto(value)}
+              onClick={() => onSelectPhoto(image)}
             >
               <img
                 className={photo}
-                src={`${process.env.REACT_APP_API_PATH}/${value}`}
-                alt={name}
+                src={`${process.env.REACT_APP_API_PATH}/${image}`}
+                alt={phone.name}
               />
             </button>
           );
@@ -51,7 +50,7 @@ const PhotoSelect: FC<Props> = ({
         <img
           className={photo}
           src={`${process.env.REACT_APP_API_PATH}/${selectedPhoto}`}
-          alt={name}
+          alt={phone.name}
         />
       </div>
 

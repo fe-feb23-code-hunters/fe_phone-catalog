@@ -24,7 +24,6 @@ const ProductDetails: React.FC = () => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   const [error, setError] = useState<Error | null>(null);
-  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   const {
     container,
@@ -56,10 +55,6 @@ const ProductDetails: React.FC = () => {
     section__margin: sectionMargin,
     block__margin: blockMargin,
   } = classes;
-
-  const onSelectPhoto = (newPhoto: string) => {
-    setSelectedPhoto(newPhoto);
-  };
 
   const goBack = () => {
     window.history.back();
@@ -93,12 +88,6 @@ const ProductDetails: React.FC = () => {
     fetchProduct();
     fetchRecommended();
   }, [productId]);
-
-  useEffect(() => {
-    if (product) {
-      setSelectedPhoto(product.image);
-    }
-  }, [product]);
 
   return (
     <div>
@@ -172,12 +161,11 @@ const ProductDetails: React.FC = () => {
                 gridMobileFullSize,
               )}
             >
-              <PhotoSelect
-                name={product.name}
-                values={product.phone?.images}
-                selectedPhoto={selectedPhoto}
-                onSelectPhoto={onSelectPhoto}
-              />
+              {product.phone && (
+                <PhotoSelect
+                  phone={product.phone}
+                />
+              )}
             </div>
 
             <div
