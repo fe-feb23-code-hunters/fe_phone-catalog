@@ -1,3 +1,4 @@
+import { Capacitys } from './capacitys';
 import { Phone } from './phone';
 
 export interface Product {

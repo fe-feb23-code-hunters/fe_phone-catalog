@@ -1,5 +1,10 @@
 /* eslint-disable max-len */
-import { useEffect, useState } from 'react';
+import {
+  MouseEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames';
 import {
@@ -13,6 +18,27 @@ import BackButton from '../../components/shared/buttons/BackButton';
 import { AboutProduct } from '../../components/AboutProduct';
 import { TechSpecs } from '../../components/TechSpecs';
 import RecommendedProducts from './RecommendedProducts/RecommendedProducts';
+import { ColorOption } from '../../types/colorOption';
+import { Capacitys } from '../../types/capacitys';
+import ColorSelect from '../../components/ColorSelect/ColorSelect';
+import CapacitySelect from '../../components/CapacitySelect/CapacitySelect';
+import LikeButton from '../../components/shared/buttons/LikeButton/LikeButton';
+import Button from '../../components/shared/buttons/Button/Button';
+import { CartContext } from '../../providers/CartProvider/CartProvider';
+import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
+
+const DUMMY_OPTIONS = [
+  { color: '#FCDBC1' },
+  { color: '#5F7170' },
+  { color: '#4C4C4C' },
+  { color: '#F0F0F0' },
+];
+
+const DUMMY_CAPACITY = [
+  { value: '64GB' },
+  { value: '128GB' },
+  { value: '256GB' },
+];
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -21,6 +47,59 @@ const ProductDetails: React.FC = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<Error | null>(null);
+
+  const { cart, addToCart, deleteFromCart } = useContext(CartContext);
+  const {
+    favourites,
+    addToFavourites,
+    deleteFromFavourites,
+  } = useContext(FavouritesContext);
+
+  const doesExistInCart = cart.findIndex((products) => products.id === productId) !== -1;
+
+  const doesExistInFavourites = favourites.findIndex(
+    (products) => products.id === product?.id,
+  ) !== -1;
+
+  const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
+
+  const handleAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+
+    if (doesExistInCart) {
+      deleteFromCart(String(productId));
+    } else {
+      addToCart(String(productId));
+    }
+  };
+
+  const handleAddToFavourites: MouseEventHandler<HTMLButtonElement> = (
+    event,
+  ) => {
+    event.stopPropagation();
+
+    if (doesExistInFavourites) {
+      deleteFromFavourites(String(product?.id));
+    } else {
+      addToFavourites(String(product?.id));
+    }
+  };
+
+  const [selectedOption, setSelectedOption] = useState<ColorOption>(
+    DUMMY_OPTIONS[0],
+  );
+
+  const onSelectChange = (newOption: ColorOption) => {
+    setSelectedOption(newOption);
+  };
+
+  const [selectedCapacity, setSelectedCapacity] = useState<Capacitys>(
+    DUMMY_CAPACITY[0],
+  );
+
+  const onCapacityChange = (newOption: Capacitys) => {
+    setSelectedCapacity(newOption);
+  };
 
   const {
     container,
@@ -43,14 +122,27 @@ const ProductDetails: React.FC = () => {
     grid__item__desktop_13_24: gridDesktopEnd,
     grid__item__tablet_1_7: gridTabletStart,
     grid__item__tablet_8_12: gridTabletEnd,
-    grid__item__mobile_1_3: gridMobileStart,
-    grid__item__mobile_4_5: gridMobileEnd,
+    grid__item__desktop_14_20: gridDesktopQuarter,
+    grid__item__desktop_21_24: gridDesktop2024,
     text__disabled: disabledText,
     icon__history: iconHistory,
     container__center: containerCenter,
     container__top: containerTop,
     section__margin: sectionMargin,
     block__margin: blockMargin,
+    color__margin__top: colorMarginTop,
+    id__body: idBody,
+    id__title: idTitle,
+    price__body: priceBody,
+    product__price: producPrice,
+    product__fullprice: productFullPrice,
+    cart__body: cartBody,
+    favourites__button: favouritesButton,
+    main__info: mainInfo,
+    main__info__list: mainInfoList,
+    main__info__item: mainInfoItem,
+    'main__info__item-title': mainInfoItemTitle,
+    'main__info__item-info': mainInfoItemInfo,
   } = classes;
 
   const goBack = () => {
@@ -101,7 +193,7 @@ const ProductDetails: React.FC = () => {
 
                   <Arrow />
 
-                  <p className={cn(text, disabledText)}>{product?.name}</p>
+                  <p className={cn(text, disabledText)}>{product.name}</p>
                 </div>
 
                 <div
@@ -148,47 +240,96 @@ const ProductDetails: React.FC = () => {
             >
               <h1 className={cn(text)}>Photo block</h1>
             </div>
-
             <div
               className={cn(
                 gridItem,
-                gridDesktopEnd,
-                gridTabletEnd,
                 gridMobileFullSize,
-                template,
+                gridTabletEnd,
+                gridDesktopQuarter,
+                colorMarginTop,
               )}
             >
-              <div className={cn(grid)}>
-                <div
-                  className={cn(
-                    gridItem,
-                    gridDesktopStart,
-                    gridTabletStart,
-                    gridMobileStart,
-                  )}
-                >
-                  <div
-                    className={cn(template)}
-                  >
-                    <h1 className={cn(text)}>Available colors block</h1>
-                  </div>
-
-                  <div
-                    className={cn(template)}
-                  >
-                    <h1 className={cn(text)}>Select Capacity block</h1>
-                  </div>
-
-                  <div
-                    className={cn(template)}
-                  >
-                    <h1 className={cn(text)}>Action block</h1>
-                  </div>
+              <ColorSelect
+                title="Available colors"
+                id={`ID: 80239${product.id}`}
+                options={DUMMY_OPTIONS}
+                selectedOption={selectedOption}
+                onSelect={onSelectChange}
+              />
+            </div>
+            <div
+              className={cn(
+                gridItem,
+                gridDesktop2024,
+                colorMarginTop,
+                idBody,
+              )}
+            >
+              <div className={idBody}>
+                <p className={idTitle}>{`ID: 80239${product.id}`}</p>
+              </div>
+            </div>
+            <div
+              className={cn(
+                gridItem,
+                gridMobileFullSize,
+                gridTabletEnd,
+                gridDesktopQuarter,
+              )}
+            >
+              <CapacitySelect
+                title="Select capacity"
+                capacitys={DUMMY_CAPACITY}
+                selectedCapacity={selectedCapacity}
+                onSelectCapacity={onCapacityChange}
+              />
+            </div>
+            <div
+              className={cn(
+                gridItem,
+                gridMobileFullSize,
+                gridTabletEnd,
+                gridDesktopQuarter,
+              )}
+            >
+              <div className={priceBody}>
+                <h2 className={producPrice}>{`$${product.price}`}</h2>
+                <h2 className={productFullPrice}>{`$${product.fullPrice}`}</h2>
+              </div>
+              <div className={cartBody}>
+                <Button
+                  label={buttonLabel}
+                  onClick={handleAddToCart}
+                  isSelected={doesExistInCart}
+                  height="48px"
+                />
+                <div className={favouritesButton}>
+                  <LikeButton
+                    onClick={handleAddToFavourites}
+                    isSelected={doesExistInFavourites}
+                    isBiggest
+                  />
                 </div>
-
-                <div className={cn(gridItem, gridDesktopEnd, gridTabletEnd, gridMobileEnd)}>
-                  <h1 className={cn(text)}>Id</h1>
-                </div>
+              </div>
+              <div className={mainInfo}>
+                <ul className={mainInfoList}>
+                  <li className={mainInfoItem}>
+                    <span className={mainInfoItemTitle}>Screen</span>
+                    <span className={mainInfoItemInfo}>{product.screen}</span>
+                  </li>
+                  <li className={mainInfoItem}>
+                    <span className={mainInfoItemTitle}>Resolution</span>
+                    <span className={mainInfoItemInfo}>{product?.phone?.resolution}</span>
+                  </li>
+                  <li className={mainInfoItem}>
+                    <span className={mainInfoItemTitle}>Processor</span>
+                    <span className={mainInfoItemInfo}>{product?.phone?.processor}</span>
+                  </li>
+                  <li className={mainInfoItem}>
+                    <span className={mainInfoItemTitle}>RAM</span>
+                    <span className={mainInfoItemInfo}>{product?.ram}</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
