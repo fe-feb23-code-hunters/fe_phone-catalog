@@ -1,12 +1,12 @@
 import ColorButton from '../shared/buttons/ColorButton/ColorButton';
 import classes from './ColorSelect.module.scss';
-import { colorSelect } from '../../types/colorSelect';
+import { ColorOption } from '../../types/colorOption';
 
 type Props = {
   title: string;
-  options: colorSelect[];
-  selectedOption: colorSelect;
-  onSelect: (newOption: colorSelect) => void;
+  options: ColorOption[];
+  selectedOption: ColorOption;
+  onSelect: (newOption: ColorOption) => void;
 };
 
 const ColorSelect: React.FC<Props> = ({
