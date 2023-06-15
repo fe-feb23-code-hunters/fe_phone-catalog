@@ -30,3 +30,19 @@
   width: 100%;
   background-color: $elements-color;
 }
+
+.id__text {
+  opacity: 1;
+
+  @include onMobile {
+    opacity: 1;
+  }
+
+  @include onTablet {
+    opacity: 1;
+  }
+
+  @include onDesktop {
+    opacity: 0;
+  }
+}

@@ -126,7 +126,7 @@ const Catalog: React.FC = () => {
               gridDesktopFullSize,
             )}
           >
-            <p className={text}>95 models</p>
+            <p className={text}>{`${products.length} models`}</p>
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@ const Catalog: React.FC = () => {
             price={product.price}
             oldPrice={product.fullPrice}
             screen={product.screen}
-            capacity={product.capacity}
+            capacity={product.capacity.value}
             ram={product.ram}
           />
         ))}

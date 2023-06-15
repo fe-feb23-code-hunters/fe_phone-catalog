@@ -1,8 +1,10 @@
+import { Capacitys } from "./capacitys";
+
 export interface Phone {
   id: string;
   namespaceId: string;
   name: string;
-  capacityAvailable: string[];
+  capacityAvailable: Capacitys[];
   colorsAvailable: string[];
   images: string[];
   description: Array<{ title: string; text: string[] }>;

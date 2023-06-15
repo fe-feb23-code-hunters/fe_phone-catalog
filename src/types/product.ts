@@ -1,3 +1,4 @@
+import { Capacitys } from './capacitys';
 import { Phone } from './phone';
 
 export interface Product {
@@ -9,7 +10,7 @@ export interface Product {
   name: string;
   fullPrice: number;
   price: number;
-  capacity: string;
+  capacity: Capacitys;
   color: string;
   year: number;
   screen: string;

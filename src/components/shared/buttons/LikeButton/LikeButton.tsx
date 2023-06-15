@@ -8,17 +8,23 @@ interface Props {
   isSelected?: boolean;
   isLarge?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
+  isBiggest?: boolean;
 }
 
 const LikeButton: React.FC<Props> = ({
   isSelected,
   isLarge = true,
   onClick,
+  isBiggest,
 }) => {
   const HeartIcon = isSelected ? HeartFilled : HeartOutlined;
 
   return (
-    <IconButton onClick={onClick} isLarge={isLarge}>
+    <IconButton
+      onClick={onClick}
+      isLarge={isLarge}
+      isBiggest={isBiggest}
+    >
       <HeartIcon className={classes.icon} />
     </IconButton>
   );
