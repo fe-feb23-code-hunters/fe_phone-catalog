@@ -3,7 +3,7 @@ interface Props {
   className?: string;
 }
 
-const Cart: React.FC<Props> = ({ className }) => (
+const CartIcon: React.FC<Props> = ({ className }) => (
   <svg
     fill="currentColor"
     version="1.1"
@@ -21,4 +21,4 @@ const Cart: React.FC<Props> = ({ className }) => (
   </svg>
 );
 
-export default Cart;
+export default CartIcon;

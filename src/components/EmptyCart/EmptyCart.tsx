@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import Cart from '../../icons/Cart';
+import Cart from '../../icons/CartIcon';
 import classes from './EmptyCart.module.scss';
 
 const {
