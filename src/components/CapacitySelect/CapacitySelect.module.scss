@@ -1,0 +1,33 @@
+@use "../../styles/utils/grid.scss" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/App.scss" as *;
+
+.capacity__body {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.capacity__container {
+  display: flex;
+  margin: 8px 0 24px;
+}
+
+.capacity__title {
+  display: flex;
+  justify-content: space-between;
+  @include body-text;
+
+  color: $secondary-color;
+}
+
+.capacity__button {
+  margin-right: 8px;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: $elements-color;
+}

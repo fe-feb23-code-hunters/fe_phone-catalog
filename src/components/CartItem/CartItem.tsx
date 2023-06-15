@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -10,69 +9,94 @@ import classes from './CartItem.module.scss';
 import CloseLigth from '../../icons/CloseLight/CloseLight';
 
 const {
-  card,
-  card__image: CardImg,
-  card__info: CardInfo,
-  card__counter: CardCounter,
-  card__count: CardCount,
-  'card__product-description': CardProductDescription,
-  card__price: CardPrice,
-  'card__delete-button': CardDeleteButton,
   container,
+  card,
+  card__section: cardSection,
+  'card__delete-button': cardDeleteButton,
+  'card__product-description': cardProductDescription,
+  card__wrapper: cardWrapper,
+  'card__photo-container': cardPhotoContainer,
+  card__image: cardImage,
+  card__counter: cardCounter,
+  card__count: cardCount,
+  card__price: cardPrice,
   'is-disabled-button': isDisabledButton,
   'is-active-button': isActiveButton,
 } = classes;
 
-// delete when change count will be ready
-const handleClick = () => { };
+interface Props {
+  id: string;
+  image: string;
+  name: string;
+  price: number;
+  count: number;
+}
 
-export const CartItem = () => {
-  const { deleteFromCart } = useContext(CartContext);
-
-  // delete when the product will be accessible
-  const count = 1;
+export const CartItem: React.FC<Props> = ({
+  id, image, name, price, count,
+}) => {
+  const { deleteFromCart, addToCart, removeFromCart } = useContext(CartContext);
 
   const showDisabledButton = count <= 1;
+
+  const handleAdd = () => {
+    addToCart(id);
+  };
+
+  const handleRemove = () => {
+    removeFromCart(id);
+  };
 
   return (
     <div className={container}>
       <div className={card}>
-        <div className={CardInfo}>
-          <button
-            type="button"
-            className={CardDeleteButton}
-            // add productId deleteFromCart(productId)
-            onClick={() => deleteFromCart}
+        <div className={cardSection}>
+          <div className={cardWrapper}>
+            <button
+              type="button"
+              className={cardDeleteButton}
+              onClick={() => deleteFromCart(id)}
+            >
+              <CloseLigth />
+            </button>
+
+            <Link to="/" className={cardPhotoContainer}>
+              <img
+                src={`${process.env.REACT_APP_API_PATH}/${image}`}
+                alt={image}
+                className={cardImage}
+              />
+            </Link>
+          </div>
+
+          <Link
+            to="/"
+            className={cardProductDescription}
           >
-            <CloseLigth />
-          </button>
-          <Link to="/">
-            <img
-              src={`${process.env.PUBLIC_URL}/img/products/iPhone-11-pro-max-gold/iPhone_11_Pro_Max_Gold_front.jpeg`}
-              alt=""
-              className={CardImg}
-            />
-          </Link>
-          <Link to="/" className={CardProductDescription}>
-            Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+            {name}
           </Link>
         </div>
-        <div className={CardInfo}>
-          <div className={CardCounter}>
-            <IconsButton onClick={handleClick} isDisabled={showDisabledButton}>
-              <Minus className={cn(isDisabledButton, {
-                [isActiveButton]: count > 1,
-              })}
+
+        <div className={cardSection}>
+          <div className={cardCounter}>
+            <IconsButton onClick={handleRemove} isDisabled={showDisabledButton}>
+              <Minus
+                className={cn(isDisabledButton, {
+                  [isActiveButton]: count > 1,
+                })}
               />
             </IconsButton>
-            <p className={CardCount}>
-              {count}
-            </p>
-            <IconsButton onClick={handleClick}>
+
+            <p className={cardCount}>{count}</p>
+
+            <IconsButton onClick={handleAdd}>
               <Plus />
             </IconsButton>
           </div>
-          <p className={CardPrice}>$1099</p>
+
+          <div className={cardPrice}>
+            {`$${price * count}`}
+          </div>
         </div>
       </div>
     </div>
