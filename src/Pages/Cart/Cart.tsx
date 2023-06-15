@@ -119,10 +119,10 @@ const Cart: React.FC = () => {
       />
       {isModal && (
         <Modal
-          title="Something going wrong!"
+          title="There is nothing here yet"
           onClose={() => setShowModal(false)}
           showModal={showModal}
-          description="If you wish to make a payment to us, please add a product to your cart"
+          description="Please, add some items to the cart"
           navigation="/phones"
         />
       )}
