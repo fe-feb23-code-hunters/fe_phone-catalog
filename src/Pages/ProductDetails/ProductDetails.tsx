@@ -11,6 +11,7 @@ import classes from './productDetails.module.scss';
 import Arrow from '../../icons/Arrow';
 import Home from '../../icons/Home';
 import BackButton from '../../components/shared/buttons/BackButton';
+import PhotoSelect from '../../components/PhotoSelect/PhotoSelect';
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -21,6 +22,7 @@ const ProductDetails: React.FC = () => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   const [error, setError] = useState<Error | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   const {
     container,
@@ -52,6 +54,10 @@ const ProductDetails: React.FC = () => {
     section__margin: sectionMargin,
     block__margin: blockMargin,
   } = classes;
+
+  const onSelectPhoto = (newPhoto: string) => {
+    setSelectedPhoto(newPhoto);
+  };
 
   const goBack = () => {
     window.history.back();
@@ -85,6 +91,12 @@ const ProductDetails: React.FC = () => {
     fetchProduct();
     fetchRecommended();
   }, [productId]);
+
+  useEffect(() => {
+    if (product) {
+      setSelectedPhoto(product.image);
+    }
+  }, [product]);
 
   return (
     <div>
@@ -156,10 +168,14 @@ const ProductDetails: React.FC = () => {
                 gridDesktopStart,
                 gridTabletStart,
                 gridMobileFullSize,
-                template,
               )}
             >
-              <h1 className={cn(text)}>Photo block</h1>
+              <PhotoSelect
+                name={product.name}
+                values={product.phone?.images}
+                selectedPhoto={selectedPhoto}
+                onSelectPhoto={onSelectPhoto}
+              />
             </div>
 
             <div
