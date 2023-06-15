@@ -54,3 +54,25 @@ export const deleteFromCart = (productId: string): boolean => {
 
   return false;
 };
+
+export const removeFromCart = (productId: string): CartProduct | undefined => {
+  const cart = getCart();
+  const indexOfProduct = cart.findIndex((product) => product.id === productId);
+
+  if (indexOfProduct === -1) {
+    return;
+  }
+
+  const product = cart[indexOfProduct];
+
+  if (product.count >= 1) {
+    product.count -= 1;
+
+    saveCart(cart);
+
+    // eslint-disable-next-line consistent-return
+    return product;
+  }
+
+  deleteFromCart(productId);
+};

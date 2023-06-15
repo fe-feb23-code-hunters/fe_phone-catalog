@@ -1,0 +1,90 @@
+@use "../../styles/App.scss" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/utils/grid.scss" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+
+.icon {
+  height: $icon-size;
+}
+
+.container {
+  width: 100%;
+}
+
+.container__top {
+  margin-top: 24px;
+}
+
+.container__center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.container__margin_text {
+  margin-top: 8px;
+}
+
+.title {
+  margin: 16px 0 0;
+  @include desktop-tablet-h1;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}
+
+.subtitle {
+  margin: 16px 0 0;
+  @include desktop-tablet-h2;
+
+  @include onMobile {
+    @include mobile-h2;
+  }
+}
+
+.section__margin {
+  margin-top: 40px;
+}
+
+.block__margin {
+  margin-bottom: 80px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onMobile {
+    margin-bottom: 56px;
+  }
+}
+
+.text {
+  @include small-text;
+  color: $primary-color;
+  line-height: 12px;
+
+  &__disabled {
+    display: inline-block;
+    color: $secondary-color;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.button__back {
+  padding: 0;
+  margin-top: 40px;
+
+  @include onMobile {
+    margin-top: 24px;
+  }
+}
+
+.template {
+  border: solid 1px black;
+}
