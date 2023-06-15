@@ -109,14 +109,16 @@ const Cart: React.FC = () => {
           </div>
         </div>
       </div>
-      <Modal
-        title="Thank you for your purchase"
-        onClose={() => setShowModal(false)}
-        showModal={showModal}
-        description="Please enjoy 20% off your next order with promocode: "
-        promo="CODEHUNTERS_TOP"
-        navigation="/"
-      />
+      {!isModal && (
+        <Modal
+          title="Thank you for your purchase"
+          onClose={() => setShowModal(false)}
+          showModal={showModal}
+          description="Please enjoy 20% off your next order with promocode: "
+          promo="CODEHUNTERS_TOP"
+          navigation="/"
+        />
+      )}
       {isModal && (
         <Modal
           title="There is nothing here yet"
