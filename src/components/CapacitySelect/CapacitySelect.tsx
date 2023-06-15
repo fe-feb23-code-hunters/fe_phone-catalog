@@ -4,8 +4,8 @@ import classes from './CapacitySelect.module.scss';
 
 type Props = {
   title: string;
-  capacitys: Capacitys[] | undefined;
-  selectedCapacity: Capacitys | undefined;
+  capacitys: Capacitys[];
+  selectedCapacity: Capacitys;
   onSelectCapacity: (newOption: Capacitys) => void;
 };
 
@@ -23,9 +23,6 @@ const CapacitySelect: React.FC<Props> = ({
     capacity__button: capacityButton,
   } = classes;
 
-  // eslint-disable-next-line no-console
-  console.log(selectedCapacity);
-
   return (
     <div className={capacityBody}>
       <div className={capacityTitle}>
@@ -36,7 +33,7 @@ const CapacitySelect: React.FC<Props> = ({
           return (
             <div className={capacityButton}>
               <BlackButton
-                isSelected={capacity.value === selectedCapacity?.value}
+                isSelected={capacity.value === selectedCapacity.value}
                 key={capacity.value}
                 label={capacity.value}
                 onClick={() => onSelectCapacity(capacity)}

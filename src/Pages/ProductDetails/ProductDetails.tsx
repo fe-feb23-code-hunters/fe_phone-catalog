@@ -19,13 +19,13 @@ import { AboutProduct } from '../../components/AboutProduct';
 import { TechSpecs } from '../../components/TechSpecs';
 import RecommendedProducts from './RecommendedProducts/RecommendedProducts';
 import { ColorOption } from '../../types/colorOption';
-import { Capacitys } from '../../types/capacitys';
 import ColorSelect from '../../components/ColorSelect/ColorSelect';
 import CapacitySelect from '../../components/CapacitySelect/CapacitySelect';
 import LikeButton from '../../components/shared/buttons/LikeButton/LikeButton';
 import Button from '../../components/shared/buttons/Button/Button';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
+import { Capacitys } from '../../types/capacitys';
 
 const DUMMY_OPTIONS = [
   { color: '#FCDBC1' },
