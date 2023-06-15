@@ -4,9 +4,14 @@ import ProductCard from '../../productCard/productCard';
 import 'swiper/css/bundle';
 import './productSlider.scss';
 
-export const ProductSlider = () => {
+interface Props {
+  title?: string;
+}
+
+export const ProductSlider: React.FC<Props> = ({ title }) => {
   return (
     <div className="product__wrapper">
+      <h2 className="product-slider__title">{title}</h2>
       <Swiper
         className="product__swiper"
         modules={[Navigation, Autoplay]}
