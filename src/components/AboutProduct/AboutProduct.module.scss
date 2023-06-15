@@ -1,0 +1,54 @@
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/utils/vars" as *;
+@use "../../styles/fonts/typography" as *;
+
+.container {
+  margin-bottom: 55px;
+
+  @include onTablet {
+    margin-bottom: 65px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+}
+
+.product-about {
+  &__title {
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+
+    @include desktop-tablet-h4;
+
+    border-bottom: 1px solid $elements-color;
+
+    @include onTablet {
+      @include desktop-tablet-h3;
+    }
+  }
+
+  &__section {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__section-title {
+    margin-bottom: 16px;
+    @include mobile-h4;
+
+    @include onTablet {
+      @include mobile-h3;
+    }
+  }
+
+  &__paragraph {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    @include body-text;
+    color: $secondary-color
+  }
+}
