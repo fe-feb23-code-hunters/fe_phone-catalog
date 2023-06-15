@@ -37,40 +37,21 @@ $element-transition: 0.5s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: $white-color;
+    padding: 20px;
+    @include small-text;
+    color: $secondary-color;
+    transition: color $element-transition;
 
-    &-message {
-      @include small-text;
-      color: $secondary-color;
-      letter-spacing: 0.1em;
-      margin-right: 16px;
-      cursor: pointer;
-      transition: color $element-transition;
-
-      &:hover {
-        color: $primary-color;
-      }
+    &:hover {
+      color: $primary-color;
     }
 
     &-arrow {
       transform: rotate(-90deg);
-    }
-
-    &-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: $button-size;
-      height: $button-size;
-      padding: 0;
-      border: 1px solid $icons-color;
-      background-color: $white-color;
-      cursor: pointer;
-
-      &:hover {
-        border-color: $primary-color;
-        transition: border-color $element-transition;
-      }
     }
   }
 

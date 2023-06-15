@@ -11,6 +11,8 @@ import classes from './productDetails.module.scss';
 import Arrow from '../../icons/Arrow';
 import Home from '../../icons/Home';
 import BackButton from '../../components/shared/buttons/BackButton';
+import { AboutProduct } from '../../components/AboutProduct';
+import { TechSpecs } from '../../components/TechSpecs';
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -211,24 +213,22 @@ const ProductDetails: React.FC = () => {
               className={cn(
                 gridItem,
                 gridDesktopStart,
-                gridTabletStart,
+                gridTabletFullSize,
                 gridMobileFullSize,
-                template,
               )}
             >
-              <h1 className={cn(text)}>About</h1>
+              <AboutProduct phone={product.phone} />
             </div>
 
             <div
               className={cn(
                 gridItem,
                 gridDesktopEnd,
-                gridTabletEnd,
+                gridTabletFullSize,
                 gridMobileFullSize,
-                template,
               )}
             >
-              <h1 className={cn(text)}>Tech specs</h1>
+              <TechSpecs product={product} />
             </div>
           </div>
 
