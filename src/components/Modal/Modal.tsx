@@ -13,7 +13,9 @@ type Props = {
   title: string;
   description: string;
   onClose: () => void;
-  showModal: boolean
+  showModal: boolean;
+  promo?: string;
+  navigation?: string;
 };
 
 const Modal: React.FC<Props> = ({
@@ -21,19 +23,21 @@ const Modal: React.FC<Props> = ({
   onClose,
   showModal,
   description,
+  promo,
+  navigation,
 }) => {
   const navigate = useNavigate();
 
   const handleCloseModal = (e: KeyboardEvent) => {
     if ((e.charCode || e.keyCode) === 27) {
       onClose();
-      navigate('/');
+      navigate(String(navigation));
     }
   };
 
   const closeModal = () => {
     onClose();
-    navigate('/');
+    navigate(String(navigation));
   };
 
   const [, setLocked] = useLockedBody(false, 'root');
@@ -81,10 +85,14 @@ const Modal: React.FC<Props> = ({
           </div>
           <div className={modalBody}>
             {description}
-            <strong>CODEHUNTERS_TOP</strong>
+            <strong>{promo}</strong>
           </div>
           <div className={modalFooter}>
-            <Button onClick={closeModal} label="Close" height="48px" />
+            <Button
+              onClick={closeModal}
+              label="Close"
+              height="48px"
+            />
           </div>
         </div>
       </div>
