@@ -9,15 +9,17 @@ import classes from './CartItem.module.scss';
 import CloseLigth from '../../icons/CloseLight/CloseLight';
 
 const {
-  card,
-  card__image: CardImg,
-  card__info: CardInfo,
-  card__counter: CardCounter,
-  card__count: CardCount,
-  'card__product-description': CardProductDescription,
-  card__price: CardPrice,
-  'card__delete-button': CardDeleteButton,
   container,
+  card,
+  card__section: cardSection,
+  'card__delete-button': cardDeleteButton,
+  'card__product-description': cardProductDescription,
+  card__wrapper: cardWrapper,
+  'card__photo-container': cardPhotoContainer,
+  card__image: cardImage,
+  card__counter: cardCounter,
+  card__count: cardCount,
+  card__price: cardPrice,
   'is-disabled-button': isDisabledButton,
   'is-active-button': isActiveButton,
 } = classes;
@@ -48,27 +50,35 @@ export const CartItem: React.FC<Props> = ({
   return (
     <div className={container}>
       <div className={card}>
-        <div className={CardInfo}>
-          <button
-            type="button"
-            className={CardDeleteButton}
-            onClick={() => deleteFromCart(id)}
+        <div className={cardSection}>
+          <div className={cardWrapper}>
+            <button
+              type="button"
+              className={cardDeleteButton}
+              onClick={() => deleteFromCart(id)}
+            >
+              <CloseLigth />
+            </button>
+
+            <Link to="/" className={cardPhotoContainer}>
+              <img
+                src={`${process.env.REACT_APP_API_PATH}/${image}`}
+                alt={image}
+                className={cardImage}
+              />
+            </Link>
+          </div>
+
+          <Link
+            to="/"
+            className={cardProductDescription}
           >
-            <CloseLigth />
-          </button>
-          <Link to="/">
-            <img
-              src={`${process.env.REACT_APP_API_PATH}/${image}`}
-              alt={image}
-              className={CardImg}
-            />
-          </Link>
-          <Link to="/" className={CardProductDescription}>
             {name}
           </Link>
         </div>
-        <div className={CardInfo}>
-          <div className={CardCounter}>
+
+        <div className={cardSection}>
+          <div className={cardCounter}>
             <IconsButton onClick={handleRemove} isDisabled={showDisabledButton}>
               <Minus
                 className={cn(isDisabledButton, {
@@ -76,12 +86,17 @@ export const CartItem: React.FC<Props> = ({
                 })}
               />
             </IconsButton>
-            <p className={CardCount}>{count}</p>
+
+            <p className={cardCount}>{count}</p>
+
             <IconsButton onClick={handleAdd}>
               <Plus />
             </IconsButton>
           </div>
-          <p className={CardPrice}>{`$${price * count}`}</p>
+
+          <div className={cardPrice}>
+            {`$${price * count}`}
+          </div>
         </div>
       </div>
     </div>

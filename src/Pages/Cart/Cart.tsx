@@ -9,6 +9,7 @@ import Modal from '../../components/Modal/Modal';
 import { CartItem } from '../../components/CartItem';
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { CartProduct } from '../../types/cart';
+import { EmptyCart } from '../../components/EmptyCart';
 
 const {
   grid,
@@ -85,6 +86,9 @@ const Cart: React.FC = () => {
               count={cartMap[id].count}
             />
           ))}
+          {cartProducts.length === 0 && (
+            <EmptyCart />
+          )}
         </div>
         <div
           className={cn(
