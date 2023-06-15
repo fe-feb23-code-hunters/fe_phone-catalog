@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames';
 import {
   fetchProductById,
-  fetchRecommendedProducts,
 } from '../../api/products.api';
 import { Product } from '../../types/product';
 import classes from './productDetails.module.scss';
@@ -13,15 +12,14 @@ import Home from '../../icons/Home';
 import BackButton from '../../components/shared/buttons/BackButton';
 import { AboutProduct } from '../../components/AboutProduct';
 import { TechSpecs } from '../../components/TechSpecs';
+import RecommendedProducts from './RecommendedProducts/RecommendedProducts';
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
 
   const [product, setProduct] = useState<Product | null>(null);
 
-  // eslint-disable-next-line max-len
-  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<Error | null>(null);
 
   const {
@@ -71,21 +69,8 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const fetchRecommended = async () => {
-    try {
-      if (productId) {
-        const { products } = await fetchRecommendedProducts(productId);
-
-        setRecommendedProducts(products);
-      }
-    } catch (err) {
-      setError(err as Error);
-    }
-  };
-
   useEffect(() => {
     fetchProduct();
-    fetchRecommended();
   }, [productId]);
 
   return (
@@ -235,13 +220,9 @@ const ProductDetails: React.FC = () => {
           <div className={cn(container, blockMargin)}>
             <h2 className={cn(subtitle, template)}>You may also like</h2>
           </div>
+          <RecommendedProducts />
         </>
       )}
-
-      {error && `Error: ${error}`}
-      {recommendedProducts.map(recommendedProduct => {
-        return <h1 key={recommendedProduct.id}>{recommendedProduct.name}</h1>;
-      })}
     </div>
   );
 };
