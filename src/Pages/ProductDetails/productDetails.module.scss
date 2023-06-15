@@ -108,9 +108,10 @@
   }
 
   @include onDesktop {
-    display: flex
+    display: flex;
   }
 }
+
 .id__title {
   @include body-text;
 
@@ -191,5 +192,3 @@
     font-size: 12px;
   }
 }
-
-
