@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { Link } from 'react-router-dom';
 import Arrow from '../../icons/Arrow';
 import classes from './Footer.module.scss';
+import IconsButton from '../shared/buttons/IconButton/IconButton';
 
 const handleScrollToTop = () => {
   window.scrollTo({
@@ -10,12 +10,6 @@ const handleScrollToTop = () => {
     left: 0,
     behavior: 'smooth',
   });
-};
-
-const handleKeyDown = (event: React.KeyboardEvent<HTMLParagraphElement>) => {
-  if (event.ctrlKey && event.key === 'PageUp') {
-    handleScrollToTop();
-  }
 };
 
 export const Footer = () => {
@@ -27,8 +21,6 @@ export const Footer = () => {
     footer__logo: footerLogo,
     'footer__nav-list-item': navlistItem,
     'footer__nav-list-link': navListLink,
-    'footer__top-action-message': topActionMessage,
-    'footer__top-action-button': topActionButton,
     'footer__top-action-arrow': topActionArrow,
   } = classes;
 
@@ -68,24 +60,16 @@ export const Footer = () => {
           </li>
         </ul>
 
-        <div className={topAction}>
-          <p
-            className={topActionMessage}
-            onClick={handleScrollToTop}
-            onKeyDown={handleKeyDown}
-            tabIndex={0}
-            role="button"
-          >
-            Back to top
-          </p>
-          <button
-            type="button"
-            className={topActionButton}
-            onClick={handleScrollToTop}
-          >
+        <button
+          type="button"
+          onClick={handleScrollToTop}
+          className={topAction}
+        >
+          Back to top
+          <IconsButton onClick={handleScrollToTop}>
             <Arrow className={topActionArrow} />
-          </button>
-        </div>
+          </IconsButton>
+        </button>
       </footer>
     </div>
   );
