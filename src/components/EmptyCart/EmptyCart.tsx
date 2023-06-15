@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import Cart from '../../icons/CartIcon';
+import CartIcon from '../../icons/CartIcon';
 import classes from './EmptyCart.module.scss';
 
 const {
@@ -15,7 +15,7 @@ export const EmptyCart = () => {
   return (
     <div className={container}>
       <div className={cart}>
-        <Cart className={cartPhoto} />
+        <CartIcon className={cartPhoto} />
       </div>
       <div className={cartInfo}>
         <h2 className={cartTitle}>

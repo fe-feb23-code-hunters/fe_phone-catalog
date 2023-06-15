@@ -13,6 +13,7 @@ import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 
 const {
+  container,
   header,
   header__logo: headerLogo,
   'header__bar-icon': headerBarIcon,
@@ -31,7 +32,7 @@ export const Header = () => {
   };
 
   return (
-    <>
+    <div className={container}>
       <header className={header}>
         <div className={headerNavContainer}>
           <Link to="/">
@@ -70,6 +71,6 @@ export const Header = () => {
         handleClick={handleMenuButtonClick}
         isActive={showBurgerMenu}
       />
-    </>
+    </div>
   );
 };
