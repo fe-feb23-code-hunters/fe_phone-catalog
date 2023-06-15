@@ -51,7 +51,7 @@ const PhotoSelect: FC<Props> = ({
         <img
           className={photo}
           src={`${process.env.REACT_APP_API_PATH}/${selectedPhoto}`}
-          alt="iphone"
+          alt={name}
         />
       </div>
 
