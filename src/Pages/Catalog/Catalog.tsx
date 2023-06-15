@@ -126,7 +126,7 @@ const Catalog: React.FC = () => {
               gridDesktopFullSize,
             )}
           >
-            <p className={text}>95 models</p>
+            <p className={text}>{`${products.length} models`}</p>
           </div>
         </div>
       </div>
