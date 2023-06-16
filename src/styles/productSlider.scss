@@ -107,11 +107,11 @@
   top: 0;
   @include desktop-tablet-h2;
   @include onMobile {
+    &.short__title {
+      top: 3%;
+    }
     @include mobile-h2;
     width: 136px;
     text-align: start;
-  }
-  &.short__title {
-    top: 3%;
   }
 }
