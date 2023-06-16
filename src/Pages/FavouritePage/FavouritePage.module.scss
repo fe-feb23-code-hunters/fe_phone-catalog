@@ -76,3 +76,7 @@
     grid-template-columns: repeat(1, $card-width);
   }
 }
+
+.loader {
+  margin-top: $margin-for-loader;
+}

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../../../types/product';
 import { fetchNewProducts } from '../../../api/products.api';
+import classes from './brand-new-products.module.scss';
 import ProductCard from '../../../components/productCard/productCard';
+import Loader from '../../../components/shared/Loader';
 
 const BrandNewProducts = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState<Error | null>(null);
 
@@ -16,9 +19,12 @@ const BrandNewProducts = () => {
     } catch (err) {
       setError(err as Error);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchNew();
   }, []);
 
@@ -27,6 +33,9 @@ const BrandNewProducts = () => {
       <div>Brand new products</div>
 
       {error && `Error: ${error}`}
+
+      {isLoading && <Loader className={classes.loader} />}
+
       {newProducts.map(
         ({
           id, image, price, screen, fullPrice, capacity, ram, name,
