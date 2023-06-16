@@ -2,43 +2,40 @@ import { useEffect, useState, useRef } from 'react';
 import { Navigation, Autoplay, Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Product } from '../../../types/product';
-import { fetchNewProducts } from '../../../api/products.api';
+import { fetchProductsWithcDiscount } from '../../../api/products.api';
 import ProductCard from '../../../components/productCard/productCard';
 
 import 'swiper/css/bundle';
 import '../../../styles/productSlider.scss';
 
-const BrandNewProducts = () => {
-  const [newProducts, setNewProducts] = useState<Product[]>([]);
+const HotPricesProducts = () => {
+  const [discountProducts, setdiscountProducts] = useState<Product[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const fetchNew = async () => {
+  const fetchDiscount = async () => {
     try {
-      const { products } = await fetchNewProducts();
+      const { products } = await fetchProductsWithcDiscount();
 
-      setNewProducts(products);
+      setdiscountProducts(products);
     } catch (err) {
       setError(err as Error);
     }
-
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchNew();
+    fetchDiscount();
   }, []);
 
   useEffect(() => {
     if (swiperRef.current) {
       swiperRef.current.update();
     }
-  }, [newProducts]);
+  }, [discountProducts]);
 
   return (
     <div className="product__wrapper">
-      <h2 className="product-slider__title">Brand new models</h2>
+      <h2 className="product-slider__title short__title">Hot prices</h2>
       <Swiper
         className="product__swiper"
         modules={[Navigation, Autoplay]}
@@ -50,7 +47,7 @@ const BrandNewProducts = () => {
         }}
       >
         {error && `Error: ${error}`}
-        {newProducts.map(
+        {discountProducts.map(
           ({
             id, image, price, screen, fullPrice, capacity, ram, name,
           }) => {
@@ -75,4 +72,4 @@ const BrandNewProducts = () => {
   );
 };
 
-export default BrandNewProducts;
+export default HotPricesProducts;

@@ -3,3 +3,29 @@
 @use "../../styles/utils/mixins" as *;
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/App.scss" as *;
+
+.homePage__title {
+  @include desktop-tablet-h1;
+  @include onMobile {
+    @include mobile-h1;
+  }
+
+  color: $primary-color;
+}
+
+.bunner__slider {
+  padding-top: 20px;
+  padding-bottom: 80px;
+  max-width: 1136px;
+}
+
+.hot__prices {
+  max-width: 1136px;
+  padding-bottom: 80px;
+}
+
+.brand__new__models {
+  padding-top: 80px;
+  max-width: 1136px;
+  padding-bottom: 60px;
+}

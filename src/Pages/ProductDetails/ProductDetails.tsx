@@ -89,7 +89,6 @@ const ProductDetails: React.FC = () => {
     grid,
     icon,
     title,
-    subtitle,
     text,
     link,
     template,
@@ -350,10 +349,9 @@ const ProductDetails: React.FC = () => {
             </div>
           </div>
 
-          <div className={cn(container, blockMargin)}>
-            <h2 className={cn(subtitle, template)}>You may also like</h2>
+          <div className={`${classes.recommendedProducts__wrapper} ${classes.container}`}>
+            <RecommendedProducts productId={productId || '0'} />
           </div>
-          <RecommendedProducts />
         </>
       )}
     </div>

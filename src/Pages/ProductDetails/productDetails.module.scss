@@ -89,6 +89,12 @@
   border: solid 1px black;
 }
 
+.recommendedProducts__wrapper {
+  max-width: 1136px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
 .color__margin__top {
   @include onMobile {
     margin-top: 40px;

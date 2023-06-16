@@ -1,0 +1,117 @@
+@import "./utils/mixins";
+@import "./fonts/typography.scss";
+@import "./utils/vars";
+
+.product__swiper {
+  padding-top: 60px;
+  @include onMobile {
+    padding-top: 84px;
+  }
+
+  & > .swiper-button-prev::after {
+    box-sizing: border-box;
+    border: 1px solid $icons-color;
+    color: black;
+    font-family: none;
+    content: "";
+    background-image: url(../icons/sliderArrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 32px;
+    height: 32px;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  & > .swiper-button-next::after {
+    box-sizing: border-box;
+    border: 1px solid $icons-color;
+    color: black;
+    font-family: none;
+    content: "";
+    background-image: url(../icons/sliderArrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 32px;
+    height: 32px;
+    font-size: 25px;
+    text-align: center;
+    transform: rotate(180deg);
+  }
+
+  & > .swiper-button-next {
+    height: auto;
+    top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    right: 0.2%;
+    @media (max-width: 1055px) {
+      right: 0.3%;
+    }
+    @media (max-width: 720px) {
+      right: 0.4%;
+    }
+    @media (max-width: 540px) {
+      right: 0.7%;
+    }
+    @include onMobile {
+      top: 6%;
+    }
+  }
+  
+  & > .swiper-button-prev {
+    height: auto;
+    top: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 93.5%;
+    @media (max-width: 1055px) {
+      left: 92%;
+    }
+    @media (max-width: 900px) {
+      left: 91%;
+    }
+    @media (max-width: 800px) {
+      left: 89%;
+    }
+
+    @include onMobile {
+      top: 6%;
+      left: 87%;
+    }
+
+    @media (max-width: 540px) {
+      left: 83%;
+    }
+    @media (max-width: 450px) {
+      left: 79%;
+    }
+
+    @media (max-width: 350px) {
+      left: 75%;
+    }
+  }
+}
+
+.product__wrapper {
+  position: relative;
+  min-width: 0;
+}
+
+.product-slider__title {
+  position: absolute;
+  top: 0;
+  @include desktop-tablet-h2;
+  @include onMobile {
+    &.short__title {
+      top: 3%;
+    }
+    @include mobile-h2;
+    width: 136px;
+    text-align: start;
+  }
+}
