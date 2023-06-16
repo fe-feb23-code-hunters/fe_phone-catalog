@@ -31,7 +31,8 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [quantity, setQuantity] = useState(16);
 
   const setupProducts = async () => {
-    const { products: fetchedProducts } = await fetchAllProducts(
+    const { products: fetchedProducts }
+    = await fetchAllProducts(
       sortBy,
       quantity,
     );
