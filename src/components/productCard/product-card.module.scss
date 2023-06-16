@@ -1,10 +1,15 @@
 @use "../../styles/utils/_vars.scss" as *;
 @use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/utils/mixins" as *;
 
 $card-width: 272px;
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
+  min-width: $card-width;
   max-width: $card-width;
   width: 100%;
   border: 1px solid $elements-color;
@@ -40,6 +45,7 @@ $card-width: 272px;
     @include body-text;
     text-align: left;
     color: $primary-color;
+    min-height: 63px;
   }
 
   &__price {
@@ -76,6 +82,7 @@ $card-width: 272px;
     &__title {
       @include small-text;
       color: $secondary-color;
+      display: block;
     }
 
     &__value {

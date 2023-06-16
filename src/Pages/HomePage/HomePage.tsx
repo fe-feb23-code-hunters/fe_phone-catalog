@@ -1,9 +1,7 @@
-import { BunnerSlider } from '../../components/sliders/bunnerSlider';
-import {
-  ProductSlider,
-} from '../../components/sliders/productSlider/productSlider';
+import BrandNewProducts from './BrandNewProducts/BrandNewProducts';
 import CategorySection from './CategorySection/CategorySection';
 import classes from './HomePage.module.scss';
+import HotPricesProducts from './HotPriscesProducts/HotPricesProducts';
 
 const HomePage: React.FC = () => {
   return (
@@ -12,14 +10,14 @@ const HomePage: React.FC = () => {
         Welcome to Nice Gadgets store!
       </h1>
       <div className={classes.bunner__slider}>
-        <BunnerSlider />
+        bunner
       </div>
       <div className={classes.hot__prices}>
-        <ProductSlider title="Hot Prices" />
+        <HotPricesProducts />
       </div>
       <CategorySection />
       <div className={classes.brand__new__models}>
-        <ProductSlider title="Brand new models" />
+        <BrandNewProducts />
       </div>
     </div>
   );
