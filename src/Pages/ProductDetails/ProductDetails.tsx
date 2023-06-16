@@ -22,6 +22,8 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 import Loader from '../../components/shared/Loader';
 
 const DUMMY_OPTIONS = ['32GB', '64GB', '128GB', '256GB', '512GB'];
+const DUMMY_COLORS = ['black', 'spacegray', 'midnightgreen',
+  'gold', 'white', 'purple', 'yellow', 'green', 'red', 'silver'];
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -67,7 +69,7 @@ const ProductDetails: React.FC = () => {
   };
 
   const [selectedOption, setSelectedOption] = useState<string>(
-    product?.phone?.colorsAvailable[0] as string,
+    DUMMY_COLORS[0],
   );
 
   const onSelectChange = (newOption: string) => {
