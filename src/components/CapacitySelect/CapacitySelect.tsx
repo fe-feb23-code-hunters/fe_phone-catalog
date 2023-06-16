@@ -1,12 +1,11 @@
-import { Capacitys } from '../../types/capacitys';
 import BlackButton from '../shared/buttons/BlackButton/BlackButton';
 import classes from './CapacitySelect.module.scss';
 
 type Props = {
   title: string;
-  capacitys: Capacitys[];
-  selectedCapacity: Capacitys;
-  onSelectCapacity: (newOption: Capacitys) => void;
+  capacitys?: string[];
+  selectedCapacity: string;
+  onSelectCapacity: (newOption: string) => void;
 };
 
 const CapacitySelect: React.FC<Props> = ({
@@ -23,6 +22,9 @@ const CapacitySelect: React.FC<Props> = ({
     capacity__button: capacityButton,
   } = classes;
 
+  // eslint-disable-next-line no-console
+  console.log(selectedCapacity);
+
   return (
     <div className={capacityBody}>
       <div className={capacityTitle}>
@@ -31,11 +33,11 @@ const CapacitySelect: React.FC<Props> = ({
       <div className={capacityContainer}>
         {capacitys?.map((capacity) => {
           return (
-            <div className={capacityButton}>
+            <div className={capacityButton} key={capacity}>
               <BlackButton
-                isSelected={capacity.value === selectedCapacity.value}
-                key={capacity.value}
-                label={capacity.value}
+                isSelected={String(capacity) === String(selectedCapacity)}
+                key={capacity}
+                label={String(capacity)}
                 onClick={() => onSelectCapacity(capacity)}
               />
             </div>

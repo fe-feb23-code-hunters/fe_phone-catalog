@@ -48,7 +48,7 @@ const BrandNewProducts = () => {
               price={price}
               screen={screen}
               oldPrice={fullPrice}
-              capacity={capacity}
+              capacity={String(capacity)}
               ram={ram}
               title={name}
             />

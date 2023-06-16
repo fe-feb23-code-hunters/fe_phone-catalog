@@ -13,28 +13,15 @@ import BackButton from '../../components/shared/buttons/BackButton';
 import { AboutProduct } from '../../components/AboutProduct';
 import { TechSpecs } from '../../components/TechSpecs';
 import RecommendedProducts from './RecommendedProducts/RecommendedProducts';
-import { ColorOption } from '../../types/colorOption';
 import ColorSelect from '../../components/ColorSelect/ColorSelect';
 import CapacitySelect from '../../components/CapacitySelect/CapacitySelect';
 import LikeButton from '../../components/shared/buttons/LikeButton/LikeButton';
 import Button from '../../components/shared/buttons/Button/Button';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
-import { Capacitys } from '../../types/capacitys';
 import Loader from '../../components/shared/Loader';
 
-const DUMMY_OPTIONS = [
-  { color: '#FCDBC1' },
-  { color: '#5F7170' },
-  { color: '#4C4C4C' },
-  { color: '#F0F0F0' },
-];
-
-const DUMMY_CAPACITY = [
-  { value: '64GB' },
-  { value: '128GB' },
-  { value: '256GB' },
-];
+const DUMMY_OPTIONS = ['32GB', '64GB', '128GB', '256GB', '512GB'];
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -79,19 +66,19 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState<ColorOption>(
-    DUMMY_OPTIONS[0],
+  const [selectedOption, setSelectedOption] = useState<string>(
+    product?.phone?.colorsAvailable[0] as string,
   );
 
-  const onSelectChange = (newOption: ColorOption) => {
+  const onSelectChange = (newOption: string) => {
     setSelectedOption(newOption);
   };
 
-  const [selectedCapacity, setSelectedCapacity] = useState<Capacitys>(
-    DUMMY_CAPACITY[0],
+  const [selectedCapacity, setSelectedCapacity] = useState<string>(
+    DUMMY_OPTIONS[1],
   );
 
-  const onCapacityChange = (newOption: Capacitys) => {
+  const onCapacityChange = (newOption: string) => {
     setSelectedCapacity(newOption);
   };
 
@@ -253,9 +240,10 @@ const ProductDetails: React.FC = () => {
               )}
             >
               <ColorSelect
+                key={product.id}
                 title="Available colors"
                 id={`ID: 80239${product.id}`}
-                options={DUMMY_OPTIONS}
+                options={product.phone?.colorsAvailable}
                 selectedOption={selectedOption}
                 onSelect={onSelectChange}
               />
@@ -277,7 +265,7 @@ const ProductDetails: React.FC = () => {
             >
               <CapacitySelect
                 title="Select capacity"
-                capacitys={DUMMY_CAPACITY}
+                capacitys={product.phone?.capacityAvailable}
                 selectedCapacity={selectedCapacity}
                 onSelectCapacity={onCapacityChange}
               />
