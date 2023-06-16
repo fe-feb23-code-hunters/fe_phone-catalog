@@ -126,7 +126,7 @@ const FavouritePage: React.FC = () => {
             price={product.price}
             oldPrice={product.fullPrice}
             screen={product.screen}
-            capacity={product.capacity}
+            capacity={String(product.capacity)}
             ram={product.ram}
           />
         ))}
