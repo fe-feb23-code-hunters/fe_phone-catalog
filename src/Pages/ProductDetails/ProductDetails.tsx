@@ -1,15 +1,10 @@
 /* eslint-disable max-len */
 import {
-  MouseEventHandler,
-  useContext,
-  useEffect,
-  useState,
+  MouseEventHandler, useContext, useEffect, useState,
 } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames';
-import {
-  fetchProductById,
-} from '../../api/products.api';
+import { fetchProductById } from '../../api/products.api';
 import { Product } from '../../types/product';
 import classes from './productDetails.module.scss';
 import Arrow from '../../icons/Arrow';
@@ -26,6 +21,7 @@ import Button from '../../components/shared/buttons/Button/Button';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 import { Capacitys } from '../../types/capacitys';
+import Loader from '../../components/shared/Loader';
 
 const DUMMY_OPTIONS = [
   { color: '#FCDBC1' },
@@ -44,22 +40,20 @@ const ProductDetails: React.FC = () => {
   const { productId } = useParams();
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<Error | null>(null);
 
   const { cart, addToCart, deleteFromCart } = useContext(CartContext);
-  const {
-    favourites,
-    addToFavourites,
-    deleteFromFavourites,
-  } = useContext(FavouritesContext);
+  const { favourites, addToFavourites, deleteFromFavourites }
+    = useContext(FavouritesContext);
 
-  const doesExistInCart = cart.findIndex((products) => products.id === productId) !== -1;
+  const doesExistInCart
+    = cart.findIndex((products) => products.id === productId) !== -1;
 
-  const doesExistInFavourites = favourites.findIndex(
-    (products) => products.id === product?.id,
-  ) !== -1;
+  const doesExistInFavourites
+    = favourites.findIndex((products) => products.id === product?.id) !== -1;
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
@@ -159,60 +153,65 @@ const ProductDetails: React.FC = () => {
     } catch (err) {
       setError(err as Error);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchProduct();
   }, [productId]);
 
   return (
     <div>
-      {product && (
-        <>
-          <div className={cn(container, containerTop)}>
-            <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
-              <div
-                className={cn(
-                  gridItem,
-                  gridMobileFullSize,
-                  gridTabletFullSize,
-                  gridDesktopFullSize,
-                  iconHistory,
-                )}
-              >
-                <div className={containerCenter}>
-                  <Link to="/" className={icon}>
-                    <Home />
-                  </Link>
+      <div className={cn(container, containerTop)}>
+        <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+          <div
+            className={cn(
+              gridItem,
+              gridMobileFullSize,
+              gridTabletFullSize,
+              gridDesktopFullSize,
+              iconHistory,
+            )}
+          >
+            <div className={containerCenter}>
+              <Link to="/" className={icon}>
+                <Home />
+              </Link>
 
-                  <Arrow />
+              <Arrow />
 
-                  <Link to="/phones" className={link}>
-                    <p className={cn(text)}>Phones</p>
-                  </Link>
+              <Link to="/phones" className={link}>
+                <p className={cn(text)}>Phones</p>
+              </Link>
 
-                  <Arrow />
+              <Arrow />
 
-                  <p className={cn(text, disabledText)}>{product.name}</p>
-                </div>
+              <p className={cn(text, disabledText)}>{product?.name}</p>
+            </div>
 
-                <div
-                  className={cn(
-                    gridItem,
-                    gridMobileFullSize,
-                    gridTabletFullSize,
-                    gridDesktopFullSize,
-                    iconHistory,
-                  )}
-                >
-                  <div className={buttonBack}>
-                    <BackButton onClick={goBack} />
-                  </div>
-                </div>
+            <div
+              className={cn(
+                gridItem,
+                gridMobileFullSize,
+                gridTabletFullSize,
+                gridDesktopFullSize,
+                iconHistory,
+              )}
+            >
+              <div className={buttonBack}>
+                <BackButton onClick={goBack} />
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
+      {isLoading && <Loader />}
+
+      {product && (
+        <>
           <div className={cn(container)}>
             <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
               <div
@@ -258,12 +257,7 @@ const ProductDetails: React.FC = () => {
               />
             </div>
             <div
-              className={cn(
-                gridItem,
-                gridDesktop2024,
-                colorMarginTop,
-                idBody,
-              )}
+              className={cn(gridItem, gridDesktop2024, colorMarginTop, idBody)}
             >
               <div className={idBody}>
                 <p className={idTitle}>{`ID: 80239${product.id}`}</p>
@@ -319,11 +313,15 @@ const ProductDetails: React.FC = () => {
                   </li>
                   <li className={mainInfoItem}>
                     <span className={mainInfoItemTitle}>Resolution</span>
-                    <span className={mainInfoItemInfo}>{product?.phone?.resolution}</span>
+                    <span className={mainInfoItemInfo}>
+                      {product?.phone?.resolution}
+                    </span>
                   </li>
                   <li className={mainInfoItem}>
                     <span className={mainInfoItemTitle}>Processor</span>
-                    <span className={mainInfoItemInfo}>{product?.phone?.processor}</span>
+                    <span className={mainInfoItemInfo}>
+                      {product?.phone?.processor}
+                    </span>
                   </li>
                   <li className={mainInfoItem}>
                     <span className={mainInfoItemTitle}>RAM</span>
