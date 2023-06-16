@@ -7,6 +7,7 @@ export interface IconButtonProps {
   isSelected?: boolean;
   isFilled?: boolean;
   isLarge?: boolean;
+  isBiggest?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>
 }
 
@@ -16,6 +17,7 @@ const IconsButton: React.FC<PropsWithChildren<IconButtonProps>> = ({
   isSelected,
   isFilled,
   isLarge,
+  isBiggest,
   onClick,
 }) => (
   <button
@@ -25,6 +27,7 @@ const IconsButton: React.FC<PropsWithChildren<IconButtonProps>> = ({
       [classes.selected]: isSelected,
       [classes.filled]: isFilled,
       [classes.large]: isLarge,
+      [classes.biggest]: isBiggest,
     })}
     onClick={(event) => {
       if (!isDisabled) {

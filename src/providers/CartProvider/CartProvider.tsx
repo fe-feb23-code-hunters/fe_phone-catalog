@@ -12,6 +12,7 @@ interface Context {
   addToCart: (productId: string) => void;
   deleteFromCart: (productId: string) => void;
   removeFromCart: (productId: string) => void;
+  clearCart: () => void;
 }
 
 export const CartContext = React.createContext<Context>({
@@ -19,6 +20,7 @@ export const CartContext = React.createContext<Context>({
   addToCart: () => {},
   deleteFromCart: () => {},
   removeFromCart: () => {},
+  clearCart: () => {},
 });
 
 const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -72,6 +74,10 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     const storedCart = getCart();
 
@@ -81,7 +87,7 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        cart, addToCart, removeFromCart, deleteFromCart,
+        cart, clearCart, addToCart, removeFromCart, deleteFromCart,
       }}
     >
       {children}

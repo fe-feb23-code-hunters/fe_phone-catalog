@@ -17,7 +17,6 @@ interface Props {
 export const TechSpecs: React.FC<Props> = ({ product }) => {
   const {
     phone,
-    capacity,
     screen,
     ram,
   } = product;
@@ -46,7 +45,9 @@ export const TechSpecs: React.FC<Props> = ({ product }) => {
             </li>
             <li className={techSpecsItem}>
               <span className={techSpecsItemTitle}>Built in memory</span>
-              <span className={techSpecsItemInfo}>{capacity}</span>
+              <span className={techSpecsItemInfo}>
+                {String(product?.capacity)}
+              </span>
             </li>
             <li className={techSpecsItem}>
               <span className={techSpecsItemTitle}>Camera</span>

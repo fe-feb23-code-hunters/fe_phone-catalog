@@ -10,10 +10,12 @@ import { CartItem } from '../../components/CartItem';
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { CartProduct } from '../../types/cart';
 import { EmptyCart } from '../../components/EmptyCart';
+import Loader from '../../components/shared/Loader';
 
 const {
   grid,
   checkout,
+  loader,
   grid__desktop: gridDesktop,
   grid__tablet: gridTablet,
   grid__mobile: gridMobile,
@@ -31,8 +33,8 @@ const {
 } = classes;
 
 const Cart: React.FC = () => {
-  const { cart } = useContext(CartContext);
-  const { products } = useContext(ProductsContext);
+  const { cart, clearCart } = useContext(CartContext);
+  const { products, isLoading } = useContext(ProductsContext);
   const [showModal, setShowModal] = useState(false);
 
   const goBack = () => {
@@ -59,70 +61,84 @@ const Cart: React.FC = () => {
 
   const isModal = totalPrice === 0;
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+    clearCart();
+  };
+
   return (
     <div className={container}>
       <div className={buttonBack}>
         <BackButton onClick={goBack} />
       </div>
+
       <h1 className={title}>Cart</h1>
-      <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
-        <div
-          className={cn(
-            gridItem,
-            gridMobileFullSize,
-            gridTabletFullSize,
-            gridDesktopStart,
-          )}
-        >
-          {cartProducts.map(({
-            id, name, image, price,
-          }) => (
-            <CartItem
-              key={id}
-              id={id}
-              name={name}
-              image={image}
-              price={price}
-              count={cartMap[id].count}
-            />
-          ))}
-          {cartProducts.length === 0 && (
-            <EmptyCart />
-          )}
-        </div>
-        <div
-          className={cn(
-            gridItem,
-            gridMobileFullSize,
-            gridTabletFullSize,
-            gridDesktopEnd,
-          )}
-        >
-          <div className={checkout}>
-            <h2 className={checkoutValue}>{`$${totalPrice}`}</h2>
-            <h3 className={checkoutCount}>
-              {`Total for ${totalCount} items`}
-            </h3>
-            <div className={checkoutButton}>
-              <Button
-                label="Checkout"
-                onClick={() => setShowModal(true)}
-                height="48px"
+
+      {isLoading && <Loader className={loader} />}
+
+      {!isLoading && (
+        <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
+          <div
+            className={cn(
+              gridItem,
+              gridMobileFullSize,
+              gridTabletFullSize,
+              gridDesktopStart,
+            )}
+          >
+            {cartProducts.map(({
+              id, name, image, price,
+            }) => (
+              <CartItem
+                key={id}
+                id={id}
+                name={name}
+                image={image}
+                price={price}
+                count={cartMap[id].count}
               />
+            ))}
+
+            {cartProducts.length === 0 && <EmptyCart />}
+          </div>
+          <div
+            className={cn(
+              gridItem,
+              gridMobileFullSize,
+              gridTabletFullSize,
+              gridDesktopEnd,
+            )}
+          >
+            <div className={checkout}>
+              <h2 className={checkoutValue}>{`$${totalPrice}`}</h2>
+
+              <h3 className={checkoutCount}>
+                {`Total for ${totalCount} items`}
+              </h3>
+
+              <div className={checkoutButton}>
+                <Button
+                  label="Checkout"
+                  onClick={() => setShowModal(true)}
+                  height="48px"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+
       {!isModal && (
         <Modal
           title="Thank you for your purchase"
-          onClose={() => setShowModal(false)}
+          onClose={() => handleCloseModal()}
           showModal={showModal}
           description="Please enjoy 20% off your next order with promocode: "
           promo="CODEHUNTERS_TOP"
-          navigation="/"
+          navigation="/cart"
         />
       )}
+
       {isModal && (
         <Modal
           title="There is nothing here yet"

@@ -3,6 +3,7 @@
 
 $button-size-default: 32px;
 $button-size-large: 40px;
+$button-size-biggest: 48px;
 
 .button {
   @include button-text;
@@ -50,5 +51,10 @@ $button-size-large: 40px;
   &.large {
     min-height: $button-size-large;
     min-width: $button-size-large;
+  }
+
+  &.biggest {
+    min-width: $button-size-biggest;
+    min-height: $button-size-biggest;
   }
 }

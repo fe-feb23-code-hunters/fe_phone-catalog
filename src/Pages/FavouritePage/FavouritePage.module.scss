@@ -5,11 +5,6 @@
 @use "../../styles/utils/vars" as *;
 @use "../../components/ProductCard/product-card.module.scss" as *;
 
-.icon {
-  height: $icon-size;
-  margin-right: 8px;
-}
-
 .container__top {
   margin-top: 24px;
 }
@@ -21,6 +16,11 @@
 
 .container__margin_text {
   margin-top: 8px;
+}
+
+.icon {
+  height: $icon-size;
+  margin-right: 8px;
 }
 
 .title {
@@ -37,14 +37,6 @@
 
   @include onMobile {
     margin-top: 24px;
-  }
-}
-
-.option__margin {
-  margin-top: 40px;
-
-  @include onMobile {
-    margin-top: 32px;
   }
 }
 
@@ -86,5 +78,5 @@
 }
 
 .loader {
-  margin-top: $margin-for-loader * 2;
+  margin-top: $margin-for-loader;
 }
