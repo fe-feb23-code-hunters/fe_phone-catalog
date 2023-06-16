@@ -33,7 +33,7 @@ const {
 } = classes;
 
 const Cart: React.FC = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const { products, isLoading } = useContext(ProductsContext);
   const [showModal, setShowModal] = useState(false);
 
@@ -60,6 +60,11 @@ const Cart: React.FC = () => {
   const totalCount = cart.reduce((accum, { count }) => accum + count, 0);
 
   const isModal = totalPrice === 0;
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    clearCart();
+  };
 
   return (
     <div className={container}>
@@ -126,11 +131,11 @@ const Cart: React.FC = () => {
       {!isModal && (
         <Modal
           title="Thank you for your purchase"
-          onClose={() => setShowModal(false)}
+          onClose={() => handleCloseModal()}
           showModal={showModal}
           description="Please enjoy 20% off your next order with promocode: "
           promo="CODEHUNTERS_TOP"
-          navigation="/"
+          navigation="/cart"
         />
       )}
 
