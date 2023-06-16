@@ -42,7 +42,8 @@ const RecommendedProducts = ({ productId }: { productId: string }) => {
         spaceBetween={16}
         slidesPerView="auto"
         navigation
-        onSwiper={(swiper) => {
+        // eslint-disable-next-line
+        onSwiper={(swiper: any) => {
           swiperRef.current = swiper;
         }}
       >

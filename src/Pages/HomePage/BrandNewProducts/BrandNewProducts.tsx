@@ -4,14 +4,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Product } from '../../../types/product';
 import { fetchNewProducts } from '../../../api/products.api';
 import ProductCard from '../../../components/productCard/productCard';
-
+import classes from './brand-new-products.module.scss';
 import 'swiper/css/bundle';
 import '../../../styles/productSlider.scss';
+import Loader from '../../../components/shared/Loader/Loader';
 
 const BrandNewProducts = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNew = async () => {
     try {
@@ -50,6 +52,7 @@ const BrandNewProducts = () => {
         }}
       >
         {error && `Error: ${error}`}
+        {isLoading && <Loader className={classes.loader} />}
         {newProducts.map(
           ({
             id, image, price, screen, fullPrice, capacity, ram, name,
