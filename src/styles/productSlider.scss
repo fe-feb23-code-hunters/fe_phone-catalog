@@ -1,4 +1,6 @@
 @import "./utils/mixins";
+@import "./fonts/typography.scss";
+@import "./utils/vars";
 
 .product__swiper {
   padding-top: 60px;
@@ -8,7 +10,7 @@
 
   & > .swiper-button-prev::after {
     box-sizing: border-box;
-    border: 1px solid #b4bdc4;
+    border: 1px solid $icons-color;
     color: black;
     font-family: none;
     content: "";
@@ -24,7 +26,7 @@
 
   & > .swiper-button-next::after {
     box-sizing: border-box;
-    border: 1px solid #b4bdc4;
+    border: 1px solid $icons-color;
     color: black;
     font-family: none;
     content: "";
@@ -103,16 +105,13 @@
 .product-slider__title {
   position: absolute;
   top: 0;
-  font-family: "Mont", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 41px;
-  letter-spacing: -0.01em;
+  @include desktop-tablet-h2;
   @include onMobile {
-    font-size: 22px;
-    line-height: 140%;
+    @include mobile-h2;
     width: 136px;
     text-align: start;
+  }
+  &.short__title {
+    top: 3%;
   }
 }

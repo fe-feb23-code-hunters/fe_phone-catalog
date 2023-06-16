@@ -216,7 +216,7 @@ const ProductDetails: React.FC = () => {
             </div>
           </div>
 
-          <div className={classes.recommendedProducts__wrapper}>
+          <div className={`${classes.recommendedProducts__wrapper} ${classes.container}`}>
             <RecommendedProducts productId={productId || '0'} />
           </div>
         </>

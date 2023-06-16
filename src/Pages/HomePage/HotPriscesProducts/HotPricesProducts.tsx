@@ -35,7 +35,7 @@ const HotPricesProducts = () => {
 
   return (
     <div className="product__wrapper">
-      <h2 className="product-slider__title">Hot prices</h2>
+      <h2 className="product-slider__title short__title">Hot prices</h2>
       <Swiper
         className="product__swiper"
         modules={[Navigation, Autoplay]}
