@@ -3,9 +3,7 @@ import { Navigation, Autoplay, Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Product } from '../../../types/product';
 import { fetchNewProducts } from '../../../api/products.api';
-import classes from './brand-new-products.module.scss';
 import ProductCard from '../../../components/productCard/productCard';
-import Loader from '../../../components/shared/Loader';
 
 import 'swiper/css/bundle';
 import '../../../styles/productSlider.scss';
