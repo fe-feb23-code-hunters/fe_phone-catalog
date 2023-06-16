@@ -9,7 +9,7 @@ interface Props {
 
 const ColorButton: React.FC<Props> = ({
   isSelected,
-  color = '#fff',
+  color = '#5f7170',
   onClick,
 }) => (
   <button

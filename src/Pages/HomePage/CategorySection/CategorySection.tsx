@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import cn from 'classnames';
 import classes from './CategorySection.module.scss';
 import Category from '../../../components/Category/Category';
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
+// eslint-disable-next-line max-len
+import { ProductsContext } from '../../../providers/ProductsProvider/ProductsProvider';
 
 const CategorySection = () => {
+  const { products } = useContext(ProductsContext);
+
   const {
     container,
     grid,
@@ -66,7 +71,7 @@ const CategorySection = () => {
               imgUrl="/img/banners/categories/Category_Phones.jpg"
               altImg="Phones category"
               subtitle="Phones"
-              text="95 models"
+              text={`${products.length} models`}
               color="#6D6474"
             />
           </Link>
