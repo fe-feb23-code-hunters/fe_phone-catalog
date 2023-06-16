@@ -1,0 +1,52 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.container {
+  margin-bottom: 50px;
+}
+
+.favourites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
+  &__photo {
+    color: $primary-color;
+    height: 150px;
+
+    @include onTablet {
+      height: 200px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__title {
+    @include mobile-h2;
+    color: $primary-color;
+    text-align: center;
+
+    @include onTablet {
+      @include desktop-tablet-h2;
+    }
+  }
+
+  &__text {
+    color: $secondary-color;
+    @include small-text;
+    text-align: center;
+
+    @include onTablet {
+      @include body-text;
+    }
+  }
+}

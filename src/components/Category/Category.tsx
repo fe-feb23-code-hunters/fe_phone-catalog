@@ -28,7 +28,7 @@ const Category: React.FC<Props> = ({
     <div>
       <div style={{ backgroundColor: color }} className={cn(rectagle)}>
         <img
-          src={`${process.env.PUBLIC_URL}${imgUrl}`}
+          src={`${process.env.REACT_APP_API_PATH}${imgUrl}`}
           alt={altImg}
           className={img}
         />

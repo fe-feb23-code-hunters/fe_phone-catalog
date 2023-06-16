@@ -1,42 +1,39 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Product } from '../../../types/product';
-import { fetchNewProducts } from '../../../api/products.api';
-import classes from './brand-new-products.module.scss';
+import { fetchRecommendedProducts } from '../../../api/products.api';
 import ProductCard from '../../../components/productCard/productCard';
-import Loader from '../../../components/shared/Loader';
 
-const BrandNewProducts = () => {
-  const [newProducts, setNewProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+const RecommendedProducts = () => {
+  const { productId } = useParams();
+
+  // eslint-disable-next-line max-len
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchNew = async () => {
+  const fetchRecommended = async () => {
     try {
-      const { products } = await fetchNewProducts();
+      if (productId) {
+        const { products } = await fetchRecommendedProducts(productId);
 
-      setNewProducts(products);
+        setRecommendedProducts(products);
+      }
     } catch (err) {
       setError(err as Error);
     }
-
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchNew();
-  }, []);
+    fetchRecommended();
+  }, [productId]);
 
   return (
     <>
-      <div>Brand new products</div>
+      <div>Recommended Products</div>
 
       {error && `Error: ${error}`}
-
-      {isLoading && <Loader className={classes.loader} />}
-
-      {newProducts.map(
+      {recommendedProducts.map(
         ({
           id, image, price, screen, fullPrice, capacity, ram, name,
         }) => {
@@ -59,4 +56,4 @@ const BrandNewProducts = () => {
   );
 };
 
-export default BrandNewProducts;
+export default RecommendedProducts;

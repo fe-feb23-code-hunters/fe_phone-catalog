@@ -1,0 +1,6 @@
+@use "../../../styles/utils/vars" as *;
+
+.loader {
+  margin-top: $margin-for-loader / 2;
+  margin-bottom: $margin-for-loader / 2;
+}

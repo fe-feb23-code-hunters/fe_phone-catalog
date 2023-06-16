@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../../../types/product';
-import { fetchNewProducts } from '../../../api/products.api';
-import classes from './brand-new-products.module.scss';
+import { fetchProductsWithcDiscount } from '../../../api/products.api';
 import ProductCard from '../../../components/productCard/productCard';
 import Loader from '../../../components/shared/Loader';
 
-const BrandNewProducts = () => {
-  const [newProducts, setNewProducts] = useState<Product[]>([]);
+const ProductsWithDiscount = () => {
+  const [discountedProducts, setDiscountedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchNew = async () => {
+  const fetchDiscounted = async () => {
     try {
-      const { products } = await fetchNewProducts();
+      const { products } = await fetchProductsWithcDiscount();
 
-      setNewProducts(products);
+      setDiscountedProducts(products);
     } catch (err) {
       setError(err as Error);
     }
@@ -25,18 +24,18 @@ const BrandNewProducts = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchNew();
+    fetchDiscounted();
   }, []);
 
   return (
     <>
-      <div>Brand new products</div>
+      <div>Hot prices</div>
 
       {error && `Error: ${error}`}
 
-      {isLoading && <Loader className={classes.loader} />}
+      {isLoading && <Loader />}
 
-      {newProducts.map(
+      {discountedProducts.map(
         ({
           id, image, price, screen, fullPrice, capacity, ram, name,
         }) => {
@@ -59,4 +58,4 @@ const BrandNewProducts = () => {
   );
 };
 
-export default BrandNewProducts;
+export default ProductsWithDiscount;
