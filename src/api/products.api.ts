@@ -5,10 +5,11 @@ import { SortBy } from '../types/sortBy';
 const API_PATH = process.env.REACT_APP_API_PATH || 'http://localhost:3001';
 
 export const fetchAllProducts = async (
+  page: number,
   sortBy: SortBy,
-  quantity: number,
-): Promise<{ products: Product[] }> => {
-  const requestURL = `${API_PATH}/products?sortBy=${sortBy}&limit=${quantity}`;
+  limit: number,
+): Promise<{ products: Product[], totalPages: number }> => {
+  const requestURL = `${API_PATH}/products?sortBy=${sortBy}&limit=${limit}&page=${page}`;
 
   const result = await axios.get(requestURL);
 

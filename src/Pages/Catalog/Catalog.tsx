@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import classes from './catalog.module.scss';
@@ -62,18 +62,19 @@ const Catalog: React.FC = () => {
     isLoading,
     handleSortByChange,
     sortBy,
-    quantity,
-    handleQuantityChange,
+    handleLimitChange,
+    limit,
+    handlePageChange,
+    page,
+    totalPages,
   } = useContext(ProductsContext);
-
-  const [currentPage, setCurrentPage] = useState(1);
 
   const selectedSortByOption = SORT_OPTIONS.find(
     (option) => option.value === sortBy,
   ) as DropdownOption;
 
   const selectedQuantityOption = ITEMS_OPTIONS.find(
-    (option) => option.value === quantity,
+    (option) => option.value === limit,
   ) as DropdownOption;
 
   const onDropdownChange = (newOption: DropdownOption) => {
@@ -81,14 +82,13 @@ const Catalog: React.FC = () => {
   };
 
   const onDropdownChangeItems = (newOption: DropdownOption) => {
-    handleQuantityChange(newOption.value);
+    handleLimitChange(newOption.value);
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+  const handlePagination = (newPage: number) => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    handlePageChange(newPage);
   };
-
-  const totalPages = 10;
 
   return (
     <>
@@ -198,9 +198,9 @@ const Catalog: React.FC = () => {
           </div>
 
           <Pagination
-            currentPage={currentPage}
+            currentPage={page}
             totalPages={totalPages}
-            onPageChange={handlePageChange}
+            onPageChange={handlePagination}
           />
         </>
       )}
