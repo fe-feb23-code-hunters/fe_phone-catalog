@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import BackButton from '../../components/shared/buttons/BackButton/BackButton';
@@ -7,10 +7,11 @@ import classes from './Cart.module.scss';
 import Button from '../../components/shared/buttons/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { CartItem } from '../../components/CartItem';
-import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { CartProduct } from '../../types/cart';
 import { EmptyCart } from '../../components/EmptyCart';
 import Loader from '../../components/shared/Loader';
+import { fetchProductById } from '../../api/products.api';
+import { Product } from '../../types/product';
 
 const {
   grid,
@@ -34,7 +35,8 @@ const {
 
 const Cart: React.FC = () => {
   const { cart, clearCart } = useContext(CartContext);
-  const { products, isLoading } = useContext(ProductsContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [showModal, setShowModal] = useState(false);
 
   const goBack = () => {
@@ -48,16 +50,12 @@ const Cart: React.FC = () => {
     {},
   );
 
-  const cartProducts = products.filter(
-    (currentProduct) => cartMap[currentProduct.id],
-  );
-
   const totalPrice = cartProducts.reduce(
-    (accum, { price, id }) => accum + price * cartMap[id].count,
+    (accum, { price, id }) => accum + price * cartMap[id]?.count,
     0,
   );
 
-  const totalCount = cart.reduce((accum, { count }) => accum + count, 0);
+  const totalCount = cart.reduce((accum, el) => accum + el.count, 0);
 
   const isModal = totalPrice === 0;
 
@@ -65,6 +63,25 @@ const Cart: React.FC = () => {
     setShowModal(false);
     clearCart();
   };
+
+  const fetchCartProducts = async () => {
+    const fetchedProducts = await Promise.all(
+      cart.map(({ id }) => {
+        return fetchProductById(id);
+      }),
+    );
+
+    setCartProducts(fetchedProducts);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (cart.length !== cartProducts.length || cartProducts.length === 0) {
+      setIsLoading(true);
+
+      fetchCartProducts();
+    }
+  }, [cart]);
 
   return (
     <div className={container}>
@@ -95,7 +112,7 @@ const Cart: React.FC = () => {
                 name={name}
                 image={image}
                 price={price}
-                count={cartMap[id].count}
+                count={cartMap[id]?.count}
               />
             ))}
 
