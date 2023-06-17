@@ -22,8 +22,18 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 import Loader from '../../components/shared/Loader';
 
 const DUMMY_OPTIONS = ['32GB', '64GB', '128GB', '256GB', '512GB'];
-const DUMMY_COLORS = ['black', 'spacegray', 'midnightgreen',
-  'gold', 'white', 'purple', 'yellow', 'green', 'red', 'silver'];
+const DUMMY_COLORS = [
+  'black',
+  'spacegray',
+  'midnightgreen',
+  'gold',
+  'white',
+  'purple',
+  'yellow',
+  'green',
+  'red',
+  'silver',
+];
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
@@ -68,9 +78,7 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState<string>(
-    DUMMY_COLORS[0],
-  );
+  const [selectedOption, setSelectedOption] = useState<string>(DUMMY_COLORS[0]);
 
   const onSelectChange = (newOption: string) => {
     setSelectedOption(newOption);
@@ -125,6 +133,7 @@ const ProductDetails: React.FC = () => {
     main__info__item: mainInfoItem,
     'main__info__item-title': mainInfoItemTitle,
     'main__info__item-info': mainInfoItemInfo,
+    recommendedProducts__wrapper: recomendedProductsWrapper,
   } = classes;
 
   const goBack = () => {
@@ -349,8 +358,8 @@ const ProductDetails: React.FC = () => {
             </div>
           </div>
 
-          <div className={`${classes.recommendedProducts__wrapper} ${classes.container}`}>
-            <RecommendedProducts productId={productId || '0'} />
+          <div className={cn(recomendedProductsWrapper, container)}>
+            <RecommendedProducts productId={productId} />
           </div>
         </>
       )}

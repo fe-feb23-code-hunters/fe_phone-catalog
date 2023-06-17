@@ -1,8 +1,8 @@
-@import "./utils/mixins";
-@import "./fonts/typography.scss";
-@import "./utils/vars";
+@import "../../styles/utils/mixins";
+@import "../../styles/fonts/typography.scss";
+@import "../../styles/utils/vars";
 
-.product__swiper {
+.products__slider {
   padding-top: 60px;
   @include onMobile {
     padding-top: 84px;
@@ -14,7 +14,7 @@
     color: black;
     font-family: none;
     content: "";
-    background-image: url(../icons/sliderArrow.svg);
+    background-image: url(../../../public/img/icons/sliderArrow.svg);
     background-repeat: no-repeat;
     background-position: center;
     display: block;
@@ -30,7 +30,7 @@
     color: black;
     font-family: none;
     content: "";
-    background-image: url(../icons/sliderArrow.svg);
+    background-image: url(../../../public/img/icons/sliderArrow.svg);
     background-repeat: no-repeat;
     background-position: center;
     display: block;
@@ -61,7 +61,7 @@
       top: 6%;
     }
   }
-  
+
   & > .swiper-button-prev {
     height: auto;
     top: 22px;
