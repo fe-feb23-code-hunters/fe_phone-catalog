@@ -7,19 +7,25 @@ import {
 } from '../../utils/favourites-storage.utils';
 
 interface Context {
+  query: string;
   favourites: FavouriteProduct[];
   addToFavourites: (productId: string) => void;
   deleteFromFavourites: (productId: string) => void;
+  handleQueryChange: (inputQuery: string) => void;
 }
 
 export const FavouritesContext = React.createContext<Context>({
+  query: '',
   favourites: [],
   addToFavourites: () => {},
   deleteFromFavourites: () => {},
+  handleQueryChange: () => {},
 });
 
 const FavouritesProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [favourites, setFavourites] = useState<FavouriteProduct[]>([]);
+
+  const [query, setQuery] = useState('');
 
   const addToFavourites = (productId: string) => {
     const product = addProduct(productId);
@@ -39,6 +45,10 @@ const FavouritesProvider: React.FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
+  const handleQueryChange = (inputQuery: string) => {
+    setQuery(inputQuery);
+  };
+
   useEffect(() => {
     const storedFavourites = getFavourites();
 
@@ -47,7 +57,13 @@ const FavouritesProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <FavouritesContext.Provider
-      value={{ favourites, addToFavourites, deleteFromFavourites }}
+      value={{
+        favourites,
+        addToFavourites,
+        deleteFromFavourites,
+        query,
+        handleQueryChange,
+      }}
     >
       {children}
     </FavouritesContext.Provider>

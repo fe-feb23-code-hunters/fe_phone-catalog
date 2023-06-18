@@ -15,6 +15,8 @@ interface Context {
   handlePageChange: (pageNumber: number) => void;
   page: number;
   totalPages: number;
+  search: string;
+  handleSearchChange: (query: string) => void;
 }
 
 export const ProductsContext = React.createContext<Context>({
@@ -26,6 +28,8 @@ export const ProductsContext = React.createContext<Context>({
   limit: 16,
   handlePageChange: () => {},
   page: 1,
+  search: '',
+  handleSearchChange: () => {},
   totalPages: 5,
 });
 
@@ -35,14 +39,17 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const page = Number(searchParams.get('page') || 1);
   const sortBy = (searchParams.get('sortBy') || SortBy.NEWEST) as SortBy;
   const limit = Number(searchParams.get('limit') || 16);
+  const search = searchParams.get('search') || '';
 
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [totalPages, setTotalPages] = useState(5);
 
   const setupProducts = async () => {
-    const { products: fetchedProducts, totalPages: fetchedtotalPages }
-      = await fetchAllProducts(page, sortBy, limit);
+    const {
+      products: fetchedProducts,
+      totalPages: fetchedtotalPages,
+    } = await fetchAllProducts(page, sortBy, limit, search);
 
     setProducts(fetchedProducts);
     setTotalPages(fetchedtotalPages);
@@ -67,10 +74,14 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
     );
   };
 
+  const handleSearchChange = (query: string) => {
+    setSearchParams(getSearchParams(searchParams, { search: query }));
+  };
+
   useEffect(() => {
     setIsLoading(true);
     setupProducts();
-  }, [sortBy, limit, page]);
+  }, [sortBy, limit, page, search]);
 
   return (
     <ProductsContext.Provider
@@ -83,6 +94,8 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
         limit,
         handlePageChange,
         page,
+        search,
+        handleSearchChange,
         totalPages,
       }}
     >
