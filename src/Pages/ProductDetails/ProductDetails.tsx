@@ -370,8 +370,6 @@ const ProductDetails: React.FC = () => {
           <div className={cn(recomendedProductsWrapper, container)}>
             <RecommendedProducts productId={productId} />
           </div>
-
-          <RecommendedProducts />
         </>
       )}
     </div>
