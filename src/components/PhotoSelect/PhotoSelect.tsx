@@ -1,59 +1,60 @@
-import { FC, useState } from 'react';
-import cn from 'classnames';
-import classes from './PhotoSelect.module.scss';
+import { FC } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Pagination } from 'swiper';
 import { Phone } from '../../types/phone';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import './PhotoSelect.scss';
 
 interface Props {
   phone: Phone,
 }
 
+SwiperCore.use([Pagination]);
+
 const PhotoSelect: FC<Props> = ({ phone }) => {
-  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
-
-  const {
-    preview,
-    photo,
-    preview__selected: isSelected,
-    photo__container: photoContainer,
-    preview__container: previewContainer,
-    main_photo__container: selectedPhotoContainer,
-  } = classes;
-
-  const onSelectPhoto = (newPhoto: string) => {
-    setSelectedPhoto(newPhoto);
-  };
-
   return (
-    <div className={photoContainer}>
-      <div className={previewContainer}>
-        {phone.images.map((image) => {
-          return (
-            <button
-              className={cn(
-                preview,
-                { [isSelected]: image === selectedPhoto },
-              )}
-              type="button"
-              onClick={() => onSelectPhoto(image)}
-            >
-              <img
-                className={photo}
-                src={`${process.env.REACT_APP_API_PATH}/${image}`}
-                alt={phone.name}
-              />
-            </button>
-          );
-        })}
-      </div>
+    <div className="slider">
+      <div className="slider-container">
+        <Swiper
+          direction="horizontal"
+          id="swiper-1"
+          slidesPerView={1}
+          spaceBetween={30}
+          loop
+          pagination={{
+            clickable: true,
+            renderBullet: (index, className) => {
+              const image = phone.images[index];
 
-      <div className={selectedPhotoContainer}>
-        <img
-          className={photo}
-          src={`${process.env.REACT_APP_API_PATH}/${selectedPhoto}`}
-          alt={phone.name}
-        />
+              return `
+                <div class="${className}">
+                  <img class="image-swipe-img" src=${`${process.env.REACT_APP_API_PATH}/${image}`} alt=${image} />
+                </div>
+              `;
+            },
+          }}
+          modules={[Pagination]}
+          className="swiper"
+        >
+          {phone.images.map(image => {
+            return (
+              <SwiperSlide key={image}>
+                <div className="image-swipe">
+                  <img
+                    src={`${process.env.REACT_APP_API_PATH}/${image}`}
+                    alt={phone.name}
+                    className="image-swipe-img"
+                  />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
-
     </div>
   );
 };

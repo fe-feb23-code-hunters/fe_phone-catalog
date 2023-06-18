@@ -105,6 +105,7 @@ const ProductDetails: React.FC = () => {
     text,
     link,
     template,
+    photo__block: photoBlock,
     button__back: buttonBack,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
@@ -235,6 +236,7 @@ const ProductDetails: React.FC = () => {
           <div className={cn(container, grid, sectionMargin, blockMargin)}>
             <div
               className={cn(
+                photoBlock,
                 gridItem,
                 gridDesktopStart,
                 gridTabletStart,
@@ -247,6 +249,7 @@ const ProductDetails: React.FC = () => {
                 />
               )}
             </div>
+
             <div
               className={cn(
                 gridItem,
@@ -264,6 +267,7 @@ const ProductDetails: React.FC = () => {
                 onSelect={onSelectChange}
               />
             </div>
+
             <div
               className={cn(gridItem, gridDesktop2024, colorMarginTop, idBody)}
             >
@@ -271,6 +275,7 @@ const ProductDetails: React.FC = () => {
                 <p className={idTitle}>{`ID: 80239${product.id}`}</p>
               </div>
             </div>
+
             <div
               className={cn(
                 gridItem,
@@ -286,6 +291,7 @@ const ProductDetails: React.FC = () => {
                 onSelectCapacity={onCapacityChange}
               />
             </div>
+
             <div
               className={cn(
                 gridItem,
@@ -367,6 +373,7 @@ const ProductDetails: React.FC = () => {
           <div className={cn(container, blockMargin)}>
             <h2 className={cn(subtitle, template)}>You may also like</h2>
           </div>
+
           <RecommendedProducts />
         </>
       )}
