@@ -4,25 +4,32 @@
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/App.scss" as *;
 
-.color__body {
-  width: 100%;
-}
+.color {
 
-.color__container {
-  display: flex;
-  margin: 8px 0 24px;
-}
+  &__body {
+    width: 100%;
+  }
 
-.color__title {
-  display: flex;
-  justify-content: space-between;
-  @include body-text;
+  &__container {
+    display: flex;
+    margin: 8px 0 24px;
+  }
 
-  color: $secondary-color;
-}
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    @include body-text;
 
-.color__button {
-  margin-right: 8px;
+    color: $secondary-color;
+  }
+
+  &__button {
+    margin-right: 8px;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
 }
 
 .line {
