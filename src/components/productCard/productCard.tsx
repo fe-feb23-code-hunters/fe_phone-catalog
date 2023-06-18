@@ -8,7 +8,7 @@ import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 
 interface Props {
-  id: string;
+  itemId: string;
   imgURL: string;
   price: number;
   screen: string;
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({
-  id,
+  itemId,
   imgURL,
   price,
   oldPrice,
@@ -31,17 +31,14 @@ const ProductCard: React.FC<Props> = ({
   const navigate = useNavigate();
 
   const { cart, addToCart, deleteFromCart } = useContext(CartContext);
-  const {
-    favourites,
-    addToFavourites,
-    deleteFromFavourites,
-  } = useContext(FavouritesContext);
+  const { favourites, addToFavourites, deleteFromFavourites }
+    = useContext(FavouritesContext);
 
-  const doesExistInCart = cart.findIndex((product) => product.id === id) !== -1;
+  const doesExistInCart
+    = cart.findIndex((product) => product.id === itemId) !== -1;
 
-  const doesExistInFavourites = favourites.findIndex(
-    (product) => product.id === id,
-  ) !== -1;
+  const doesExistInFavourites
+    = favourites.findIndex((product) => product.id === itemId) !== -1;
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
@@ -49,9 +46,9 @@ const ProductCard: React.FC<Props> = ({
     event.stopPropagation();
 
     if (doesExistInCart) {
-      deleteFromCart(id);
+      deleteFromCart(itemId);
     } else {
-      addToCart(id);
+      addToCart(itemId);
     }
   };
 
@@ -61,14 +58,14 @@ const ProductCard: React.FC<Props> = ({
     event.stopPropagation();
 
     if (doesExistInFavourites) {
-      deleteFromFavourites(id);
+      deleteFromFavourites(itemId);
     } else {
-      addToFavourites(id);
+      addToFavourites(itemId);
     }
   };
 
   const handleCardClick = () => {
-    navigate(`/phones/${id}`);
+    navigate(`/phones/${itemId}`);
   };
 
   return (

@@ -51,7 +51,7 @@ const Cart: React.FC = () => {
   );
 
   const totalPrice = cartProducts.reduce(
-    (accum, { price, id }) => accum + price * cartMap[id]?.count,
+    (accum, { price, itemId }) => accum + price * cartMap[itemId]?.count,
     0,
   );
 
@@ -104,15 +104,15 @@ const Cart: React.FC = () => {
             )}
           >
             {cartProducts.map(({
-              id, name, image, price,
+              id, itemId, name, image, price,
             }) => (
               <CartItem
                 key={id}
-                id={id}
+                itemId={itemId}
                 name={name}
                 image={image}
                 price={price}
-                count={cartMap[id]?.count}
+                count={cartMap[itemId]?.count}
               />
             ))}
 

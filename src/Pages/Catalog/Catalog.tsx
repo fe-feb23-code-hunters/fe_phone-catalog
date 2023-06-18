@@ -190,7 +190,7 @@ const Catalog: React.FC = () => {
                 {products.map((product) => (
                   <ProductCard
                     key={product.id}
-                    id={product.id}
+                    itemId={product.itemId}
                     title={product.name}
                     imgURL={product.image}
                     price={product.price}
