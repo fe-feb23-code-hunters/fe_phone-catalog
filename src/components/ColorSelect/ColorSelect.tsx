@@ -1,17 +1,18 @@
+import { Link } from 'react-router-dom';
 import ColorButton from '../shared/buttons/ColorButton/ColorButton';
 import classes from './ColorSelect.module.scss';
+import { Product } from '../../types/product';
 
 type Props = {
   title: string;
   id?: string;
-  options?: string[];
-  selectedOption?: string;
-  onSelect: (newOption: string) => void;
+  product: Product | null;
+  onSelect: (choosenColor: string) => void;
 };
 
 type Color = 'spacegray' | 'midnightgreen' | 'black'
 | 'gold' | 'white' | 'purple' | 'yellow' | 'green' | 'red'
-| 'silver';
+| 'silver' | 'rosegold';
 
 const colors: Record<Color, string> = {
   midnightgreen: '#5f7170',
@@ -24,14 +25,14 @@ const colors: Record<Color, string> = {
   spacegray: '#d6d4d4',
   white: '#fffff',
   silver: '#ebe8e8',
+  rosegold: '#e0bfb8',
 };
 
 const ColorSelect: React.FC<Props> = ({
   title,
-  options,
-  selectedOption,
   id,
   onSelect,
+  product,
 }) => {
   const {
     line,
@@ -40,10 +41,8 @@ const ColorSelect: React.FC<Props> = ({
     color__body: colorBody,
     color__title: colorTitle,
     color__button: colorButton,
+    color__link: link,
   } = classes;
-
-  // eslint-disable-next-line no-console
-  console.log(selectedOption);
 
   const convertColor = (option: Color): string => {
     if (option in colors) {
@@ -60,18 +59,24 @@ const ColorSelect: React.FC<Props> = ({
         <p className={idText}>{id}</p>
       </div>
       <div className={colorContainer}>
-        {options?.map((option) => {
+        {product?.phone?.colorsAvailable?.map((option) => {
           return (
-            <div className={colorButton} key={option}>
-              <ColorButton
-                isSelected={
-                  option === selectedOption
-                }
-                color={convertColor(option as Color)}
-                key={option}
-                onClick={() => onSelect(option)}
-              />
-            </div>
+            <Link
+              to={`/phones/${product?.phone?.namespaceId}-${product?.capacity.toLowerCase()}-${option}`}
+              key={option}
+              className={link}
+            >
+              <div className={colorButton} key={option}>
+                <ColorButton
+                  isSelected={
+                    option === product?.color
+                  }
+                  color={convertColor(option as Color)}
+                  key={option}
+                  onClick={() => onSelect(option)}
+                />
+              </div>
+            </Link>
           );
         })}
       </div>

@@ -2,7 +2,11 @@
 import {
   MouseEventHandler, useContext, useEffect, useState,
 } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import cn from 'classnames';
 import { fetchProductById } from '../../api/products.api';
 import { Product } from '../../types/product';
@@ -21,22 +25,9 @@ import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 import Loader from '../../components/shared/Loader';
 
-const DUMMY_OPTIONS = ['32GB', '64GB', '128GB', '256GB', '512GB'];
-const DUMMY_COLORS = [
-  'black',
-  'spacegray',
-  'midnightgreen',
-  'gold',
-  'white',
-  'purple',
-  'yellow',
-  'green',
-  'red',
-  'silver',
-];
-
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -75,18 +66,26 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState<string>(DUMMY_COLORS[0]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
 
-  const onSelectChange = (newOption: string) => {
-    setSelectedOption(newOption);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedColor, setSelectedColor] = useState(product?.color);
+
+  const handleSelectColor = (choosenColor: string) => {
+    setSelectedColor(choosenColor);
+
+    const urlColor = `/phones/${product?.phone?.namespaceId}-${product?.capacity}-${choosenColor}`;
+
+    navigate(urlColor);
   };
 
-  const [selectedCapacity, setSelectedCapacity] = useState<string>(
-    DUMMY_OPTIONS[1],
-  );
+  const handleSelectCapacity = (choosenCapacity: string) => {
+    setSelectedCapacity(choosenCapacity);
 
-  const onCapacityChange = (newOption: string) => {
-    setSelectedCapacity(newOption);
+    const urlCapacity = `/phones/${product?.phone?.namespaceId}-${choosenCapacity}-${product?.color}`;
+
+    navigate(urlCapacity);
   };
 
   const {
@@ -243,12 +242,10 @@ const ProductDetails: React.FC = () => {
               )}
             >
               <ColorSelect
-                key={product.id}
                 title="Available colors"
                 id={`ID: 80239${product.id}`}
-                options={product.phone?.colorsAvailable}
-                selectedOption={selectedOption}
-                onSelect={onSelectChange}
+                onSelect={handleSelectColor}
+                product={product}
               />
             </div>
             <div
@@ -268,9 +265,8 @@ const ProductDetails: React.FC = () => {
             >
               <CapacitySelect
                 title="Select capacity"
-                capacitys={product.phone?.capacityAvailable}
-                selectedCapacity={selectedCapacity}
-                onSelectCapacity={onCapacityChange}
+                onSelectCapacity={handleSelectCapacity}
+                product={product}
               />
             </div>
             <div
