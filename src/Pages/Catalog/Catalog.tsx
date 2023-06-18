@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
@@ -12,6 +11,7 @@ import Pagination from '../../components/shared/Pagination';
 import ForwardButton from '../../components/shared/buttons/ForwardButton/ForwardButton';
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import Loader from '../../components/shared/Loader';
+import { SearchInput } from '../../components/SearchInput';
 
 const {
   container,
@@ -34,6 +34,8 @@ const {
   grid__item__mobile_3_4: gridMobileEnd,
   grid__item__tablet_5_7: gridTabletQuarter,
   grid__item__desktop_5_7: gridDesktopQuarter,
+  grid__item__desktop_1_7: gridDesktopHalf,
+  grid__item__tablet_1_7: gridTabletHalf,
   icon__history: iconHistory,
   container__center: containerCenter,
   container__top: containerTop,
@@ -138,6 +140,16 @@ const Catalog: React.FC = () => {
           </div>
           <div className={cn(container, textMargin, optionMargin)}>
             <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+              <div
+                className={cn(
+                  gridItem,
+                  gridMobileFullSize,
+                  gridTabletHalf,
+                  gridDesktopHalf,
+                )}
+              >
+                <SearchInput />
+              </div>
               <div
                 className={cn(
                   gridItem,
