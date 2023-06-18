@@ -1,10 +1,17 @@
 import axios from 'axios';
 import { Product } from '../types/product';
+import { SortBy } from '../types/sortBy';
 
 const API_PATH = process.env.REACT_APP_API_PATH || 'http://localhost:3001';
 
-export const fetchAllProducts = async (): Promise<{ products: Product[] }> => {
-  const result = await axios.get(`${API_PATH}/products/`);
+export const fetchAllProducts = async (
+  page: number,
+  sortBy: SortBy,
+  limit: number,
+): Promise<{ products: Product[], totalPages: number }> => {
+  const requestURL = `${API_PATH}/products?sortBy=${sortBy}&limit=${limit}&page=${page}`;
+
+  const result = await axios.get(requestURL);
 
   return result.data;
 };

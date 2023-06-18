@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 // eslint-disable-next-line max-len
@@ -7,11 +7,11 @@ import ForwardButton from '../../components/shared/buttons/ForwardButton';
 import Home from '../../icons/Home';
 import classes from './FavouritePage.module.scss';
 import ProductCard from '../../components/productCard';
-// eslint-disable-next-line max-len
-import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { FavouriteProduct } from '../../types/favourites';
 import { EmptyFavourites } from '../../components/EmptyFavourites';
 import Loader from '../../components/shared/Loader';
+import { Product } from '../../types/product';
+import { fetchProductById } from '../../api/products.api';
 
 const {
   grid,
@@ -37,7 +37,8 @@ const {
 
 const FavouritePage: React.FC = () => {
   const { favourites } = useContext(FavouritesContext);
-  const { products, isLoading } = useContext(ProductsContext);
+  const [favouriteProducts, setFavoriteProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const favouritesMap: { [key: string]: FavouriteProduct } = favourites.reduce(
     (acc, cartItem) => {
@@ -46,9 +47,31 @@ const FavouritePage: React.FC = () => {
     {},
   );
 
-  const favouritesProducts = products.filter(
+  const favouritesProducts = favouriteProducts.filter(
     (currentProduct) => favouritesMap[currentProduct.id],
   );
+
+  const fetchFavoriteProducts = async () => {
+    const fetchedProducts = await Promise.all(
+      favourites.map(({ id }) => {
+        return fetchProductById(id);
+      }),
+    );
+
+    setFavoriteProducts(fetchedProducts);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (
+      favourites.length !== favouriteProducts.length
+      || favouriteProducts.length === 0
+    ) {
+      setIsLoading(true);
+
+      fetchFavoriteProducts();
+    }
+  }, [favourites]);
 
   return (
     <div>

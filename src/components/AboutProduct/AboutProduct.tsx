@@ -25,9 +25,9 @@ export const AboutProduct: React.FC<Props> = ({ phone }) => {
               key={title}
               className={productAboutSection}
             >
-              <h3 className={productAboutSectionTitle}>
+              <h4 className={productAboutSectionTitle}>
                 {title}
-              </h3>
+              </h4>
 
               {text.map((paragraph) => (
                 <p

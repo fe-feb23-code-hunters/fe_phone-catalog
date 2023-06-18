@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../../../types/product';
 import { fetchNewProducts } from '../../../api/products.api';
-import classes from './brand-new-products.module.scss';
-import ProductCard from '../../../components/productCard/productCard';
+
 import Loader from '../../../components/shared/Loader';
+import classes from './brand-new-products.module.scss';
+import ProductsSlider from '../../../components/ProductsSlider';
 
 const BrandNewProducts = () => {
-  const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [newProducts, setNewProducts] = useState<Product[]>([]);
   const [error, setError] = useState<Error | null>(null);
 
   const fetchNew = async () => {
@@ -29,33 +29,15 @@ const BrandNewProducts = () => {
   }, []);
 
   return (
-    <>
-      <div>Brand new products</div>
-
-      {error && `Error: ${error}`}
+    <div className="product__wrapper">
+      <h2 className="product-slider__title">Brand new models</h2>
 
       {isLoading && <Loader className={classes.loader} />}
 
-      {newProducts.map(
-        ({
-          id, image, price, screen, fullPrice, capacity, ram, name,
-        }) => {
-          return (
-            <ProductCard
-              key={id}
-              id={id}
-              imgURL={image}
-              price={price}
-              screen={screen}
-              oldPrice={fullPrice}
-              capacity={capacity}
-              ram={ram}
-              title={name}
-            />
-          );
-        },
-      )}
-    </>
+      {error && `Error: ${error}`}
+
+      <ProductsSlider products={newProducts} />
+    </div>
   );
 };
 

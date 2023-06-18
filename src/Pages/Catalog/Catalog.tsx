@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import classes from './catalog.module.scss';
@@ -12,6 +12,7 @@ import Pagination from '../../components/shared/Pagination';
 import ForwardButton from '../../components/shared/buttons/ForwardButton/ForwardButton';
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import Loader from '../../components/shared/Loader';
+import { SortBy } from '../../types/sortBy';
 
 const {
   container,
@@ -43,42 +44,51 @@ const {
 } = classes;
 
 const SORT_OPTIONS = [
-  { value: 'option1', label: 'Newest' },
-  { value: 'option2', label: 'High price' },
-  { value: 'option3', label: 'Low price' },
+  { value: SortBy.NEWEST, label: 'Newest' },
+  { value: SortBy.OLDEST, label: 'Oldest' },
+  { value: SortBy.HIGH_PRICE, label: 'High price' },
+  { value: SortBy.LOW_PRICE, label: 'Low price' },
 ];
 
 const ITEMS_OPTIONS = [
-  { value: 'option1', label: '16' },
-  { value: 'option2', label: '32' },
-  { value: 'option3', label: '48' },
+  { value: 16, label: '16' },
+  { value: 32, label: '32' },
+  { value: 48, label: '48' },
 ];
 
 const Catalog: React.FC = () => {
-  const { products, isLoading } = useContext(ProductsContext);
+  const {
+    products,
+    isLoading,
+    handleSortByChange,
+    sortBy,
+    handleLimitChange,
+    limit,
+    handlePageChange,
+    page,
+    totalPages,
+  } = useContext(ProductsContext);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedOptionSort, setSelectedOptionSort] = useState<DropdownOption>(
-    SORT_OPTIONS[0],
-  );
+  const selectedSortByOption = SORT_OPTIONS.find(
+    (option) => option.value === sortBy,
+  ) as DropdownOption;
+
+  const selectedQuantityOption = ITEMS_OPTIONS.find(
+    (option) => option.value === limit,
+  ) as DropdownOption;
 
   const onDropdownChange = (newOption: DropdownOption) => {
-    setSelectedOptionSort(newOption);
+    handleSortByChange(newOption.value);
   };
-
-  const [selectedItems, setSelectedOptionItems] = useState<DropdownOption>(
-    ITEMS_OPTIONS[0],
-  );
 
   const onDropdownChangeItems = (newOption: DropdownOption) => {
-    setSelectedOptionItems(newOption);
+    handleLimitChange(newOption.value);
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+  const handlePagination = (newPage: number) => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    handlePageChange(newPage);
   };
-
-  const totalPages = 10;
 
   return (
     <>
@@ -148,7 +158,7 @@ const Catalog: React.FC = () => {
               >
                 <Dropdown
                   options={SORT_OPTIONS}
-                  selectedOption={selectedOptionSort}
+                  selectedOption={selectedSortByOption}
                   onChange={onDropdownChange}
                   label="Sort by"
                 />
@@ -163,7 +173,7 @@ const Catalog: React.FC = () => {
               >
                 <Dropdown
                   options={ITEMS_OPTIONS}
-                  selectedOption={selectedItems}
+                  selectedOption={selectedQuantityOption}
                   onChange={onDropdownChangeItems}
                   label="Items on page"
                 />
@@ -188,9 +198,9 @@ const Catalog: React.FC = () => {
           </div>
 
           <Pagination
-            currentPage={currentPage}
+            currentPage={page}
             totalPages={totalPages}
-            onPageChange={handlePageChange}
+            onPageChange={handlePagination}
           />
         </>
       )}

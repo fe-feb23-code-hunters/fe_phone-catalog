@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Product } from '../../../types/product';
 import { fetchRecommendedProducts } from '../../../api/products.api';
-import ProductCard from '../../../components/productCard/productCard';
 
-const RecommendedProducts = () => {
-  const { productId } = useParams();
+import ProductsSlider from '../../../components/ProductsSlider';
+import Loader from '../../../components/shared/Loader';
+import classes from './recommended-products.module.scss';
 
-  // eslint-disable-next-line max-len
+interface Props {
+  productId?: string;
+}
+
+const RecommendedProducts: React.FC<Props> = ({ productId }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
-
   const [error, setError] = useState<Error | null>(null);
 
   const fetchRecommended = async () => {
@@ -22,37 +25,25 @@ const RecommendedProducts = () => {
     } catch (err) {
       setError(err as Error);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchRecommended();
   }, [productId]);
 
   return (
-    <>
-      <div>Recommended Products</div>
+    <div className="product__wrapper">
+      <h2 className="product-slider__title">You may also like</h2>
+
+      {isLoading && <Loader className={classes.loader} />}
 
       {error && `Error: ${error}`}
-      {recommendedProducts.map(
-        ({
-          id, image, price, screen, fullPrice, capacity, ram, name,
-        }) => {
-          return (
-            <ProductCard
-              key={id}
-              id={id}
-              imgURL={image}
-              price={price}
-              screen={screen}
-              oldPrice={fullPrice}
-              capacity={capacity}
-              ram={ram}
-              title={name}
-            />
-          );
-        },
-      )}
-    </>
+
+      <ProductsSlider products={recommendedProducts} />
+    </div>
   );
 };
 

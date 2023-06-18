@@ -36,15 +36,6 @@
   }
 }
 
-.subtitle {
-  margin: 16px 0 0;
-  @include desktop-tablet-h2;
-
-  @include onMobile {
-    @include mobile-h2;
-  }
-}
-
 .section__margin {
   margin-top: 40px;
 }
@@ -91,6 +82,12 @@
 
 .template {
   border: solid 1px black;
+}
+
+.recommendedProducts__wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .color__margin__top {
