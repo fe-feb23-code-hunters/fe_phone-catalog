@@ -25,7 +25,7 @@ const {
 } = classes;
 
 interface Props {
-  id: string;
+  itemId: string;
   image: string;
   name: string;
   price: number;
@@ -33,18 +33,22 @@ interface Props {
 }
 
 export const CartItem: React.FC<Props> = ({
-  id, image, name, price, count,
+  itemId,
+  image,
+  name,
+  price,
+  count,
 }) => {
   const { deleteFromCart, addToCart, removeFromCart } = useContext(CartContext);
 
   const showDisabledButton = count <= 1;
 
   const handleAdd = () => {
-    addToCart(id);
+    addToCart(itemId);
   };
 
   const handleRemove = () => {
-    removeFromCart(id);
+    removeFromCart(itemId);
   };
 
   return (
@@ -55,12 +59,12 @@ export const CartItem: React.FC<Props> = ({
             <button
               type="button"
               className={cardDeleteButton}
-              onClick={() => deleteFromCart(id)}
+              onClick={() => deleteFromCart(itemId)}
             >
               <CloseLigth />
             </button>
 
-            <Link to="/" className={cardPhotoContainer}>
+            <Link to={`/phones/${itemId}`} className={cardPhotoContainer}>
               <img
                 src={`${process.env.REACT_APP_API_PATH}/${image}`}
                 alt={image}
@@ -69,10 +73,7 @@ export const CartItem: React.FC<Props> = ({
             </Link>
           </div>
 
-          <Link
-            to="/"
-            className={cardProductDescription}
-          >
+          <Link to={`/phones/${itemId}`} className={cardProductDescription}>
             {name}
           </Link>
         </div>
@@ -94,9 +95,7 @@ export const CartItem: React.FC<Props> = ({
             </IconsButton>
           </div>
 
-          <div className={cardPrice}>
-            {`$${price * count}`}
-          </div>
+          <div className={cardPrice}>{`$${price * count}`}</div>
         </div>
       </div>
     </div>

@@ -32,12 +32,12 @@ const ProductsSlider: React.FC<Props> = ({ products }) => {
     >
       {products.map(
         ({
-          id, image, price, screen, fullPrice, capacity, ram, name,
+          id, itemId, image, price, screen, fullPrice, capacity, ram, name,
         }) => {
           return (
             <SwiperSlide key={id} style={{ width: 'auto' }}>
               <ProductCard
-                id={id}
+                itemId={itemId}
                 imgURL={image}
                 price={price}
                 screen={screen}

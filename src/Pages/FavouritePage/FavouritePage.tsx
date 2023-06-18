@@ -49,7 +49,7 @@ const FavouritePage: React.FC = () => {
 
   const favouritesProducts = favouriteProducts.filter((currentProduct) => {
     return (
-      favouritesMap[currentProduct.id]
+      favouritesMap[currentProduct.itemId]
       && currentProduct.name.toLowerCase().includes(query.toLowerCase())
     );
   });
@@ -154,7 +154,7 @@ const FavouritePage: React.FC = () => {
             {favouritesProducts.map((product) => (
               <ProductCard
                 key={product.id}
-                id={product.id}
+                itemId={product.itemId}
                 title={product.name}
                 imgURL={product.image}
                 price={product.price}

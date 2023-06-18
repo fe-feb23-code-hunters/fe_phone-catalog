@@ -5,6 +5,7 @@ import {
   addToCart as addProduct,
   deleteFromCart as deleteProduct,
   removeFromCart as removeProduct,
+  clearCart as clearProducstFromCart,
 } from '../../utils/cart-storage.utils';
 
 interface Context {
@@ -75,6 +76,7 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   const clearCart = () => {
+    clearProducstFromCart();
     setCart([]);
   };
 

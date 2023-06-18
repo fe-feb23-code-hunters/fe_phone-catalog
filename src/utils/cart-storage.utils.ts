@@ -76,3 +76,7 @@ export const removeFromCart = (productId: string): CartProduct | undefined => {
 
   deleteFromCart(productId);
 };
+
+export const clearCart = () => {
+  saveCart([]);
+};

@@ -41,9 +41,6 @@ const ProductDetails: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [error, setError] = useState<Error | null>(null);
-
   const { cart, addToCart, deleteFromCart } = useContext(CartContext);
   const { favourites, addToFavourites, deleteFromFavourites }
     = useContext(FavouritesContext);
@@ -72,9 +69,9 @@ const ProductDetails: React.FC = () => {
     event.stopPropagation();
 
     if (doesExistInFavourites) {
-      deleteFromFavourites(String(product?.id));
+      deleteFromFavourites(String(product?.itemId));
     } else {
-      addToFavourites(String(product?.id));
+      addToFavourites(String(product?.itemId));
     }
   };
 
@@ -141,14 +138,10 @@ const ProductDetails: React.FC = () => {
   };
 
   const fetchProduct = async () => {
-    try {
-      if (productId) {
-        const fetchedProduct = await fetchProductById(productId);
+    if (productId) {
+      const fetchedProduct = await fetchProductById(productId);
 
-        setProduct(fetchedProduct);
-      }
-    } catch (err) {
-      setError(err as Error);
+      setProduct(fetchedProduct);
     }
 
     setIsLoading(false);
