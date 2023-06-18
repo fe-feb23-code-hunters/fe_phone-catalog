@@ -13,6 +13,7 @@ import ForwardButton from '../../components/shared/buttons/ForwardButton/Forward
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import Loader from '../../components/shared/Loader';
 import { SortBy } from '../../types/sortBy';
+import { NoProductsFound } from '../../components/NoProductsFound';
 
 const {
   container,
@@ -128,80 +129,86 @@ const Catalog: React.FC = () => {
         </div>
       </div>
 
-      {isLoading && <Loader className={loader} />}
+      {!isLoading && !products.length && <NoProductsFound />}
 
-      {!isLoading && (
+      {(isLoading || products.length) && (
         <>
-          <div className={cn(container, textMargin)}>
-            <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
-              <div
-                className={cn(
-                  gridItem,
-                  gridMobileFullSize,
-                  gridTabletFullSize,
-                  gridDesktopFullSize,
-                )}
-              >
-                <p className={text}>{`${products.length} models`}</p>
-              </div>
-            </div>
-          </div>
-          <div className={cn(container, textMargin, optionMargin)}>
-            <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
-              <div
-                className={cn(
-                  gridItem,
-                  gridMobileStart,
-                  gridTabletStart,
-                  gridDesktopStart,
-                )}
-              >
-                <Dropdown
-                  options={SORT_OPTIONS}
-                  selectedOption={selectedSortByOption}
-                  onChange={onDropdownChange}
-                  label="Sort by"
-                />
-              </div>
-              <div
-                className={cn(
-                  gridItem,
-                  gridMobileEnd,
-                  gridTabletQuarter,
-                  gridDesktopQuarter,
-                )}
-              >
-                <Dropdown
-                  options={ITEMS_OPTIONS}
-                  selectedOption={selectedQuantityOption}
-                  onChange={onDropdownChangeItems}
-                  label="Items on page"
-                />
-              </div>
-            </div>
-          </div>
+          {isLoading && <Loader className={loader} />}
 
-          <div className={cn(catalog)}>
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                title={product.name}
-                imgURL={product.image}
-                price={product.price}
-                oldPrice={product.fullPrice}
-                screen={product.screen}
-                capacity={product.capacity}
-                ram={product.ram}
+          {!isLoading && (
+            <>
+              <div className={cn(container, textMargin)}>
+                <div className={cn(grid, gridMobile, gridTablet, gridDesktop)}>
+                  <div
+                    className={cn(
+                      gridItem,
+                      gridMobileFullSize,
+                      gridTabletFullSize,
+                      gridDesktopFullSize,
+                    )}
+                  >
+                    <p className={text}>{`${products.length} models`}</p>
+                  </div>
+                </div>
+              </div>
+              <div className={cn(container, textMargin, optionMargin)}>
+                <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+                  <div
+                    className={cn(
+                      gridItem,
+                      gridMobileStart,
+                      gridTabletStart,
+                      gridDesktopStart,
+                    )}
+                  >
+                    <Dropdown
+                      options={SORT_OPTIONS}
+                      selectedOption={selectedSortByOption}
+                      onChange={onDropdownChange}
+                      label="Sort by"
+                    />
+                  </div>
+                  <div
+                    className={cn(
+                      gridItem,
+                      gridMobileEnd,
+                      gridTabletQuarter,
+                      gridDesktopQuarter,
+                    )}
+                  >
+                    <Dropdown
+                      options={ITEMS_OPTIONS}
+                      selectedOption={selectedQuantityOption}
+                      onChange={onDropdownChangeItems}
+                      label="Items on page"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className={cn(catalog)}>
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.name}
+                    imgURL={product.image}
+                    price={product.price}
+                    oldPrice={product.fullPrice}
+                    screen={product.screen}
+                    capacity={product.capacity}
+                    ram={product.ram}
+                  />
+                ))}
+              </div>
+
+              <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={handlePagination}
               />
-            ))}
-          </div>
-
-          <Pagination
-            currentPage={page}
-            totalPages={totalPages}
-            onPageChange={handlePagination}
-          />
+            </>
+          )}
         </>
       )}
     </>

@@ -36,7 +36,7 @@ const {
 } = classes;
 
 const FavouritePage: React.FC = () => {
-  const { favourites } = useContext(FavouritesContext);
+  const { favourites, query } = useContext(FavouritesContext);
   const [favouriteProducts, setFavoriteProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,9 +47,12 @@ const FavouritePage: React.FC = () => {
     {},
   );
 
-  const favouritesProducts = favouriteProducts.filter(
-    (currentProduct) => favouritesMap[currentProduct.id],
-  );
+  const favouritesProducts = favouriteProducts.filter((currentProduct) => {
+    return (
+      favouritesMap[currentProduct.id]
+      && currentProduct.name.toLowerCase().includes(query.toLowerCase())
+    );
+  });
 
   const fetchFavoriteProducts = async () => {
     const fetchedProducts = await Promise.all(
@@ -125,7 +128,7 @@ const FavouritePage: React.FC = () => {
                   gridDesktopFullSize,
                 )}
               >
-                <p className={text}>{`${favourites.length} items`}</p>
+                <p className={text}>{`${favouritesProducts.length} items`}</p>
               </div>
             </div>
           </div>

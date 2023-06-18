@@ -8,8 +8,9 @@ export const fetchAllProducts = async (
   page: number,
   sortBy: SortBy,
   limit: number,
+  search: string,
 ): Promise<{ products: Product[], totalPages: number }> => {
-  const requestURL = `${API_PATH}/products?sortBy=${sortBy}&limit=${limit}&page=${page}`;
+  const requestURL = `${API_PATH}/products?sortBy=${sortBy}&limit=${limit}&page=${page}&search=${search}`;
 
   const result = await axios.get(requestURL);
 

@@ -1,0 +1,37 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.container {
+  margin: 20vh 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  @include mobile-h2;
+
+  color: $primary-color;
+  text-align: center;
+
+  @include onTablet {
+    @include desktop-tablet-h2;
+  }
+}
+
+.text {
+  @include small-text;
+
+  color: $secondary-color;
+  text-align: center;
+
+  @include onTablet {
+    @include body-text;
+  }
+}
