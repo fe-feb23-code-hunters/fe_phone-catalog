@@ -15,48 +15,46 @@ interface Props {
 
 SwiperCore.use([Pagination]);
 
-const PhotoSelect: FC<Props> = ({ phone }) => {
-  return (
-    <div className="slider">
-      <div className="slider-container">
-        <Swiper
-          direction="horizontal"
-          id="swiper-1"
-          slidesPerView={1}
-          spaceBetween={30}
-          loop
-          pagination={{
-            clickable: true,
-            renderBullet: (index, className) => {
-              const image = phone.images[index];
+const PhotoSelect: FC<Props> = ({ phone }) => (
+  <div className="slider">
+    <div className="slider-container">
+      <Swiper
+        direction="horizontal"
+        id="swiper-photo"
+        slidesPerView={1}
+        spaceBetween={30}
+        loop
+        pagination={{
+          clickable: true,
+          renderBullet: (index, className) => {
+            const image = phone.images[index];
 
-              return `
-                <div class="${className}">
-                  <img class="image-swipe-img" src=${`${process.env.REACT_APP_API_PATH}/${image}`} alt=${image} />
-                </div>
-              `;
-            },
-          }}
-          modules={[Pagination]}
-          className="swiper"
-        >
-          {phone.images.map(image => {
-            return (
-              <SwiperSlide key={image}>
-                <div className="image-swipe">
-                  <img
-                    src={`${process.env.REACT_APP_API_PATH}/${image}`}
-                    alt={phone.name}
-                    className="image-swipe-img"
-                  />
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
+            return `
+              <div class="${className}">
+                <img class="image-swipe-img" src=${`${process.env.REACT_APP_API_PATH}/${image}`} alt=${image} />
+              </div>
+            `;
+          },
+        }}
+        modules={[Pagination]}
+        className="swiper-photo"
+      >
+        {phone.images.map(image => {
+          return (
+            <SwiperSlide key={image}>
+              <div className="image-swipe">
+                <img
+                  src={`${process.env.REACT_APP_API_PATH}/${image}`}
+                  alt={phone.name}
+                  className="image-swipe-img"
+                />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
-  );
-};
+  </div>
+);
 
 export default PhotoSelect;
