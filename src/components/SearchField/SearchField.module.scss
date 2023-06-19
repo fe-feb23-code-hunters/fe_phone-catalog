@@ -11,7 +11,18 @@
 
   display: flex;
   align-items: center;
-  box-shadow: -1px 0px 0px #E2E6E9;
+  box-shadow: -1px 0 0 $elements-color;
+
+  &__button {
+    border: none;
+    height: 100%;
+    padding: 10px 25px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+  }
 
   &__input {
     width: 100%;
@@ -29,23 +40,11 @@
     }
 
     &:focus {
+      background-color: $hover-background-color;
+
       & ~ .search-form__button {
         background-color: $hover-background-color;
       }
-
-      background-color: $hover-background-color;
     }
   }
-
-  &__button {
-    border: none;
-    height: 100%;
-    padding: 10px 25px 10px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    cursor: pointer;
-  }
 }
-

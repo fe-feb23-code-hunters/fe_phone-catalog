@@ -60,6 +60,12 @@ export const Header = () => {
 
   const handleClear = () => {
     setQuery('');
+
+    if (isFavouritesPage) {
+      handleQueryChange('');
+    } else {
+      handleSearchChangeDebounced('');
+    }
   };
 
   return (
