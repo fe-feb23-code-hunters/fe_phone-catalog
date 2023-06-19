@@ -98,6 +98,10 @@
   }
 }
 
+.swiper {
+  padding: none;
+}
+
 .product__wrapper {
   position: relative;
   min-width: 0;
@@ -119,8 +123,4 @@
     width: 136px;
     text-align: start;
   }
-}
-
-.swiper {
-  padding: none;
 }
