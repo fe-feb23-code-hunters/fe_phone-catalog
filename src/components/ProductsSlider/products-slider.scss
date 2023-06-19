@@ -4,6 +4,7 @@
 
 .products__slider {
   padding-top: 60px;
+
   @include onMobile {
     padding-top: 84px;
   }
@@ -100,6 +101,10 @@
 .product__wrapper {
   position: relative;
   min-width: 0;
+
+  & > .swiper {
+    padding-top: 60px;
+  }
 }
 
 .product-slider__title {

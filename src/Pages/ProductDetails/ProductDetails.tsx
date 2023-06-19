@@ -10,6 +10,7 @@ import classes from './productDetails.module.scss';
 import Arrow from '../../icons/Arrow';
 import Home from '../../icons/Home';
 import BackButton from '../../components/shared/buttons/BackButton';
+import PhotoSelect from '../../components/PhotoSelect/PhotoSelect';
 import { AboutProduct } from '../../components/AboutProduct';
 import { TechSpecs } from '../../components/TechSpecs';
 import RecommendedProducts from './RecommendedProducts/RecommendedProducts';
@@ -96,7 +97,7 @@ const ProductDetails: React.FC = () => {
     title,
     text,
     link,
-    template,
+    photo__block: photoBlock,
     button__back: buttonBack,
     grid__desktop: gridDesktop,
     grid__tablet: gridTablet,
@@ -224,15 +225,20 @@ const ProductDetails: React.FC = () => {
           <div className={cn(container, grid, sectionMargin, blockMargin)}>
             <div
               className={cn(
+                photoBlock,
                 gridItem,
                 gridDesktopStart,
                 gridTabletStart,
                 gridMobileFullSize,
-                template,
               )}
             >
-              <h1 className={cn(text)}>Photo block</h1>
+              {product.phone && (
+                <PhotoSelect
+                  phone={product.phone}
+                />
+              )}
             </div>
+
             <div
               className={cn(
                 gridItem,
@@ -251,6 +257,7 @@ const ProductDetails: React.FC = () => {
                 onSelect={onSelectChange}
               />
             </div>
+
             <div
               className={cn(gridItem, gridDesktop2024, colorMarginTop, idBody)}
             >
@@ -258,6 +265,7 @@ const ProductDetails: React.FC = () => {
                 <p className={idTitle}>{`ID: 80239${product.id}`}</p>
               </div>
             </div>
+
             <div
               className={cn(
                 gridItem,
@@ -273,6 +281,7 @@ const ProductDetails: React.FC = () => {
                 onSelectCapacity={onCapacityChange}
               />
             </div>
+
             <div
               className={cn(
                 gridItem,
