@@ -2,7 +2,7 @@
 import {
   MouseEventHandler, useContext, useEffect, useState,
 } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames';
 import { fetchProductById } from '../../api/products.api';
 import { Product } from '../../types/product';
@@ -22,22 +22,53 @@ import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 import Loader from '../../components/shared/Loader';
 
-const DUMMY_OPTIONS = ['32GB', '64GB', '128GB', '256GB', '512GB'];
-const DUMMY_COLORS = [
-  'black',
-  'spacegray',
-  'midnightgreen',
-  'gold',
-  'white',
-  'purple',
-  'yellow',
-  'green',
-  'red',
-  'silver',
-];
+const {
+  container,
+  grid,
+  icon,
+  title,
+  text,
+  link,
+  photo__block: photoBlock,
+  button__back: buttonBack,
+  grid__desktop: gridDesktop,
+  grid__tablet: gridTablet,
+  grid__mobile: gridMobile,
+  grid__item: gridItem,
+  grid__item__mobile_1_4: gridMobileFullSize,
+  grid__item__tablet_1_12: gridTabletFullSize,
+  grid__item__desktop_1_24: gridDesktopFullSize,
+  grid__item__desktop_1_12: gridDesktopStart,
+  grid__item__tablet_1_7: gridTabletStart,
+  grid__item__tablet_8_12: gridTabletEnd,
+  grid__item__desktop_14_20: gridDesktopQuarter,
+  grid__item__desktop_14_24: gridDesktopEnd,
+  grid__item__desktop_21_24: gridDesktop2024,
+  text__disabled: disabledText,
+  icon__history: iconHistory,
+  container__center: containerCenter,
+  container__top: containerTop,
+  section__margin: sectionMargin,
+  block__margin: blockMargin,
+  color__margin__top: colorMarginTop,
+  id__body: idBody,
+  id__title: idTitle,
+  price__body: priceBody,
+  product__price: producPrice,
+  product__fullprice: productFullPrice,
+  cart__body: cartBody,
+  favourites__button: favouritesButton,
+  main__info: mainInfo,
+  main__info__list: mainInfoList,
+  main__info__item: mainInfoItem,
+  'main__info__item-title': mainInfoItemTitle,
+  'main__info__item-info': mainInfoItemInfo,
+  recommendedProducts__wrapper: recomendedProductsWrapper,
+} = classes;
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -76,63 +107,27 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState<string>(DUMMY_COLORS[0]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
 
-  const onSelectChange = (newOption: string) => {
-    setSelectedOption(newOption);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedColor, setSelectedColor] = useState(product?.color);
+
+  const handleSelectColor = (choosenColor: string) => {
+    setSelectedColor(choosenColor);
+
+    const urlColor = `/phones/${product?.phone?.namespaceId}-${product?.capacity}-${choosenColor}`;
+
+    navigate(urlColor);
   };
 
-  const [selectedCapacity, setSelectedCapacity] = useState<string>(
-    DUMMY_OPTIONS[1],
-  );
+  const handleSelectCapacity = (choosenCapacity: string) => {
+    setSelectedCapacity(choosenCapacity);
 
-  const onCapacityChange = (newOption: string) => {
-    setSelectedCapacity(newOption);
+    const urlCapacity = `/phones/${product?.phone?.namespaceId}-${choosenCapacity}-${product?.color}`;
+
+    navigate(urlCapacity);
   };
-
-  const {
-    container,
-    grid,
-    icon,
-    title,
-    text,
-    link,
-    photo__block: photoBlock,
-    button__back: buttonBack,
-    grid__desktop: gridDesktop,
-    grid__tablet: gridTablet,
-    grid__mobile: gridMobile,
-    grid__item: gridItem,
-    grid__item__mobile_1_4: gridMobileFullSize,
-    grid__item__tablet_1_12: gridTabletFullSize,
-    grid__item__desktop_1_24: gridDesktopFullSize,
-    grid__item__desktop_1_12: gridDesktopStart,
-    grid__item__tablet_1_7: gridTabletStart,
-    grid__item__tablet_8_12: gridTabletEnd,
-    grid__item__desktop_14_20: gridDesktopQuarter,
-    grid__item__desktop_14_24: gridDesktopEnd,
-    grid__item__desktop_21_24: gridDesktop2024,
-    text__disabled: disabledText,
-    icon__history: iconHistory,
-    container__center: containerCenter,
-    container__top: containerTop,
-    section__margin: sectionMargin,
-    block__margin: blockMargin,
-    color__margin__top: colorMarginTop,
-    id__body: idBody,
-    id__title: idTitle,
-    price__body: priceBody,
-    product__price: producPrice,
-    product__fullprice: productFullPrice,
-    cart__body: cartBody,
-    favourites__button: favouritesButton,
-    main__info: mainInfo,
-    main__info__list: mainInfoList,
-    main__info__item: mainInfoItem,
-    'main__info__item-title': mainInfoItemTitle,
-    'main__info__item-info': mainInfoItemInfo,
-    recommendedProducts__wrapper: recomendedProductsWrapper,
-  } = classes;
 
   const goBack = () => {
     window.history.back();
@@ -232,11 +227,7 @@ const ProductDetails: React.FC = () => {
                 gridMobileFullSize,
               )}
             >
-              {product.phone && (
-                <PhotoSelect
-                  phone={product.phone}
-                />
-              )}
+              {product.phone && <PhotoSelect phone={product.phone} />}
             </div>
 
             <div
@@ -249,12 +240,10 @@ const ProductDetails: React.FC = () => {
               )}
             >
               <ColorSelect
-                key={product.id}
                 title="Available colors"
                 id={`ID: 80239${product.id}`}
-                options={product.phone?.colorsAvailable}
-                selectedOption={selectedOption}
-                onSelect={onSelectChange}
+                onSelect={handleSelectColor}
+                product={product}
               />
             </div>
 
@@ -276,9 +265,8 @@ const ProductDetails: React.FC = () => {
             >
               <CapacitySelect
                 title="Select capacity"
-                capacitys={product.phone?.capacityAvailable}
-                selectedCapacity={selectedCapacity}
-                onSelectCapacity={onCapacityChange}
+                onSelectCapacity={handleSelectCapacity}
+                product={product}
               />
             </div>
 

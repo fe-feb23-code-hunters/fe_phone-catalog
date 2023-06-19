@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   ChangeEventHandler, useCallback, useContext, useState,
 } from 'react';
-// import cn from 'classnames';
 import { PageNavigation } from '../PageNavigation';
 import classes from './Header.module.scss';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
@@ -17,6 +16,7 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { debounce } from '../../utils/debounce';
 import Auth from '../../icons/Auth';
+import { SearchField } from '../SearchField';
 
 const {
   container,
@@ -36,7 +36,10 @@ export const Header = () => {
   const [query, setQuery] = useState('');
 
   const location = useLocation();
-  const isFavouritesPage = location.pathname.includes('favourites');
+  const isFavouritesPage = location.pathname === '/favourites';
+
+  const isSearchVisible
+    = location.pathname === '/phones' || location.pathname === '/favourites';
 
   const handleMenuButtonClick = () => {
     setShowBurgerMenu(!showBurgerMenu);
@@ -44,7 +47,7 @@ export const Header = () => {
 
   const handleSearchChangeDebounced = useCallback(
     debounce(handleSearchChange, 300),
-    [],
+    [location],
   );
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -56,6 +59,16 @@ export const Header = () => {
       handleQueryChange(newQuery);
     } else {
       handleSearchChangeDebounced(newQuery);
+    }
+  };
+
+  const handleClear = () => {
+    setQuery('');
+
+    if (isFavouritesPage) {
+      handleQueryChange('');
+    } else {
+      handleSearchChangeDebounced('');
     }
   };
 
@@ -74,11 +87,14 @@ export const Header = () => {
           <PageNavigation />
         </div>
 
-        {/* Dummy input, change to the real one */}
-
-        <input value={query} onChange={handleInputChange} />
-
         <div className={headerIconsContainer}>
+          {isSearchVisible && (
+            <SearchField
+              query={query}
+              handleInputChange={handleInputChange}
+              handleClear={handleClear}
+            />
+          )}
           <Link to="/favourites" className={headerBarIcon}>
             <IconWithCounter count={favourites.length}>
               <HeartOutlined />
@@ -92,15 +108,14 @@ export const Header = () => {
           <Link to="/auth" className={headerBarIcon}>
             <Auth />
           </Link>
+          <Link
+            to="#menu"
+            className={headerMenuButton}
+            onClick={handleMenuButtonClick}
+          >
+            <Menu />
+          </Link>
         </div>
-
-        <Link
-          to="#menu"
-          className={headerMenuButton}
-          onClick={handleMenuButtonClick}
-        >
-          <Menu />
-        </Link>
       </header>
       <BurgerMenu
         handleClick={handleMenuButtonClick}

@@ -4,26 +4,34 @@
 @use "../../styles/fonts/typography.scss" as *;
 @use "../../styles/App.scss" as *;
 
-.capacity__body {
-  margin-top: 24px;
-  width: 100%;
-}
+.capacity {
 
-.capacity__container {
-  display: flex;
-  margin: 8px 0 24px;
-}
+  &__body {
+    margin-top: 24px;
+    width: 100%;
+    text-decoration: none;
+  }
 
-.capacity__title {
-  display: flex;
-  justify-content: space-between;
-  @include body-text;
+  &__container {
+    display: flex;
+    margin: 8px 0 24px;
+  }
 
-  color: $secondary-color;
-}
+  &__link {
+    text-decoration: none;
+  }
 
-.capacity__button {
-  margin-right: 8px;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    @include body-text;
+
+    color: $secondary-color;
+  }
+
+  &__button {
+    margin-right: 8px;
+  }
 }
 
 .line {
