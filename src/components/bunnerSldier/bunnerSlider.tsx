@@ -6,7 +6,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
-import bunner1 from '../../banners/carousel/Carousel_Front.jpg';
+import bunner1 from '../../banners/carousel/13.jpg';
 import bunner2 from '../../banners/carousel/Carousel_Second.jpg';
 import bunner3 from '../../banners/carousel/Carousel_Third.jpeg';
 
