@@ -1,9 +1,7 @@
 import { Navigation, Autoplay, Pagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from 'react-icons/md';
+// eslint-disable-next-line max-len
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import bunner1 from '../../banners/carousel/Carousel_Front.jpg';
 import bunner2 from '../../banners/carousel/Carousel_Second.jpg';
 import bunner3 from '../../banners/carousel/Carousel_Third.jpeg';
