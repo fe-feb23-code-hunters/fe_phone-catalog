@@ -28,10 +28,12 @@
   object-fit: contain;
   object-position: right bottom;
 
-  transition: transform 0.3s ease-in;
+  @include onDesktop {
+    transition: transform 0.3s ease-in;
 
-  &:hover {
-    transform: scale(105%);
+    &:hover {
+      transform: scale(105%);
+    }
   }
 }
 

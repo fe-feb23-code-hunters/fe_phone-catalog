@@ -9,6 +9,8 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import TabletsPage from './Pages/TabletsPage/TabletsPage';
+import Accessories from './Pages/Accessories';
 
 const App = () => (
   <AppProvider>
@@ -26,6 +28,8 @@ const App = () => (
 
         <Route path="/favourites" element={<FavouritePage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/tablets" element={<TabletsPage />} />
+        <Route path="/accessories" element={<Accessories />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>

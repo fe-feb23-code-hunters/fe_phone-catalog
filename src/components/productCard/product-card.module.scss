@@ -13,7 +13,6 @@
   max-width: 288px;
   width: 100%;
   border: 1px solid $elements-color;
-  transition: box-shadow 0.3s ease-in-out;
   outline: none;
   background-color: $white-color;
   cursor: pointer;
@@ -57,63 +56,84 @@
     transition: transform 0.3s ease-in-out;
 
     &:hover {
-      transform: scale(105%);
-    }
-  }
-
-  &__title {
-    @include body-text;
-    text-align: left;
-    color: $primary-color;
-    min-height: 63px;
-  }
-
-  &__price {
-    @include desktop-tablet-h3;
-    color: $primary-color;
-    padding-right: 8px;
-
-    &__old {
-      @include desktop-tablet-h3;
-      font-weight: 400;
-      text-decoration-line: line-through;
-      color: $secondary-color;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
     }
 
     &__wrapper {
       display: flex;
-      align-items: center;
-      border-bottom: 1px solid $elements-color;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      flex-direction: column;
+      padding: 32px 24px 24px;
     }
-  }
 
-  &__specification {
-    &__wrapper {
-      display: flex;
-      justify-content: space-between;
+    &__image {
+      height: 208px;
+      align-self: center;
+      padding-bottom: 24px;
+      object-fit: contain;
 
-      &:not(:last-child) {
-        padding-bottom: 8px;
+      @include onDesktop {
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(105%);
+        }
       }
     }
 
     &__title {
-      @include small-text;
-      color: $secondary-color;
-      display: block;
-    }
-
-    &__value {
-      @include small-text;
+      @include body-text;
+      text-align: left;
       color: $primary-color;
+      min-height: 63px;
     }
 
-    &__buttons {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
+    &__price {
+      @include desktop-tablet-h3;
+      color: $primary-color;
+      padding-right: 8px;
+
+      &__old {
+        @include desktop-tablet-h3;
+        font-weight: 400;
+        text-decoration-line: line-through;
+        color: $secondary-color;
+      }
+
+      &__wrapper {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $elements-color;
+        padding-bottom: 8px;
+        margin-bottom: 16px;
+      }
+    }
+
+    &__specification {
+      &__wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        &:not(:last-child) {
+          padding-bottom: 8px;
+        }
+      }
+
+      &__title {
+        @include small-text;
+        color: $secondary-color;
+        display: block;
+      }
+
+      &__value {
+        @include small-text;
+        color: $primary-color;
+      }
+
+      &__buttons {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
     }
   }
 }

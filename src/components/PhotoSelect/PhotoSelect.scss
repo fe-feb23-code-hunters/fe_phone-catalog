@@ -85,10 +85,13 @@
     height: 100%;
     padding: 4px;
     object-fit: contain;
-    transition: all 0.3s ease-in-out;
 
-    &:hover {
-      transform: scale(1.1);
+    @include onDesktop {
+      transition: all 0.3s ease-in-out;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }
