@@ -93,7 +93,7 @@ const FavouritePage: React.FC = () => {
               <Link to="/" className={icon}>
                 <Home />
               </Link>
-              <ForwardButton onClick={() => 'click me'} label="Favourites" />
+              <ForwardButton label="Favourites" />
             </div>
           </div>
         </div>
