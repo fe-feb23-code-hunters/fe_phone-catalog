@@ -56,11 +56,6 @@
   @include small-text;
   color: $primary-color;
   line-height: 12px;
-
-  &__disabled {
-    display: inline-block;
-    color: $secondary-color;
-  }
 }
 
 .photo__block {
@@ -192,4 +187,8 @@
 
     font-size: 12px;
   }
+}
+
+.loader {
+  margin-top: 20vh;
 }

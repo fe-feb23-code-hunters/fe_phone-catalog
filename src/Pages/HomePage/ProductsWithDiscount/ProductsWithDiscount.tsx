@@ -3,6 +3,7 @@ import { Product } from '../../../types/product';
 import { fetchProductsWithcDiscount } from '../../../api/products.api';
 import ProductCard from '../../../components/productCard/productCard';
 import Loader from '../../../components/shared/Loader';
+import classes from './products-with-discount.module.scss';
 
 const ProductsWithDiscount = () => {
   const [discountedProducts, setDiscountedProducts] = useState<Product[]>([]);
@@ -33,7 +34,7 @@ const ProductsWithDiscount = () => {
 
       {error && `Error: ${error}`}
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader className={classes.loader} />}
 
       {discountedProducts.map(
         ({

@@ -108,7 +108,7 @@ const Catalog: React.FC = () => {
               <Link to="/" className={icon}>
                 <Home />
               </Link>
-              <ForwardButton onClick={() => 'click me'} label="Phones" />
+              <ForwardButton label="Phones" />
             </div>
           </div>
         </div>

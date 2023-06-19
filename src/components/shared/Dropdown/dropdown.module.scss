@@ -17,6 +17,7 @@ $indent-default: 4px;
 .dropdown {
   position: relative;
   width: 100%;
+  z-index: 999;
 
   &__label {
     @include small-text;

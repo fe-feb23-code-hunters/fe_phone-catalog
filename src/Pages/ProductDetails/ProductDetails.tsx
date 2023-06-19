@@ -21,6 +21,7 @@ import Button from '../../components/shared/buttons/Button/Button';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
 import Loader from '../../components/shared/Loader';
+import ForwardButton from '../../components/shared/buttons/ForwardButton';
 
 const {
   container,
@@ -29,6 +30,7 @@ const {
   title,
   text,
   link,
+  loader,
   photo__block: photoBlock,
   button__back: buttonBack,
   grid__desktop: gridDesktop,
@@ -44,7 +46,6 @@ const {
   grid__item__desktop_14_20: gridDesktopQuarter,
   grid__item__desktop_14_24: gridDesktopEnd,
   grid__item__desktop_21_24: gridDesktop2024,
-  text__disabled: disabledText,
   icon__history: iconHistory,
   container__center: containerCenter,
   container__top: containerTop,
@@ -176,9 +177,7 @@ const ProductDetails: React.FC = () => {
                 <p className={cn(text)}>Phones</p>
               </Link>
 
-              <Arrow />
-
-              <p className={cn(text, disabledText)}>{product?.name}</p>
+              <ForwardButton label={product?.name} />
             </div>
 
             <div
@@ -198,9 +197,9 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader className={loader} />}
 
-      {product && (
+      {(!isLoading && product) && (
         <>
           <div className={cn(container)}>
             <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
