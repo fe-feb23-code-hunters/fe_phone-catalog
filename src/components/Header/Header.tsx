@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   ChangeEventHandler, useCallback, useContext, useState,
 } from 'react';
-// import cn from 'classnames';
 import { PageNavigation } from '../PageNavigation';
 import classes from './Header.module.scss';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
@@ -59,6 +58,10 @@ export const Header = () => {
     }
   };
 
+  const handleClear = () => {
+    setQuery('');
+  };
+
   return (
     <div className={container}>
       <header className={header}>
@@ -74,12 +77,12 @@ export const Header = () => {
           <PageNavigation />
         </div>
 
-        {/* Dummy input, change to the real one */}
-
-        <input value={query} onChange={handleInputChange} />
-
         <div className={headerIconsContainer}>
-          <SearchField />
+          <SearchField
+            query={query}
+            handleInputChange={handleInputChange}
+            handleClear={handleClear}
+          />
           <Link
             to="/favourites"
             className={headerBarIcon}
