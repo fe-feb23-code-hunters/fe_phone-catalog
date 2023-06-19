@@ -30,15 +30,19 @@ const HotPricesProducts = () => {
   }, []);
 
   return (
-    <div className="product__wrapper">
-      <h2 className="product-slider__title short__title">Hot prices</h2>
-
+    <>
       {isLoading && <Loader className={classes.loader} />}
 
-      {error && `Error: ${error}`}
+      {!isLoading && (
+        <div className="product__wrapper">
+          <h2 className="product-slider__title short__title">Hot prices</h2>
 
-      <ProductsSlider products={discountProducts} />
-    </div>
+          {error && `Error: ${error}`}
+
+          <ProductsSlider products={discountProducts} />
+        </div>
+      )}
+    </>
   );
 };
 
