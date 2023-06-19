@@ -1,0 +1,98 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/grid.scss" as *;
+@use "../../styles/utils/mixins" as *;
+
+.slider {
+  width: 100%;
+  height: 100%;
+}
+
+.image-swipe {
+  max-width: 287px;
+  height: 287px;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 16px;
+
+  @include onTabletAndDesktop {
+    display: block;
+    max-width: 464px;
+    height: 464px;
+    margin: 0 0 0 7%;
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+  }
+}
+
+#swiper-photo .swiper-pagination-bullets {
+  padding: 4px;
+  position: static;
+
+  @include onTabletAndDesktop {
+    text-align: left;
+  }
+}
+
+#swiper-photo .swiper-pagination {
+  gap: 8px;
+
+  @include onTablet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: fit-content;
+    background-color: $white-color;
+  }
+
+  @include onDesktop {
+    gap: 16px;
+  }
+}
+
+.swiper-pagination-bullet {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid $elements-color;
+
+  @include onTablet {
+    margin: 8px 0;
+  }
+
+  @include onDesktop {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    object-fit: contain;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+#swiper-photo .swiper-pagination-bullet-active {
+  border-color: $primary-color;
+}
