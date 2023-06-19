@@ -3,3 +3,10 @@
 .link {
   color: $primary-color;
 }
+
+#form-button {
+  border-radius: 0;
+  font-family: Mont,sans-serif;
+  height: 40px;
+  background-color: $primary-color;
+}

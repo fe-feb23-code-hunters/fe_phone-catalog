@@ -119,6 +119,7 @@ const SignInSide = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                id="form-button"
               >
                 Sign In
               </Button>
