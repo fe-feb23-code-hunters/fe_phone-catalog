@@ -104,6 +104,9 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
+          <Link to="/register" className={headerBarIcon}>
+            <ShoppingBag />
+          </Link>
           <Link
             to="#menu"
             className={headerMenuButton}

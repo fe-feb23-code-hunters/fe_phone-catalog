@@ -9,8 +9,7 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import TabletsPage from './Pages/TabletsPage/TabletsPage';
-import Accessories from './Pages/Accessories';
+import SignInSide from './Pages/SighIn/SighIn';
 import Contacts from './Pages/Contacts/Contacts';
 
 const App = () => (
@@ -29,9 +28,8 @@ const App = () => (
 
         <Route path="/favourites" element={<FavouritePage />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/tablets" element={<TabletsPage />} />
-        <Route path="/accessories" element={<Accessories />} />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/register" element={<SignInSide />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>
