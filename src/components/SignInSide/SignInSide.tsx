@@ -1,18 +1,17 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import './signInSide.scss';
 
 function Copyright(props: any) {
   return (
@@ -23,8 +22,8 @@ function Copyright(props: any) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link to="/" className="link">
+        NICE👌GADGETS
       </Link>
       {' '}
       {new Date().getFullYear()}
@@ -36,7 +35,7 @@ function Copyright(props: any) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function SignInSide() {
+const SignInSide = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,7 +49,7 @@ export default function SignInSide() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100%' }}>
         <CssBaseline />
         <Grid
           item
@@ -124,13 +123,8 @@ export default function SignInSide() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#id" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  <Link href="#id" variant="body2">
+                  <Link to="/register" className="link">
                     Don&apos;t have an account? Sign Up
                   </Link>
                 </Grid>
@@ -142,4 +136,6 @@ export default function SignInSide() {
       </Grid>
     </ThemeProvider>
   );
-}
+};
+
+export default SignInSide;
