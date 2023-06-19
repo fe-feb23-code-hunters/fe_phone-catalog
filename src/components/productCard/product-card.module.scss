@@ -6,9 +6,11 @@
 .card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   min-width: $card;
+  max-width: 288px;
   width: 100%;
   border: 1px solid $elements-color;
   transition: box-shadow 0.3s ease-in-out;
@@ -20,12 +22,21 @@
     @media (max-width: 767px) {
       $card: 288px;
       min-width: $card;
+      max-width: $card;
     }
 
     @media (max-width: 1199px) {
       $card: 229px;
       min-width: $card;
+      max-width: $card;
     }
+  }
+
+  @include onDesktop {
+    $card: 272px;
+
+    min-width: $card;
+    max-width: $card;
   }
 
   &:hover {
