@@ -16,6 +16,7 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 // eslint-disable-next-line max-len
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { debounce } from '../../utils/debounce';
+import { SearchField } from '../SearchField';
 
 const {
   container,
@@ -78,7 +79,11 @@ export const Header = () => {
         <input value={query} onChange={handleInputChange} />
 
         <div className={headerIconsContainer}>
-          <Link to="/favourites" className={headerBarIcon}>
+          <SearchField />
+          <Link
+            to="/favourites"
+            className={headerBarIcon}
+          >
             <IconWithCounter count={favourites.length}>
               <HeartOutlined />
             </IconWithCounter>
@@ -88,15 +93,14 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
+          <Link
+            to="#menu"
+            className={headerMenuButton}
+            onClick={handleMenuButtonClick}
+          >
+            <Menu />
+          </Link>
         </div>
-
-        <Link
-          to="#menu"
-          className={headerMenuButton}
-          onClick={handleMenuButtonClick}
-        >
-          <Menu />
-        </Link>
       </header>
       <BurgerMenu
         handleClick={handleMenuButtonClick}

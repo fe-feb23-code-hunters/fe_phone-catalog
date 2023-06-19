@@ -22,6 +22,7 @@ $large-logo-height: 30px;
   width: 100%;
   box-shadow: 0 1px 0 $elements-color;
   background-color: $white-color;
+  gap: 15px;
 
   @include onDesktop {
     height: $large-device-size;
@@ -45,20 +46,20 @@ $large-logo-height: 30px;
   }
 
   &__icons-container {
+    display: flex;
+  }
+
+  &__bar-icon {
     display: none;
 
     @include onTablet {
       display: flex;
+      box-shadow: -1px 0 0 $elements-color;
+      width: $small-device-size;
+      height: $small-device-size;
+      justify-content: center;
+      align-items: center;
     }
-  }
-
-  &__bar-icon {
-    display: flex;
-    box-shadow: -1px 0 0 $elements-color;
-    width: $small-device-size;
-    height: $small-device-size;
-    justify-content: center;
-    align-items: center;
 
     @include onDesktop {
       width: $large-device-size;
