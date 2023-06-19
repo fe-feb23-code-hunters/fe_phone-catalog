@@ -46,10 +46,8 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [totalPages, setTotalPages] = useState(5);
 
   const setupProducts = async () => {
-    const {
-      products: fetchedProducts,
-      totalPages: fetchedtotalPages,
-    } = await fetchAllProducts(page, sortBy, limit, search);
+    const { products: fetchedProducts, totalPages: fetchedtotalPages }
+      = await fetchAllProducts(page, sortBy, limit, search);
 
     setProducts(fetchedProducts);
     setTotalPages(fetchedtotalPages);

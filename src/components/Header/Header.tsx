@@ -35,7 +35,10 @@ export const Header = () => {
   const [query, setQuery] = useState('');
 
   const location = useLocation();
-  const isFavouritesPage = location.pathname.includes('favourites');
+  const isFavouritesPage = location.pathname === '/favourites';
+
+  const isSearchVisible
+    = location.pathname === '/phones' || location.pathname === '/favourites';
 
   const handleMenuButtonClick = () => {
     setShowBurgerMenu(!showBurgerMenu);
@@ -43,7 +46,7 @@ export const Header = () => {
 
   const handleSearchChangeDebounced = useCallback(
     debounce(handleSearchChange, 300),
-    [],
+    [location],
   );
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -84,15 +87,14 @@ export const Header = () => {
         </div>
 
         <div className={headerIconsContainer}>
-          <SearchField
-            query={query}
-            handleInputChange={handleInputChange}
-            handleClear={handleClear}
-          />
-          <Link
-            to="/favourites"
-            className={headerBarIcon}
-          >
+          {isSearchVisible && (
+            <SearchField
+              query={query}
+              handleInputChange={handleInputChange}
+              handleClear={handleClear}
+            />
+          )}
+          <Link to="/favourites" className={headerBarIcon}>
             <IconWithCounter count={favourites.length}>
               <HeartOutlined />
             </IconWithCounter>
