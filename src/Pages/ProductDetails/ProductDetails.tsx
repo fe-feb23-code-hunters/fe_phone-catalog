@@ -82,7 +82,7 @@ const ProductDetails: React.FC = () => {
     = cart.findIndex((products) => products.id === productId) !== -1;
 
   const doesExistInFavourites
-    = favourites.findIndex((products) => products.id === product?.id) !== -1;
+    = favourites.findIndex((products) => products.id === productId) !== -1;
 
   const buttonLabel = doesExistInCart ? 'Added' : 'Add to cart';
 
