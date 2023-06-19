@@ -29,6 +29,7 @@ const {
   title,
   text,
   link,
+  loader,
   photo__block: photoBlock,
   button__back: buttonBack,
   grid__desktop: gridDesktop,
@@ -198,9 +199,9 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader className={loader} />}
 
-      {product && (
+      {(!isLoading && product) && (
         <>
           <div className={cn(container)}>
             <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
