@@ -1,18 +1,18 @@
+import { Link } from 'react-router-dom';
 import BlackButton from '../shared/buttons/BlackButton/BlackButton';
 import classes from './CapacitySelect.module.scss';
+import { Product } from '../../types/product';
 
 type Props = {
   title: string;
-  capacitys?: string[];
-  selectedCapacity: string;
-  onSelectCapacity: (newOption: string) => void;
+  onSelectCapacity: (choosenCapacity: string) => void;
+  product: Product;
 };
 
 const CapacitySelect: React.FC<Props> = ({
   title,
-  capacitys,
-  selectedCapacity,
   onSelectCapacity,
+  product,
 }) => {
   const {
     line,
@@ -20,10 +20,8 @@ const CapacitySelect: React.FC<Props> = ({
     capacity__body: capacityBody,
     capacity__title: capacityTitle,
     capacity__button: capacityButton,
+    capacity__link: link,
   } = classes;
-
-  // eslint-disable-next-line no-console
-  console.log(selectedCapacity);
 
   return (
     <div className={capacityBody}>
@@ -31,18 +29,21 @@ const CapacitySelect: React.FC<Props> = ({
         <p>{title}</p>
       </div>
       <div className={capacityContainer}>
-        {capacitys?.map((capacity) => {
-          return (
-            <div className={capacityButton} key={capacity}>
+        {product.phone?.capacityAvailable.map((capacity) => (
+          <Link
+            to={`/phones/${product?.phone?.namespaceId}-${capacity.toLowerCase()}-${product.color}`}
+            key={capacity}
+            className={link}
+          >
+            <div className={capacityButton}>
               <BlackButton
-                isSelected={String(capacity) === String(selectedCapacity)}
-                key={capacity}
-                label={String(capacity)}
+                isSelected={capacity === product.capacity}
+                label={capacity}
                 onClick={() => onSelectCapacity(capacity)}
               />
             </div>
-          );
-        })}
+          </Link>
+        ))}
       </div>
       <div className={line} />
     </div>

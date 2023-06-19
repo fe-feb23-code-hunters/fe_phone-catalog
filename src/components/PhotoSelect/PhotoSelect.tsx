@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import './PhotoSelect.scss';
 
 interface Props {
-  phone: Phone,
+  phone: Phone;
 }
 
 SwiperCore.use([Pagination]);
@@ -24,6 +24,7 @@ const PhotoSelect: FC<Props> = ({ phone }) => (
         slidesPerView={1}
         spaceBetween={30}
         loop
+        key={phone.id}
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
@@ -39,7 +40,7 @@ const PhotoSelect: FC<Props> = ({ phone }) => (
         modules={[Pagination]}
         className="swiper-photo"
       >
-        {phone.images.map(image => {
+        {phone.images.map((image) => {
           return (
             <SwiperSlide key={image}>
               <div className="image-swipe">
