@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signUp.scss';
+import { teal } from '@mui/material/colors';
 
 function Copyright(props: any) {
   return (
@@ -32,7 +33,32 @@ function Copyright(props: any) {
   );
 }
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  typography: {
+    htmlFontSize: 14,
+    fontFamily: [
+      'Mont',
+      'sans-serif',
+    ].join(','),
+    h1: {
+      fontSize: 32,
+    },
+    body1: {
+      fontSize: 14,
+    },
+  },
+  palette: {
+    primary: {
+      main: teal[900],
+    },
+    secondary: {
+      main: teal[800],
+    },
+  },
+  shape: {
+    borderRadius: 0,
+  },
+});
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
