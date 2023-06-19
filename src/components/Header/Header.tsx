@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   ChangeEventHandler, useCallback, useContext, useState,
 } from 'react';
-// import cn from 'classnames';
 import { PageNavigation } from '../PageNavigation';
 import classes from './Header.module.scss';
 import HeartOutlined from '../../icons/HeartOutlined/HeartOutlined';
@@ -16,6 +15,7 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 // eslint-disable-next-line max-len
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { debounce } from '../../utils/debounce';
+import { SearchField } from '../SearchField';
 
 const {
   container,
@@ -58,6 +58,16 @@ export const Header = () => {
     }
   };
 
+  const handleClear = () => {
+    setQuery('');
+
+    if (isFavouritesPage) {
+      handleQueryChange('');
+    } else {
+      handleSearchChangeDebounced('');
+    }
+  };
+
   return (
     <div className={container}>
       <header className={header}>
@@ -73,12 +83,16 @@ export const Header = () => {
           <PageNavigation />
         </div>
 
-        {/* Dummy input, change to the real one */}
-
-        <input value={query} onChange={handleInputChange} />
-
         <div className={headerIconsContainer}>
-          <Link to="/favourites" className={headerBarIcon}>
+          <SearchField
+            query={query}
+            handleInputChange={handleInputChange}
+            handleClear={handleClear}
+          />
+          <Link
+            to="/favourites"
+            className={headerBarIcon}
+          >
             <IconWithCounter count={favourites.length}>
               <HeartOutlined />
             </IconWithCounter>
@@ -88,15 +102,14 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
+          <Link
+            to="#menu"
+            className={headerMenuButton}
+            onClick={handleMenuButtonClick}
+          >
+            <Menu />
+          </Link>
         </div>
-
-        <Link
-          to="#menu"
-          className={headerMenuButton}
-          onClick={handleMenuButtonClick}
-        >
-          <Menu />
-        </Link>
       </header>
       <BurgerMenu
         handleClick={handleMenuButtonClick}
