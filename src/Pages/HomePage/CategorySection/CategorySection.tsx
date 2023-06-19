@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import cn from 'classnames';
+import { useContext } from 'react';
+// eslint-disable-next-line max-len
+import { ProductsContext } from '../../../providers/ProductsProvider/ProductsProvider';
 import classes from './CategorySection.module.scss';
 import Category from '../../../components/Category/Category';
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
-// eslint-disable-next-line max-len
-import { ProductsContext } from '../../../providers/ProductsProvider/ProductsProvider';
 
 const CategorySection = () => {
-  const { products } = useContext(ProductsContext);
+  const { products, handleLimitChange } = useContext(ProductsContext);
+
+  handleLimitChange(999);
 
   const {
     container,
