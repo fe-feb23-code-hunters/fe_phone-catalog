@@ -12,6 +12,7 @@ import LockOutlined from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signInSide.scss';
+import { teal } from '@mui/material/colors';
 
 function Copyright(props: any) {
   return (
@@ -22,7 +23,7 @@ function Copyright(props: any) {
       {...props}
     >
       {'Copyright © '}
-      <Link to="/" className="link">
+      <Link to="/" id="text-link">
         NICE👌GADGETS
       </Link>
       {' '}
@@ -32,8 +33,32 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  typography: {
+    htmlFontSize: 14,
+    fontFamily: [
+      'Mont',
+      'sans-serif',
+    ].join(','),
+    h1: {
+      fontSize: 32,
+    },
+    body1: {
+      fontSize: 14,
+    },
+  },
+  palette: {
+    primary: {
+      main: teal[900],
+    },
+    secondary: {
+      main: teal[800],
+    },
+  },
+  shape: {
+    borderRadius: 0,
+  },
+});
 
 const SignInSide = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -78,10 +103,10 @@ const SignInSide = () => {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: teal[800] }}>
               <LockOutlined />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h2" variant="h1">
               Sign in
             </Typography>
             <Box
@@ -111,7 +136,11 @@ const SignInSide = () => {
                 autoComplete="current-password"
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={(
+                  <Checkbox
+                    value="remember"
+                  />
+                )}
                 label="Remember me"
               />
               <Button
@@ -125,7 +154,7 @@ const SignInSide = () => {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link to="/register" className="link">
+                  <Link to="/register" id="text-link">
                     Don&apos;t have an account? Sign Up
                   </Link>
                 </Grid>
