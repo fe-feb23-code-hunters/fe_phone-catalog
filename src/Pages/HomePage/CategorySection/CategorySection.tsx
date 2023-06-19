@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import cn from 'classnames';
+import { useContext } from 'react';
+// eslint-disable-next-line max-len
+import { ProductsContext } from '../../../providers/ProductsProvider/ProductsProvider';
 import classes from './CategorySection.module.scss';
 import Category from '../../../components/Category/Category';
 import ScrollToTop from '../../../components/ScrollToTop/ScrollToTop';
-// eslint-disable-next-line max-len
-import { ProductsContext } from '../../../providers/ProductsProvider/ProductsProvider';
 
 const CategorySection = () => {
-  const { products } = useContext(ProductsContext);
+  const { totalCount } = useContext(ProductsContext);
 
   const {
     container,
@@ -71,7 +71,7 @@ const CategorySection = () => {
               imgUrl="/img/banners/categories/Category_Phones.jpg"
               altImg="Phones category"
               subtitle="Phones"
-              text={`${products.length} models`}
+              text={`${totalCount} models`}
               color="#6D6474"
             />
           </Link>
@@ -89,7 +89,7 @@ const CategorySection = () => {
               imgUrl="/img/banners/categories/Category_Tablets.jpg"
               altImg="Tablets category"
               subtitle="Tablets"
-              text="24 models"
+              text="0 model"
               color="#8D8D92"
             />
           </Link>
@@ -108,7 +108,7 @@ const CategorySection = () => {
               imgUrl="/img/banners/categories/Category_Accessories.jpg"
               altImg="Accessories category"
               subtitle="Accessories"
-              text="100 models"
+              text="0 model"
               color="#973D5F"
             />
           </Link>

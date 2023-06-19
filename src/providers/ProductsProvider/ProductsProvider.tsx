@@ -17,6 +17,7 @@ interface Context {
   totalPages: number;
   search: string;
   handleSearchChange: (query: string) => void;
+  totalCount: number;
 }
 
 export const ProductsContext = React.createContext<Context>({
@@ -31,6 +32,7 @@ export const ProductsContext = React.createContext<Context>({
   search: '',
   handleSearchChange: () => {},
   totalPages: 5,
+  totalCount: 1,
 });
 
 const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -44,13 +46,18 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [totalPages, setTotalPages] = useState(5);
+  const [totalCount, setTotalCount] = useState(0);
 
   const setupProducts = async () => {
-    const { products: fetchedProducts, totalPages: fetchedtotalPages }
-      = await fetchAllProducts(page, sortBy, limit, search);
+    const {
+      products: fetchedProducts,
+      totalPages: fetchedtotalPages,
+      totalCount: fetchedTotalCount,
+    } = await fetchAllProducts(page, sortBy, limit, search);
 
     setProducts(fetchedProducts);
     setTotalPages(fetchedtotalPages);
+    setTotalCount(fetchedTotalCount);
     setIsLoading(false);
   };
 
@@ -95,6 +102,7 @@ const ProductsProvider: React.FC<PropsWithChildren> = ({ children }) => {
         search,
         handleSearchChange,
         totalPages,
+        totalCount,
       }}
     >
       {children}
