@@ -88,6 +88,9 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
+          <Link to="/register" className={headerBarIcon}>
+            <ShoppingBag />
+          </Link>
         </div>
 
         <Link

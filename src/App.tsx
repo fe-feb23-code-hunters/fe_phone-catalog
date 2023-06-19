@@ -9,6 +9,7 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import SignInSide from './Pages/SighIn/SighIn';
 
 const App = () => (
   <AppProvider>
@@ -26,6 +27,7 @@ const App = () => (
 
         <Route path="/favourites" element={<FavouritePage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/register" element={<SignInSide />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>
