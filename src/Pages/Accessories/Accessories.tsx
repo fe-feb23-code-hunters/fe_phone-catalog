@@ -43,7 +43,7 @@ const TabletsPage: React.FC = () => {
               <Link to="/" className={icon}>
                 <Home />
               </Link>
-              <ForwardButton onClick={() => 'click me'} label="Accessories" />
+              <ForwardButton label="Accessories" />
             </div>
           </div>
         </div>
