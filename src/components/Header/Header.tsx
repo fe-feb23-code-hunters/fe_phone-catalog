@@ -15,6 +15,7 @@ import { FavouritesContext } from '../../providers/FavouritesProvider/Favourites
 // eslint-disable-next-line max-len
 import { ProductsContext } from '../../providers/ProductsProvider/ProductsProvider';
 import { debounce } from '../../utils/debounce';
+import Auth from '../../icons/Auth';
 import { SearchField } from '../SearchField';
 
 const {
@@ -104,8 +105,8 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
-          <Link to="/register" className={headerBarIcon}>
-            <ShoppingBag />
+          <Link to="/auth" className={headerBarIcon}>
+            <Auth />
           </Link>
           <Link
             to="#menu"
