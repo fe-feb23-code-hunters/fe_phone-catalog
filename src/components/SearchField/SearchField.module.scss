@@ -1,0 +1,51 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.search-form {
+  height: 50px;
+
+  @include onDesktop {
+    height: 65px;
+  }
+
+  display: flex;
+  align-items: center;
+  box-shadow: -1px 0px 0px #E2E6E9;
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 0 0 25px;
+    background-color: transparent;
+
+    @include button-text;
+    color: $primary-color;
+
+    &::placeholder {
+      color: $secondary-color;
+    }
+
+    &:focus {
+      & ~ .search-form__button {
+        background-color: $hover-background-color;
+      }
+
+      background-color: $hover-background-color;
+    }
+  }
+
+  &__button {
+    border: none;
+    height: 100%;
+    padding: 10px 25px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
