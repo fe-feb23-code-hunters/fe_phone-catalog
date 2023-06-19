@@ -106,9 +106,13 @@ $height-mobile: 320px;
       position: relative;
       bottom: -18px;
       width: 14px;
-      height: 4px;
-      border-radius: 5px;
+      height: 6px;
+      background-color: $elements-color;
+    }
+
+    & .swiper-pagination-bullet-active {
       background-color: $primary-color;
+      border: none;
     }
   }
 }

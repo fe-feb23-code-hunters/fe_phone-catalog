@@ -52,6 +52,8 @@
 
 .catalog {
   display: grid;
+  place-items: center;
+  $card: 272px;
   grid-template-columns: repeat(4, $card);
   padding: 24px;
   margin: 0 auto;
@@ -59,16 +61,19 @@
   gap: 16px;
 
   @media (max-width: 1199px) {
+    $card: 229px;
     justify-content: center;
     grid-template-columns: repeat(3, $card);
   }
 
   @media (max-width: 767px) {
+    $card: 288px;
     justify-content: center;
     grid-template-columns: repeat(2, $card);
   }
 
   @media (max-width: 639px) {
+    $card: 288px;
     justify-content: center;
     grid-template-columns: repeat(1, $card);
   }
