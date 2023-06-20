@@ -7,7 +7,7 @@ $top-height: 50px;
 $padding-top: 16px;
 $burger-top-margin_bottom: 32px;
 $burger-item-margin: 24px;
-$burger-icon-padding: 22px 0;
+$burger-icon-padding: 22px 56px;
 
 .burger {
   position: fixed;
@@ -96,7 +96,7 @@ $burger-icon-padding: 22px 0;
     &_icon {
       display: flex;
       height: $bottom-height;
-      width: 33.3%;
+      width: 50%;
 
       cursor: pointer;
       border: 1px solid transparent;

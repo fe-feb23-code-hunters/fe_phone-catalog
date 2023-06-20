@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signInSide.scss';
 import { teal } from '@mui/material/colors';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -61,15 +62,66 @@ const defaultTheme = createTheme({
 });
 
 const SignInSide = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validatePassword = (pw: string) => {
+    const pwRegex = /^(?=.*[A-Z])(?=.*\d)(?!.*[^\w\s])(?=.*[a-z]).{8,16}$/;
+
+    return pwRegex.test(pw);
+  };
+
+  const validateEmail = (em: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return emailRegex.test(em);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(password);
+
+    if (isEmailValid && isPasswordValid) {
+      // Виконайте потрібні дії для входу користувача
+      const data = {
+        email,
+        password,
+      };
+
+      // eslint-disable-next-line no-console
+      console.log(data);
+
+      setEmail('');
+      setPassword('');
+      setEmailError('');
+      setPasswordError('');
+    } else {
+      if (!isEmailValid) {
+        setEmailError('Please enter a valid email address.');
+      }
+
+      if (!isPasswordValid) {
+        setPasswordError(
+          // eslint-disable-next-line max-len
+          'Please enter a password between 8 and 16 characters long, containing at least one uppercase letter and one digit.',
+        );
+      }
+    }
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    setEmailError('');
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setPasswordError('');
   };
 
   return (
@@ -116,6 +168,11 @@ const SignInSide = () => {
               sx={{ mt: 1 }}
             >
               <TextField
+                sx={{
+                  '& .MuiFormHelperText-root': {
+                    fontSize: 10,
+                  },
+                }}
                 margin="normal"
                 required
                 fullWidth
@@ -124,8 +181,17 @@ const SignInSide = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={handleEmailChange}
+                error={!!emailError}
+                helperText={emailError}
               />
               <TextField
+                sx={{
+                  '& .MuiFormHelperText-root': {
+                    fontSize: 10,
+                  },
+                }}
                 margin="normal"
                 required
                 fullWidth
@@ -134,6 +200,10 @@ const SignInSide = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={handlePasswordChange}
+                error={!!passwordError}
+                helperText={passwordError}
               />
               <FormControlLabel
                 control={(
@@ -153,6 +223,11 @@ const SignInSide = () => {
                 Sign In
               </Button>
               <Grid container>
+                <Grid item xs>
+                  <Link to="/reset" id="text-link">
+                    Forgot password?
+                  </Link>
+                </Grid>
                 <Grid item>
                   <Link to="/register" id="text-link">
                     Don&apos;t have an account? Sign Up
