@@ -8,10 +8,11 @@ import Home from '../../icons/Home';
 import classes from './FavouritePage.module.scss';
 import ProductCard from '../../components/productCard';
 import { FavouriteProduct } from '../../types/favourites';
-import { EmptyFavourites } from '../../components/EmptyFavourites';
 import Loader from '../../components/shared/Loader';
 import { Product } from '../../types/product';
 import { fetchProductById } from '../../api/products.api';
+import { EmptyPage } from '../../components/EmptyPage';
+import HeartOff from '../../icons/HeartOff/HeartOff';
 
 const {
   grid,
@@ -144,7 +145,13 @@ const FavouritePage: React.FC = () => {
                     gridDesktopFullSize,
                   )}
                 >
-                  <EmptyFavourites />
+                  <EmptyPage
+                    pageTitle="No favourites yet!"
+                    // eslint-disable-next-line max-len
+                    pageText="Save your favourite products, you will find them collected here waiting for you!"
+                  >
+                    <HeartOff />
+                  </EmptyPage>
                 </div>
               </div>
             </div>
