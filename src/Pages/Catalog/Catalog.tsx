@@ -131,7 +131,7 @@ const Catalog: React.FC = () => {
 
       {!isLoading && !products.length && <NoProductsFound />}
 
-      {(isLoading || products.length) && (
+      {(isLoading || products.length > 0) && (
         <>
           {isLoading && <Loader className={loader} />}
 
