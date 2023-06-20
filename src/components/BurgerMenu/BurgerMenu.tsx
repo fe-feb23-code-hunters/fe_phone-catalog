@@ -10,7 +10,6 @@ import IconWithCounter from '../shared/IconWithCounter';
 import { CartContext } from '../../providers/CartProvider/CartProvider';
 // eslint-disable-next-line max-len
 import { FavouritesContext } from '../../providers/FavouritesProvider/FavouritesProvider';
-import Auth from '../../icons/Auth/Auth';
 
 interface Props {
   handleClick: () => void;
@@ -97,10 +96,6 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
               <IconWithCounter count={cart.length}>
                 <ShoppingBag />
               </IconWithCounter>
-            </Link>
-
-            <Link to="/auth" className={bottomIconLeft} onClick={handleClick}>
-              <Auth />
             </Link>
           </div>
         </div>

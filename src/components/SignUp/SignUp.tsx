@@ -13,6 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signUp.scss';
 import { teal } from '@mui/material/colors';
+import { useState } from 'react';
 
 function Copyright(props: any) {
   return (
@@ -61,15 +62,102 @@ const defaultTheme = createTheme({
 });
 
 export default function SignUp() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validateName = (name: string): boolean => {
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+
+    return nameRegex.test(name.trim());
+  };
+
+  const validateEmail = (em: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(em);
+  };
+
+  const validatePassword = (pw: string): boolean => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/;
+
+    return passwordRegex.test(pw);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const isNameValid = validateName(firstName);
+    const isLastNameValid = validateName(lastName);
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(password);
+
+    if (isNameValid && isLastNameValid && isEmailValid && isPasswordValid) {
+      // Виконайте потрібні дії для реєстрації користувача
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        password,
+      };
+
+      // eslint-disable-next-line no-console
+      console.log(userData);
+
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setEmailError('');
+      setFirstNameError('');
+      setLastNameError('');
+      setPasswordError('');
+    } else {
+      if (!isNameValid) {
+        setFirstNameError('This field is required');
+      }
+
+      if (!isLastNameValid) {
+        setLastNameError('This field is required');
+      }
+
+      if (!isEmailValid) {
+        setEmailError('Please enter a valid email address.');
+      }
+
+      if (!isPasswordValid) {
+        setPasswordError(
+          // eslint-disable-next-line max-len
+          'Please enter a password between 8 and 16 characters long, containing at least one uppercase letter and one digit.',
+        );
+      }
+    }
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstName(event.target.value);
+    setFirstNameError('');
+  };
+
+  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLastName(event.target.value);
+    setLastNameError('');
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+    setEmailError('');
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+    setPasswordError('');
   };
 
   return (
@@ -95,42 +183,74 @@ export default function SignUp() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 3, width: 280 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    '& .MuiFormHelperText-root': {
+                      fontSize: 10,
+                    },
+                  }}
                   autoComplete="given-name"
                   name="firstName"
                   required
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  value={firstName}
+                  onChange={handleNameChange}
+                  error={!!firstNameError}
+                  helperText={firstNameError}
                   autoFocus
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  sx={{
+                    '& .MuiFormHelperText-root': {
+                      fontSize: 10,
+                    },
+                  }}
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                  error={!!lastNameError}
+                  helperText={lastNameError}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  sx={{
+                    '& .MuiFormHelperText-root': {
+                      fontSize: 10,
+                    },
+                  }}
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  error={!!emailError}
+                  helperText={emailError}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  sx={{
+                    '& .MuiFormHelperText-root': {
+                      fontSize: 10,
+                    },
+                  }}
                   required
                   fullWidth
                   name="password"
@@ -138,6 +258,10 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  error={!!passwordError}
+                  helperText={passwordError}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -167,8 +291,9 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
+
+          <Copyright sx={{ mt: 5 }} />
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
