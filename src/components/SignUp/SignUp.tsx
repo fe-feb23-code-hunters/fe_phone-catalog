@@ -278,12 +278,12 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, height: '54px' }}
               id="form-button"
             >
-              Sign Up
+              Sign up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link to="/auth" className="link">
                   Already have an account? Sign in
@@ -292,7 +292,7 @@ export default function SignUp() {
             </Grid>
           </Box>
 
-          <Copyright sx={{ mt: 5 }} />
+          <Copyright sx={{ mt: 15, fontSize: 12 }} />
         </Box>
       </Container>
     </ThemeProvider>

@@ -16,8 +16,15 @@
   }
 
   &-link {
+    text-decoration: none;
+    cursor: pointer;
     @include body-text;
     color: $primary-color;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      font-weight: 650;
+    }
   }
 }
 
@@ -28,6 +35,10 @@
 #form-button {
   border-radius: 0;
   @include button-text;
-  text-transform: capitalize;
+  text-transform: none;
   background-color: $primary-color;
+}
+
+.copyright {
+  font-size: 12px;
 }

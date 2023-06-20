@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { teal } from '@mui/material/colors';
 import { useState } from 'react';
+import './resetForm.scss';
 import Modal from '../Modal';
 
 function Copyright(props: any) {
@@ -142,14 +143,14 @@ export default function ResetForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, height: '54px' }}
                 id="form-button"
               >
                 Reset password
               </Button>
             </Box>
 
-            <Copyright sx={{ mt: 5 }} />
+            <Copyright sx={{ mt: 15, fontSize: 12 }} />
           </Box>
         </Container>
       </ThemeProvider>
