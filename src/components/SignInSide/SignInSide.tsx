@@ -126,7 +126,11 @@ const SignInSide = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100%' }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: '100%', width: '100%' }}
+      >
         <CssBaseline />
         <Grid
           item
@@ -145,14 +149,24 @@ const SignInSide = () => {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid
+          item
+          sx={{ boxShadow: 'none' }}
+          xs={12}
+          sm={8}
+          md={5}
+          component={Paper}
+          elevation={6}
+          square
+        >
           <Box
             sx={{
-              my: 8,
-              mx: 4,
+              my: 20,
+              mx: 10,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              boxShadow: 'none',
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: teal[800] }}>
@@ -165,7 +179,7 @@ const SignInSide = () => {
               component="form"
               noValidate
               onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+              sx={{ mt: 1, boxShadow: 'none', alignItems: 'center' }}
             >
               <TextField
                 sx={{
@@ -217,10 +231,10 @@ const SignInSide = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, height: '54px' }}
                 id="form-button"
               >
-                Sign In
+                Sign in
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -230,12 +244,12 @@ const SignInSide = () => {
                 </Grid>
                 <Grid item>
                   <Link to="/register" id="text-link">
-                    Don&apos;t have an account? Sign Up
+                    Don&apos;t have an account? Sign up
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
+            <Copyright sx={{ mt: 15, fontSize: 12 }} />
           </Box>
         </Grid>
       </Grid>
