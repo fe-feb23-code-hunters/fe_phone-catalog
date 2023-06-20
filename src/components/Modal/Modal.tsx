@@ -12,10 +12,11 @@ import ShoppingBag from '../../icons/ShoppingBag/ShoppingBag';
 type Props = {
   title: string;
   description: string;
-  onClose: () => void;
+  onClose?: () => void;
   showModal: boolean;
   promo?: string;
   navigation?: string;
+  buttonLabel?: string;
 };
 
 const Modal: React.FC<Props> = ({
@@ -25,18 +26,19 @@ const Modal: React.FC<Props> = ({
   description,
   promo,
   navigation,
+  buttonLabel,
 }) => {
   const navigate = useNavigate();
 
   const handleCloseModal = (e: KeyboardEvent) => {
     if ((e.charCode || e.keyCode) === 27) {
-      onClose();
+      onClose?.();
       navigate(String(navigation));
     }
   };
 
   const closeModal = () => {
-    onClose();
+    onClose?.();
     navigate(String(navigation));
   };
 
@@ -90,7 +92,7 @@ const Modal: React.FC<Props> = ({
           <div className={modalFooter}>
             <Button
               onClick={closeModal}
-              label="Close"
+              label={buttonLabel ?? 'Close'}
               height="48px"
             />
           </div>

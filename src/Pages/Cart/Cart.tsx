@@ -12,6 +12,8 @@ import { EmptyCart } from '../../components/EmptyCart';
 import Loader from '../../components/shared/Loader';
 import { fetchProductById } from '../../api/products.api';
 import { Product } from '../../types/product';
+import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
+import { createOrder } from '../../api/orders.api';
 
 const {
   grid,
@@ -34,10 +36,16 @@ const {
 } = classes;
 
 const Cart: React.FC = () => {
+  const { userId } = useContext(AuthContext);
   const { cart, clearCart } = useContext(CartContext);
-  const [isLoading, setIsLoading] = useState(false);
+
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
-  const [showModal, setShowModal] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [isLoginModalShown, setIsLoginModalShown] = useState(false);
+  const [isNoProductsModalShown, setIsNoProductsModalShown] = useState(false);
+  const [isPromoModalShown, setIsPromoModalShown] = useState(false);
 
   const goBack = () => {
     window.history.back();
@@ -50,19 +58,33 @@ const Cart: React.FC = () => {
     {},
   );
 
+  const handleCheckout = async () => {
+    if (!userId) {
+      setIsLoginModalShown(true);
+
+      return;
+    }
+
+    if (cart.length === 0) {
+      setIsNoProductsModalShown(true);
+
+      return;
+    }
+
+    const productsIds = cartProducts.map((product) => product.id);
+
+    await createOrder(userId, productsIds);
+
+    setIsPromoModalShown(true);
+    clearCart();
+  };
+
   const totalPrice = cartProducts.reduce(
     (accum, { price, itemId }) => accum + price * cartMap[itemId]?.count,
     0,
   );
 
   const totalCount = cart.reduce((accum, el) => accum + el.count, 0);
-
-  const isModal = totalPrice === 0;
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    clearCart();
-  };
 
   const fetchCartProducts = async () => {
     const fetchedProducts = await Promise.all(
@@ -136,7 +158,7 @@ const Cart: React.FC = () => {
               <div className={checkoutButton}>
                 <Button
                   label="Checkout"
-                  onClick={() => setShowModal(true)}
+                  onClick={handleCheckout}
                   height="48px"
                 />
               </div>
@@ -144,27 +166,31 @@ const Cart: React.FC = () => {
           </div>
         </div>
       )}
+      <Modal
+        title="Log in first"
+        buttonLabel="Log in"
+        onClose={() => setIsLoginModalShown(false)}
+        showModal={isLoginModalShown}
+        description="Log into your account to continue shopping"
+        navigation="/log-in"
+      />
 
-      {!isModal && (
-        <Modal
-          title="Thank you for your purchase"
-          onClose={() => handleCloseModal()}
-          showModal={showModal}
-          description="Please enjoy 20% off your next order with promocode: "
-          promo="CODEHUNTERS_TOP"
-          navigation="/cart"
-        />
-      )}
+      <Modal
+        title="Thank you for your purchase"
+        onClose={() => setIsPromoModalShown(false)}
+        showModal={isPromoModalShown}
+        description="Please enjoy 20% off your next order with promocode: "
+        promo="CODEHUNTERS_TOP"
+        navigation="/cart"
+      />
 
-      {isModal && (
-        <Modal
-          title="There is nothing here yet"
-          onClose={() => setShowModal(false)}
-          showModal={showModal}
-          description="Please, add some items to the cart"
-          navigation="/phones"
-        />
-      )}
+      <Modal
+        title="There is nothing here yet"
+        onClose={() => setIsNoProductsModalShown(false)}
+        showModal={isNoProductsModalShown}
+        description="Please, add some items to the cart"
+        navigation="/phones"
+      />
     </div>
   );
 };
