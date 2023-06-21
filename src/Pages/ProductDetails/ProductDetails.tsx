@@ -108,30 +108,24 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedCapacity, setSelectedCapacity] = useState(product?.capacity);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedColor, setSelectedColor] = useState(product?.color);
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const handleSelectColor = (choosenColor: string) => {
-    setSelectedColor(choosenColor);
-
-    const urlColor = `/phones/${product?.phone?.namespaceId}-${product?.capacity}-${choosenColor}`;
+    const urlColor = `/phones/${
+      product?.phone?.namespaceId
+    }-${product?.capacity.toLowerCase()}-${choosenColor}`;
 
     navigate(urlColor);
   };
 
   const handleSelectCapacity = (choosenCapacity: string) => {
-    setSelectedCapacity(choosenCapacity);
-
-    const urlCapacity = `/phones/${product?.phone?.namespaceId}-${choosenCapacity}-${product?.color}`;
+    const urlCapacity = `/phones/${
+      product?.phone?.namespaceId
+    }-${choosenCapacity.toLowerCase()}-${product?.color}`;
 
     navigate(urlCapacity);
-  };
-
-  const goBack = () => {
-    navigate('/phones');
   };
 
   const fetchProduct = async () => {
@@ -199,7 +193,7 @@ const ProductDetails: React.FC = () => {
 
       {isLoading && <Loader className={loader} />}
 
-      {(!isLoading && product) && (
+      {!isLoading && product && (
         <>
           <div className={cn(container)}>
             <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
