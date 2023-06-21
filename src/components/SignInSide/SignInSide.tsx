@@ -111,13 +111,17 @@ const SignInSide = () => {
       <Grid
         container
         component="main"
-        sx={{ height: '100%', width: '100%' }}
+        sx={{
+          height: '100vh',
+          width: '100%',
+          justifyContent: 'center',
+        }}
       >
         <CssBaseline />
         <Grid
           item
           xs={false}
-          sm={4}
+          sm={false}
           md={7}
           sx={{
             // eslint-disable-next-line max-len
@@ -129,11 +133,15 @@ const SignInSide = () => {
                 : t.palette.grey[900]),
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            display: 'none',
+            '@media (min-width: 1024px)': {
+              display: 'block',
+            },
           }}
         />
         <Grid
           item
-          sx={{ boxShadow: 'none' }}
+          sx={{ boxShadow: 'none', justifyContent: 'center' }}
           xs={12}
           sm={8}
           md={5}
@@ -143,8 +151,10 @@ const SignInSide = () => {
         >
           <Box
             sx={{
-              my: 20,
-              mx: 8,
+              my: 5,
+              mx: 7,
+              mb: 1,
+              mt: 8,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -231,7 +241,7 @@ const SignInSide = () => {
                 </Grid>
               </Grid>
             </Box>
-            <Copyright sx={{ mt: 15, fontSize: 12 }} />
+            <Copyright sx={{ mt: 12, fontSize: 12 }} />
           </Box>
         </Grid>
       </Grid>
