@@ -9,12 +9,14 @@ $element-transition: 0.5s ease-in-out;
 .container {
   width: 100%;
   background-color: $white-color;
+  position: relative;
 }
 
 .footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 1;
 
   height: 320px;
   padding: 35px 16px;
