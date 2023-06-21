@@ -2,6 +2,10 @@
 @import "../../styles/fonts/typography.scss";
 @import "../../styles/utils/vars";
 
+.swiper {
+  padding: none;
+}
+
 .products__slider {
   padding-top: 60px;
 
@@ -96,10 +100,6 @@
       left: 75%;
     }
   }
-}
-
-.swiper {
-  padding: none;
 }
 
 .product__wrapper {

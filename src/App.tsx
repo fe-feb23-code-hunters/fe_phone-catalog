@@ -9,8 +9,11 @@ import PageNotFound from './Pages/PageNotFound';
 import AppProvider from './providers/AppProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import SignIn from './Pages/SignIn';
+import SignUp from './Pages/SignUp';
 import TabletsPage from './Pages/TabletsPage/TabletsPage';
 import Accessories from './Pages/Accessories';
+import ResetForm from './components/ResetForm/ResetForm';
 import { Profile } from './Pages/Profile';
 
 const App = () => (
@@ -29,6 +32,11 @@ const App = () => (
 
         <Route path="/favourites" element={<FavouritePage />} />
         <Route path="/cart" element={<Cart />} />
+
+        <Route path="/register" element={<SignUp />} />
+        <Route path="/auth" element={<SignIn />} />
+        <Route path="/reset" element={<ResetForm />} />
+
         <Route path="/tablets" element={<TabletsPage />} />
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/profile" element={<Profile />} />

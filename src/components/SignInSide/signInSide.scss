@@ -1,0 +1,39 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/fonts/typography.scss" as *;
+@use "../../styles/utils/mixins" as *;
+
+#text {
+  color: $secondary-color;
+  text-align: center;
+
+  &-title {
+    @include mobile-h2;
+
+    @include onTabletAndDesktop {
+      @include desktop-tablet-h2;
+    }
+  }
+
+  &-link {
+    text-align: end;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: $primary-color;
+  }
+}
+
+#email::placeholder {
+  font-size: 14px;
+}
+
+#form-button {
+  border-radius: 0;
+  @include button-text;
+  text-transform: none;
+  background-color: $primary-color;
+}
+
+.copyright {
+  font-size: 12px;
+}
