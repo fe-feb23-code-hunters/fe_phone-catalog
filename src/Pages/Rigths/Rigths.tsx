@@ -36,9 +36,9 @@ const Rigths = () => {
             </h1>
 
             <p className={text}>
-              At Nice Gadgets, accessible from
+              At Nice Gadgets, accessible from&nbsp;
               <a href="https://fe-feb23-code-hunters.github.io/fe_phone-catalog/">
-                &nbsp;Nice Gadgets
+                Nice Gadgets
               </a>
               , one of our main priorities is the privacy of our visitors.
               This Privacy Policy document contains types of information
