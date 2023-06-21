@@ -6,7 +6,28 @@
 
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.section {
+  height: 100vh;
+
+
+  @include onMobile {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include onTablet {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include onDesktop {
+    justify-content: inherit;
+    align-items: inherit;
+  }
 }
 
 .contact {
@@ -20,10 +41,18 @@
   height: 200px;
 
   border-radius: 5px;
-}
 
-.card {
-  width: 250px;
+  @include onMobile {
+    height: 100%;
+  }
+
+  @include onTablet {
+    height: 100%;
+  }
+
+  @include onDesktop {
+    height: 200px;
+  }
 }
 
 .title {
@@ -31,21 +60,53 @@
 
   font-size: 80px;
   text-align: left;
+
+  @include onMobile {
+    @include mobile-h1;
+  }
+}
+
+.titlePhrase {
+  @include desktop-tablet-h2;
+
+  @include onMobile {
+    @include mobile-h2;
+  }
 }
 
 .subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @include desktop-tablet-h2;
+
+  @include onMobile {
+    @include mobile-h2;
+  }
 }
 
 .img {
   opacity: 1;
-  border-radius: 10px;
-  height: 500px;
+  border-radius: 50%;
+  height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: left;
 
   border: 1px solid $secondary-color;
+
+  @include onMobile {
+    margin: 10px 0;
+    height: 100%;
+  }
+
+  @include onTablet {
+    margin: 20px 0;
+  }
+
+  @include onDesktop {
+    margin-top: 0;
+  }
 
 }
 
@@ -53,31 +114,60 @@
   display: flex;
   border-radius: 5px;
   align-items: center;
-  rotate: (-10deg);
+  justify-content: center;
+
+  @include onTablet {
+  }
+
+  @include onMobile {
+    rotate: (0deg);
+  }
+
+  @include onDesktop {
+    rotate: (-10deg);
+  }
 }
 
 .about__top {
-  margin-top: 150px;
-}
-
-.info {
-  transition: 0.5s ease;
-  opacity: 0;
-
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  margin-top: 50px;
 }
 
 .name {
   @include desktop-tablet-h3;
 
   color: $primary-color;
+
+  @include onMobile {
+    margin-bottom: 8px
+  }
+
+  @include onTablet {
+    margin-bottom: 8px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 0;
+  }
 }
 
 .devops {
-  @include desktop-tablet-h4;
+  @include body-text;
+
+  font-size: 18px;
 
   color: $secondary-color;
+
+  @include onMobile {
+    margin-bottom: 8px
+  }
+
+  @include onTablet {
+    margin-bottom: 8px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 0;
+  }
 }
 
 .link {
@@ -96,16 +186,28 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @include onMobile {
+    align-items: center;
+  }
+
+  @include onTablet {
+    align-items: center;
+  }
+
+  @include onDesktop {
+    align-items: start;
+  }
 }
 
 .contact__top {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .icon {
   display: flex;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 }
 
 .phrase {
@@ -113,16 +215,48 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  @include desktop-tablet-h4;
+  @include body-text;
+  font-style: italic;
+  font-size: 20px;
+  text-align: right;
+
+  @include onMobile {
+    text-align: center;
+  }
+
+  @include onTablet {
+    text-align: center;
+  }
+
+  @include onDesktop {
+    text-align: right;
+  }
 
   color: $primary-color;
+
+  @include onMobile {
+    font-size: 16px;
+  }
 }
 
 .text {
   @include body-text;
+
+  text-align: justify;
 }
 
-.about__project {
-  height: 100%;
-  display: flex;
+.about {
+  &__header {
+    margin-top: 100px;
+  }
+
+  &__project {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__footer {
+    margin-bottom: 100px;
+  }
 }

@@ -1,16 +1,19 @@
+@use '../../styles/fonts/typography.scss' as *;
+
 .button__icon {
   position: relative;
   cursor: pointer;
   margin: 0;
   padding: 0;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 
   background-color: transparent;
   border: 0;
 }
 
 .button__icon .tooltipText {
+  @include body-text;
   visibility: hidden;
   width: 120px;
   background-color: black;

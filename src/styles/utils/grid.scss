@@ -25,6 +25,23 @@
       grid-template-rows: repeat(3, 1fr);
       row-gap: 32px;
     }
+
+    &__item-row {
+      @include onMobile {
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 32px;
+      }
+
+      @include onTablet {
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 32px;
+      }
+
+      @include onDesktop {
+        grid-template-rows: 1;
+        row-gap: 0;
+      }
+    }
   }
 
   &__desktop {

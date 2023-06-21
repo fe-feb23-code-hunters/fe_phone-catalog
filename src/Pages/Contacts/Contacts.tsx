@@ -22,6 +22,8 @@ const Contacts = () => {
     icon,
     phrase,
     text,
+    titlePhrase,
+    section,
     contact__top: contactTop,
     container__top: containerTop,
     image__container: imgContainer,
@@ -31,34 +33,42 @@ const Contacts = () => {
     grid__item: gridItem,
     grid__item__mobile_1_4: gridMobileFullSize,
     grid__item__tablet_1_12: gridTabletFullSize,
+    //    grid__item__tablet_1_7: gridTabletMiddle,
     grid__item__desktop_1_8: gridDesktopStart,
-    grid__item__desktop_1_17: gridDesktopMiddle,
-    grid__item__desktop_18_24: gridDesktopEnd,
+    grid__item__desktop_1_16: gridDesktopMiddle,
+    grid__item__desktop_17_24: gridDesktopEnd,
     grid__item__desktop_9_24: gridDesktopAbout,
-    grid__item__desktop_8_19: gridDesktopCenter,
-    grid__item__desktop_20_24: gridDesktopInfo,
-    grid__item__desktop_1_7: gridDesktopPhrase,
+    grid__item__desktop_9_16: gridDesktopCenter,
+    grid__item__desktop_17_24: gridDesktopInfo,
+    grid__item__desktop_1_8: gridDesktopPhrase,
+    grid__item__desktop_1_24: gridDesktopFullSize,
+    'grid__item-row': gridRow,
     about__top: aboutTop,
     about__project: aboutProject,
+    about__footer: marginFooter,
+    about__header: aboutMargin,
   } = classes;
 
   return (
     <div className={contact}>
       <div className={cn(container, containerTop)}>
-        <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
+        <div className={cn(grid, gridDesktop, gridTablet, gridMobile, section)}>
           <div
             className={cn(
               gridItem,
               gridMobileFullSize,
               gridTabletFullSize,
               gridDesktopMiddle,
+              aboutTop,
+              gridRow,
             )}
           >
             <div className={header}>
-              <h1 className={title}>
+              <h1 className={title}>Code Hunters</h1>
+              <h2 className={titlePhrase}>
                 Really cool things need to be created with cool people.
                 We love what we do and therefore give our best in our work.
-              </h1>
+              </h2>
             </div>
           </div>
           <div
@@ -71,7 +81,7 @@ const Contacts = () => {
             )}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/img/company/IT_Careers.jpeg`}
+              src={`${process.env.PUBLIC_URL}/img/company/IT.jpeg`}
               alt="Our IT careers office"
               className={itCareers}
             />
@@ -93,31 +103,14 @@ const Contacts = () => {
               gridItem,
               gridMobileFullSize,
               gridTabletFullSize,
-              gridDesktopStart,
+              gridDesktopFullSize,
             )}
           >
             <div>
               <h2 className={subtitle}>
-                About Us
+                OUR TEAM:
               </h2>
             </div>
-          </div>
-          <div
-            className={cn(
-              gridItem,
-              gridMobileFullSize,
-              gridTabletFullSize,
-              gridDesktopAbout,
-            )}
-          >
-            <p className={text}>
-              We are a group of five talented programmers who decided to create
-              a website for selling phones, starting the project
-              completely from scratch and running our own server.
-              Each of them has extensive knowledge and experience in using
-              such technologies as React, TypeScript, Node.js and Express.
-              Let me introduce the members of the Our team:
-            </p>
           </div>
         </div>
         <div
@@ -459,6 +452,7 @@ const Contacts = () => {
               <p>
                 &quot;I can resolve a merge conflict
                 in Git faster than you can
+                <br />
                 say &apos;responsive design&apos;!&quot;
               </p>
             </div>
@@ -523,7 +517,8 @@ const Contacts = () => {
               gridDesktop,
               gridTablet,
               gridMobile,
-              aboutTop,
+              aboutMargin,
+              marginFooter,
             )
           }
         >
@@ -552,39 +547,58 @@ const Contacts = () => {
             <p className={text}>
               Nice Gadgets is a website developed by a
               team of five talented programmers.
-              Using modern technologies such as React,
-              TypeScript, Express and Node.js,
-              they created an interactive website with a phone database.
+              Using modern technologies such as:
+              <strong>
+                &nbsp;React, TypeScript, Express and Node.js
+              </strong>
+              , they created an interactive website with a phone database.
               <br />
               <br />
               The main goal of the project was to develop a platform
-              where users can browse and purchase various phone models.
-              The project included out-of-the-box shopping functionality
-              that allowed users to add phones to their cart.
+              where users can browse and purchase various phone models.&nbsp;
+              <strong>
+                The project included out-of-the-box shopping functionality
+                that allowed users to add phones to their cart.
+              </strong>
               <br />
               <br />
               The developed website had an intuitive interface
               that allowed users to easily browse information
-              about phones such as model, manufacturer,
-              specifications and prices. In addition,
-              users had the opportunity to filter phones
+              about phones such as&nbsp;
+              <strong>
+                model, manufacturer,
+                specifications and prices.&nbsp;
+              </strong>
+              In addition, users had
+              the opportunity to filter phones
               according to various criteria, which simplified their search.
               <br />
               <br />
-              The developed download functionality allowed
-              site administrators to update the phone database
-              by downloading a file with a special format.
+              <strong>
+                The developed download functionality allowed
+                site administrators to update the phone database
+                by downloading a file with a special format.
+              </strong>
               This simplified the process of updating the
               product range and ensured
               the relevance of information on the website.
               <br />
               <br />
-              The team also paid a lot of attention to the navigation
-              and adaptation of the website for all devices.
-              They ensured that the site was easily accessible and
-              user-friendly on various devices,
-              from desktop computers to mobile phones.
-              The website automatically adapted to the screen size,
+              <strong>
+                The team also paid a lot of attention to the navigation
+                and adaptation of the website for all devices.
+              </strong>
+              They ensured that the site was
+              <strong>
+                &nbsp;easily accessible and user-friendly&nbsp;
+              </strong>
+              on various devices, from
+              desktop computers to mobile phones.
+              The website
+              <strong>
+                &nbsp;automatically adapted&nbsp;
+              </strong>
+              to the screen size,
               providing an optimal user
               experience regardless of the device used.
               <br />
@@ -593,9 +607,12 @@ const Contacts = () => {
               the &quot;Nice Gadgets&quot; project became a successful
               implementation of the idea of a website with
               a database of telephones and a purchasing function.
-              It provided a convenient way for users to choose and
-              purchase phones while providing a pleasant
-              interface and optimal user experience.
+              <br />
+              <strong>
+                It provided a convenient way for users to choose and
+                purchase phones while providing a pleasant
+                interface and optimal user experience.
+              </strong>
             </p>
           </div>
         </div>
