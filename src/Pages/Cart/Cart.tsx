@@ -72,9 +72,13 @@ const Cart: React.FC = () => {
       return;
     }
 
-    const productsIds = cartProducts.map((product) => product.id);
+    const productsForOrder: Array<{ id: string; count: number }>
+      = cartProducts.map((product) => ({
+        id: product.id,
+        count: cartMap[product.itemId].count,
+      }));
 
-    await createOrder(userId, productsIds);
+    await createOrder(userId, productsForOrder);
 
     setIsPromoModalShown(true);
     clearCart();

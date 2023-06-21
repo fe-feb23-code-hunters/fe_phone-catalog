@@ -105,7 +105,7 @@ export const Header = () => {
               <ShoppingBag />
             </IconWithCounter>
           </Link>
-          <Link to="/auth" className={headerBarIcon}>
+          <Link to="/profile" className={headerBarIcon}>
             <Auth />
           </Link>
           <Link

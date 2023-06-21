@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
 import { Link } from 'react-router-dom';
+import { Product } from '../../types/product';
 import classes from './OrderItem.module.scss';
 
 const {
   card,
-  card__section: cardSection,
+  'card__section-image': cardSectionImage,
+  'card__section-price': cardSectionPrice,
   'card__product-description': cardProductDescription,
   card__wrapper: cardWrapper,
   'card__photo-container': cardPhotoContainer,
@@ -13,29 +15,39 @@ const {
   card__price: cardPrice,
 } = classes;
 
-export const OrderItem = () => {
+interface Props {
+  product: Product;
+}
+
+export const OrderItem: React.FC<Props> = ({ product }) => {
+  const count = product.ProductOrder?.count || 1;
+
   return (
     <div className={card}>
-      <div className={cardSection}>
+      <div className={cardSectionImage}>
         <div className={cardWrapper}>
-
-          <Link to="/" className={cardPhotoContainer}>
+          <Link to={`/phones/${product.itemId}`} className={cardPhotoContainer}>
             <img
-              src="https://scdn.comfy.ua/89fc351a-22e7-41ee-8321-f8a9356ca351/https://cdn.comfy.ua/media/catalog/product/i/p/iphone-14-pro-finish-select-202209-6-1inch-silver_1_.jpg/w_600"
-              alt="iPhone"
+              src={`${process.env.REACT_APP_API_PATH}/${product.image}`}
+              alt={product.name}
               className={cardImage}
             />
           </Link>
         </div>
 
-        <Link to="/" className={cardProductDescription}>
-          Apple iPhone 14 Pro 128GB Silver (MQ023)
+        <Link
+          to={`/phones/${product.itemId}`}
+          className={cardProductDescription}
+        >
+          {product.name}
         </Link>
       </div>
 
-      <div className={cardSection}>
-        <p className={cardCount}>1</p>
-        <div className={cardPrice}>$1000</div>
+      <div className={cardSectionPrice}>
+        <p className={cardCount}>
+          {`${count} ${count > 1 ? 'items' : 'item'}`}
+        </p>
+        <div className={cardPrice}>{`$${product.price * count}`}</div>
       </div>
     </div>
   );

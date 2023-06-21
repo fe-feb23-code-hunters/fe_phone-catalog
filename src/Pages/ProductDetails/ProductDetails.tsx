@@ -131,7 +131,7 @@ const ProductDetails: React.FC = () => {
   };
 
   const goBack = () => {
-    window.history.back();
+    navigate('/phones');
   };
 
   const fetchProduct = async () => {

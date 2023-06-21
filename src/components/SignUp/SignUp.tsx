@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,19 +13,15 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signUp.scss';
 import { teal } from '@mui/material/colors';
-import { useState } from 'react';
-import {
-  validateEmail, validatePassword,
-} from '../../utils/validation.utils';
+import { useContext, useState } from 'react';
+import { validateEmail, validatePassword } from '../../utils/validation.utils';
 import Copyright from '../Copyright';
+import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
 
 const defaultTheme = createTheme({
   typography: {
     htmlFontSize: 14,
-    fontFamily: [
-      'Mont',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Mont', 'sans-serif'].join(','),
     h1: {
       fontSize: 32,
     },
@@ -54,27 +50,27 @@ export default function SignUp() {
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const { signUp, userId } = useContext(AuthContext);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isEmailValid = validateEmail(email);
     const isPasswordValid = validatePassword(password);
 
     if (isEmailValid && isPasswordValid) {
-      const userData = {
-        email,
-        password,
-      };
+      try {
+        await signUp(email, password);
 
-      // eslint-disable-next-line no-console
-      console.log(userData);
+        setEmail('');
+        setPassword('');
+        setEmailError('');
+        setPasswordError('');
 
-      setEmail('');
-      setPassword('');
-      setEmailError('');
-      setPasswordError('');
-      navigate('/auth');
+        navigate('/');
+      } catch (err: any) {
+        setEmailError(err.response.data);
+      }
     } else {
       if (!isEmailValid) {
         setEmailError('Please enter a valid email address.');
@@ -98,6 +94,10 @@ export default function SignUp() {
     setPassword(event.target.value);
     setPasswordError('');
   };
+
+  if (userId) {
+    return <Navigate to="/profile" replace />;
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
