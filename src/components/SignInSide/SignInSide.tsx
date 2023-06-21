@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,25 +14,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signInSide.scss';
 import { teal } from '@mui/material/colors';
 import { useState } from 'react';
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link to="/" id="text-link">
-        NICE👌GADGETS
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      .
-    </Typography>
-  );
-}
+import {
+  validateEmail, validatePassword,
+} from '../../utils/validation.utils';
+import Copyright from '../Copyright';
 
 const defaultTheme = createTheme({
   typography: {
@@ -44,8 +29,14 @@ const defaultTheme = createTheme({
     h1: {
       fontSize: 32,
     },
-    body1: {
+    h4: {
       fontSize: 14,
+    },
+    body1: {
+      fontSize: 12,
+    },
+    body2: {
+      fontSize: 10,
     },
   },
   palette: {
@@ -62,23 +53,13 @@ const defaultTheme = createTheme({
 });
 
 const SignInSide = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
-  const validatePassword = (pw: string) => {
-    const pwRegex = /^(?=.*[A-Z])(?=.*\d)(?!.*[^\w\s])(?=.*[a-z]).{8,16}$/;
-
-    return pwRegex.test(pw);
-  };
-
-  const validateEmail = (em: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    return emailRegex.test(em);
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -100,6 +81,7 @@ const SignInSide = () => {
       setPassword('');
       setEmailError('');
       setPasswordError('');
+      navigate('/');
     } else {
       if (!isEmailValid) {
         setEmailError('Please enter a valid email address.');
@@ -162,7 +144,7 @@ const SignInSide = () => {
           <Box
             sx={{
               my: 20,
-              mx: 10,
+              mx: 8,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -231,18 +213,18 @@ const SignInSide = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, height: '54px' }}
+                sx={{ mt: 1, mb: 2, height: '54px' }}
                 id="form-button"
               >
                 Sign in
               </Button>
-              <Grid container>
-                <Grid item xs>
+              <Grid container justifyContent="center" spacing={3}>
+                <Grid item xs={5}>
                   <Link to="/reset" id="text-link">
                     Forgot password?
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid item xs={7}>
                   <Link to="/register" id="text-link">
                     Don&apos;t have an account? Sign up
                   </Link>

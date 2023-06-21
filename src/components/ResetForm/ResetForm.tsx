@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,25 +12,8 @@ import { teal } from '@mui/material/colors';
 import { useState } from 'react';
 import './resetForm.scss';
 import Modal from '../Modal';
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link to="/" className="link">
-        NICE👌GADGETS
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      .
-    </Typography>
-  );
-}
+import { validateEmail } from '../../utils/validation.utils';
+import Copyright from '../Copyright';
 
 const defaultTheme = createTheme({
   typography: {
@@ -43,7 +26,7 @@ const defaultTheme = createTheme({
       fontSize: 32,
     },
     body1: {
-      fontSize: 14,
+      fontSize: 12,
     },
   },
   palette: {
@@ -68,12 +51,6 @@ export default function ResetForm() {
   const handleCloseModal = () => {
     setShowModal(false);
     navigate('/auth');
-  };
-
-  const validateEmail = (em: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    return emailRegex.test(em);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -143,7 +120,7 @@ export default function ResetForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2, height: '54px' }}
+                sx={{ mt: 2, mb: 2, height: '54px' }}
                 id="form-button"
               >
                 Reset password

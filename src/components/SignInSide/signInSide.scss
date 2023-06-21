@@ -4,7 +4,6 @@
 
 #text {
   color: $secondary-color;
-  @include small-text;
   text-align: center;
 
   &-title {
@@ -16,15 +15,11 @@
   }
 
   &-link {
+    text-align: end;
     text-decoration: none;
     cursor: pointer;
-    @include body-text;
+    font-size: 12px;
     color: $primary-color;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      font-weight: 650;
-    }
   }
 }
 
