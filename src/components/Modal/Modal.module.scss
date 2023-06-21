@@ -28,33 +28,35 @@ $icon: 50px;
     text-align: center;
     justify-content: center;
     background-color: $elements-color;
+    padding: 20px;
 
     @include onMobile {
       width: 300px;
+      padding: 10px;
     }
   }
 
   &__header {
-    padding: $padding;
+    margin-bottom:  $padding;
   }
 
   &__title {
     @include desktop-tablet-h4;
-    margin: 0;
+    margin: 0 0  $padding 0;
   }
 
   &__body {
     @include body-text;
-    padding: $padding;
+    margin-bottom:  $padding;
   }
 
   &__footer {
-    padding: $padding;
+    margin-bottom:  $padding;
   }
 }
 
 .icon {
-  margin-top: $padding;
+  margin: $padding 0 $padding;
   height: $icon;
   width: $icon;
 }

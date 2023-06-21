@@ -1,0 +1,19 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.container {
+  border: 1px solid $elements-color;
+  background-color: $white-color;
+  padding: 10px;
+
+  @include onTablet {
+    padding: 20px;
+  }
+}
+
+.message {
+  @include body-text;
+  color: $secondary-color;
+  text-align: center;
+}
