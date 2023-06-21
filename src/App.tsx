@@ -14,6 +14,7 @@ import SignUp from './Pages/SignUp';
 import TabletsPage from './Pages/TabletsPage/TabletsPage';
 import Accessories from './Pages/Accessories';
 import ResetForm from './components/ResetForm/ResetForm';
+import { Profile } from './Pages/Profile';
 
 const App = () => (
   <AppProvider>
@@ -38,7 +39,7 @@ const App = () => (
 
         <Route path="/tablets" element={<TabletsPage />} />
         <Route path="/accessories" element={<Accessories />} />
-
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>

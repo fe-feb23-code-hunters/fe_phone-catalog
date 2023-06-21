@@ -8,12 +8,13 @@ import Button from '../../components/shared/buttons/Button/Button';
 import Modal from '../../components/Modal/Modal';
 import { CartItem } from '../../components/CartItem';
 import { CartProduct } from '../../types/cart';
-import { EmptyCart } from '../../components/EmptyCart';
 import Loader from '../../components/shared/Loader';
 import { fetchProductById } from '../../api/products.api';
 import { Product } from '../../types/product';
 import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
 import { createOrder } from '../../api/orders.api';
+import { EmptyPage } from '../../components/EmptyPage';
+import CartIcon from '../../icons/CartIcon';
 
 const {
   grid,
@@ -138,7 +139,14 @@ const Cart: React.FC = () => {
               />
             ))}
 
-            {cartProducts.length === 0 && <EmptyCart />}
+            {cartProducts.length === 0 && (
+              <EmptyPage
+                pageTitle="Your cart is currently empty!"
+                pageText="Before proceed to checkout you must add some products to your shopping cart"
+              >
+                <CartIcon />
+              </EmptyPage>
+            )}
           </div>
           <div
             className={cn(

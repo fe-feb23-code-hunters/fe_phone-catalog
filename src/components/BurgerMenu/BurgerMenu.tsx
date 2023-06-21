@@ -79,8 +79,13 @@ export const BurgerMenu: React.FC<Props> = ({ handleClick, isActive }) => {
             </li>
 
             <li className={navItem}>
-              <Link to="/accesories" className={navLink} onClick={handleClick}>
-                Accesories
+              <Link to="/accessories" className={navLink} onClick={handleClick}>
+                Accessories
+              </Link>
+            </li>
+            <li className={navItem}>
+              <Link to="/profile" className={navLink} onClick={handleClick}>
+                Profile
               </Link>
             </li>
           </ul>

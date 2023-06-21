@@ -5,7 +5,8 @@ interface Props {
 
 const CartIcon: React.FC<Props> = ({ className }) => (
   <svg
-    fill="currentColor"
+    fill="#313237"
+    height="170px"
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"

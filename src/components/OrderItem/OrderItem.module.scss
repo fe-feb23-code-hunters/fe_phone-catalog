@@ -1,0 +1,64 @@
+@use "../../styles/utils/vars" as *;
+@use "../../styles/utils/mixins" as *;
+@use "../../styles/fonts/typography" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid $elements-color;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: $white-color;
+
+  @include onDesktop {
+    &:hover {
+      box-shadow: 0 0 30px $elements-color;
+    }
+  }
+
+  @include onTablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__product-description {
+    display: inline-block;
+    text-decoration: none;
+    @include button-text;
+    color: $primary-color;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__photo-container {
+    width: 70px;
+    height: 70px;
+  }
+
+  &__image {
+    height: 66px;
+  }
+
+  &__count {
+    @include body-text;
+    color: $secondary-color;
+  }
+
+  &__price {
+    @include mobile-h2;
+  }
+}
