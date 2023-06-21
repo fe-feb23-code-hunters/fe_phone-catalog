@@ -37,21 +37,21 @@ $icon: 50px;
   }
 
   &__header {
-    margin-bottom:  $padding;
+    margin-bottom: $padding;
   }
 
   &__title {
     @include desktop-tablet-h4;
-    margin: 0 0  $padding 0;
+    margin: 0 0 $padding 0;
   }
 
   &__body {
     @include body-text;
-    margin-bottom:  $padding;
+    margin-bottom: $padding;
   }
 
   &__footer {
-    margin-bottom:  $padding;
+    margin-bottom: $padding;
   }
 }
 
