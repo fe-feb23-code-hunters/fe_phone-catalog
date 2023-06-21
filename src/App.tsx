@@ -15,6 +15,7 @@ import TabletsPage from './Pages/TabletsPage/TabletsPage';
 import Accessories from './Pages/Accessories';
 import { Profile } from './Pages/Profile';
 import Contacts from './Pages/Contacts/Contacts';
+import ResetForm from './components/ResetForm/ResetForm';
 
 const App = () => (
   <AppProvider>
