@@ -1,20 +1,35 @@
+import { Order as OrderType } from '../../types/order';
 import { OrderItem } from '../OrderItem';
 import classes from './Order.module.scss';
 
 const {
   container,
-  order,
-  order__title: orderTitle,
-  order__price: orderPrice,
+  'order-info': orderInfo,
+  'order-info__title': orderInfoTitle,
+  'order-info__price': orderInfoPrice,
 } = classes;
 
-export const Order = () => {
+interface Props {
+  order: OrderType;
+}
+
+export const Order: React.FC<Props> = ({ order }) => {
+  const { id, products } = order;
+
+  // const totalPrice = products.reduce(
+  //   (accum, { price, count }) => accum + price * count,
+  // );
+
+  const totalPrice = products.reduce((accum, { price }) => {
+    return accum + price;
+  }, 0);
+
   return (
     <div className={container}>
-      <section className={order}>
-        <h3 className={orderTitle}>Order 1:</h3>
+      <section className={orderInfo}>
+        <h3 className={orderInfoTitle}>{`Order ${id}:`}</h3>
         <OrderItem />
-        <p className={orderPrice}>Total: $1000</p>
+        <p className={orderInfoPrice}>{`Total: ${totalPrice}`}</p>
       </section>
     </div>
   );

@@ -1,10 +1,15 @@
 import cn from 'classnames';
+import { useContext, useEffect, useState } from 'react';
 import BackButton from '../../components/shared/buttons/BackButton';
 import Button from '../../components/shared/buttons/Button';
 import classes from './Profile.module.scss';
 import { Order } from '../../components/Order';
 import { EmptyPage } from '../../components/EmptyPage';
 import Orders from '../../icons/Orders/Orders';
+import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
+import { fetchUserOrders } from '../../api/orders.api';
+import { Order as OrderType } from '../../types/order';
+import { ErrorItem } from '../../components/ErrorItem';
 
 const {
   grid,
@@ -29,10 +34,31 @@ const goBack = () => {
   window.history.back();
 };
 
-// dummy handler, replace it with real one
-const onClick = () => { };
-
 export const Profile = () => {
+  const { userId, logOut } = useContext(AuthContext);
+  const [orders, setOrders] = useState<OrderType[]>([]);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    const loadOrders = async () => {
+      try {
+        if (userId === null) {
+          return;
+        }
+
+        const userOrders = await fetchUserOrders(userId);
+
+        setOrders(userOrders);
+      } catch {
+        setHasError(true);
+      }
+    };
+
+    loadOrders();
+  }, [userId]);
+
+  const hasNoOrders = orders.length === 0 && !hasError;
+
   return (
     <div className={container}>
       <div className={buttonBack}>
@@ -60,7 +86,7 @@ export const Profile = () => {
             <div className={userInfoButton}>
               <Button
                 label="Log out"
-                onClick={onClick}
+                onClick={logOut}
                 height="48px"
               />
             </div>
@@ -75,14 +101,28 @@ export const Profile = () => {
             gridDesktopEnd,
           )}
         >
-          <Order />
-          <EmptyPage
-            pageTitle="No orders yet!"
-            // eslint-disable-next-line max-len
-            pageText="Explore our products! Need help? Contact support. Happy shopping!"
-          >
-            <Orders />
-          </EmptyPage>
+          {orders.length > 0 && (
+            orders.map((orderItem) => (
+              <Order
+                key={orderItem.id}
+                order={orderItem}
+              />
+            ))
+          )}
+
+          {hasError && (
+            <ErrorItem />
+          )}
+
+          {hasNoOrders && (
+            <EmptyPage
+              pageTitle="No orders yet!"
+              // eslint-disable-next-line max-len
+              pageText="Explore our products! Need help? Contact support. Happy shopping!"
+            >
+              <Orders />
+            </EmptyPage>
+          )}
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import TabletsPage from './Pages/TabletsPage/TabletsPage';
 import Accessories from './Pages/Accessories';
+import { Profile } from './Pages/Profile';
 
 const App = () => (
   <AppProvider>
@@ -30,6 +31,7 @@ const App = () => (
         <Route path="/cart" element={<Cart />} />
         <Route path="/tablets" element={<TabletsPage />} />
         <Route path="/accessories" element={<Accessories />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>
