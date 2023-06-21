@@ -15,6 +15,7 @@ import TabletsPage from './Pages/TabletsPage/TabletsPage';
 import Accessories from './Pages/Accessories';
 import ResetForm from './components/ResetForm/ResetForm';
 import { Profile } from './Pages/Profile';
+import Contacts from './Pages/Contacts/Contacts';
 
 const App = () => (
   <AppProvider>
@@ -40,6 +41,7 @@ const App = () => (
         <Route path="/tablets" element={<TabletsPage />} />
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>
