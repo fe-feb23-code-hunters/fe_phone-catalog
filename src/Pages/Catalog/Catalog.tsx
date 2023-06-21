@@ -88,7 +88,10 @@ const Catalog: React.FC = () => {
 
   const handlePagination = (newPage: number) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    handlePageChange(newPage);
+
+    setTimeout(() => {
+      handlePageChange(newPage);
+    }, 800);
   };
 
   return (

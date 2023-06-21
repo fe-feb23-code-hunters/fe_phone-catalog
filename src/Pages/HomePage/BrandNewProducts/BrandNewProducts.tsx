@@ -29,15 +29,19 @@ const BrandNewProducts = () => {
   }, []);
 
   return (
-    <div className="product__wrapper">
-      <h2 className="product-slider__title">Brand new models</h2>
-
+    <>
       {isLoading && <Loader className={classes.loader} />}
 
-      {error && `Error: ${error}`}
+      {!isLoading && (
+        <div className="product__wrapper">
+          <h2 className="product-slider__title">Brand new models</h2>
 
-      <ProductsSlider products={newProducts} />
-    </div>
+          {error && `Error: ${error}`}
+
+          <ProductsSlider products={newProducts} />
+        </div>
+      )}
+    </>
   );
 };
 
