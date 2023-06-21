@@ -3,7 +3,8 @@ import cn from 'classnames';
 import ForwardButton from '../../components/shared/buttons/ForwardButton';
 import Home from '../../icons/Home';
 import classes from './TabletsPage.module.scss';
-import { EmptyProductsPage } from '../../components/EmptyProductsPage';
+import { EmptyPage } from '../../components/EmptyPage';
+import EmptyBag from '../../icons/EmptyBag/EmptyBag';
 
 const {
   grid,
@@ -89,7 +90,13 @@ const TabletsPage: React.FC = () => {
               gridDesktopFullSize,
             )}
           >
-            <EmptyProductsPage />
+            <EmptyPage
+              pageTitle="No products yet!"
+              // eslint-disable-next-line max-len
+              pageText="We are busy sourcing the best items for you. Check back soon for new additions!"
+            >
+              <EmptyBag />
+            </EmptyPage>
           </div>
         </div>
       </div>
