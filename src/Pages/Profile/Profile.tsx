@@ -68,7 +68,7 @@ export const Profile = () => {
     loadOrders();
   }, [userId]);
 
-  const hasNoOrders = orders.length === 0;
+  const hasNoOrders = orders.length === 0 && !hasError;
 
   if (!userId) {
     return <Navigate to="/auth" replace />;
