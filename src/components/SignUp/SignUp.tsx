@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,25 +14,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signUp.scss';
 import { teal } from '@mui/material/colors';
 import { useState } from 'react';
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {'Copyright © '}
-      <Link to="/" className="link">
-        NICE👌GADGETS
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      .
-    </Typography>
-  );
-}
+import {
+  validateEmail, validatePassword,
+} from '../../utils/validation.utils';
+import Copyright from '../Copyright';
 
 const defaultTheme = createTheme({
   typography: {
@@ -45,7 +30,7 @@ const defaultTheme = createTheme({
       fontSize: 32,
     },
     body1: {
-      fontSize: 14,
+      fontSize: 12,
     },
   },
   palette: {
@@ -62,47 +47,22 @@ const defaultTheme = createTheme({
 });
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [firstNameError, setFirstNameError] = useState('');
-  const [lastNameError, setLastNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
-  const validateName = (name: string): boolean => {
-    const nameRegex = /^[a-zA-Z\s]{2,}$/;
-
-    return nameRegex.test(name.trim());
-  };
-
-  const validateEmail = (em: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    return emailRegex.test(em);
-  };
-
-  const validatePassword = (pw: string): boolean => {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,16}$/;
-
-    return passwordRegex.test(pw);
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const isNameValid = validateName(firstName);
-    const isLastNameValid = validateName(lastName);
     const isEmailValid = validateEmail(email);
     const isPasswordValid = validatePassword(password);
 
-    if (isNameValid && isLastNameValid && isEmailValid && isPasswordValid) {
-      // Виконайте потрібні дії для реєстрації користувача
+    if (isEmailValid && isPasswordValid) {
       const userData = {
-        firstName,
-        lastName,
         email,
         password,
       };
@@ -110,23 +70,12 @@ export default function SignUp() {
       // eslint-disable-next-line no-console
       console.log(userData);
 
-      setFirstName('');
-      setLastName('');
       setEmail('');
       setPassword('');
       setEmailError('');
-      setFirstNameError('');
-      setLastNameError('');
       setPasswordError('');
+      navigate('/auth');
     } else {
-      if (!isNameValid) {
-        setFirstNameError('This field is required');
-      }
-
-      if (!isLastNameValid) {
-        setLastNameError('This field is required');
-      }
-
       if (!isEmailValid) {
         setEmailError('Please enter a valid email address.');
       }
@@ -138,16 +87,6 @@ export default function SignUp() {
         );
       }
     }
-  };
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(event.target.value);
-    setFirstNameError('');
-  };
-
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
-    setLastNameError('');
   };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -186,45 +125,6 @@ export default function SignUp() {
             sx={{ mt: 3, width: 280 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  sx={{
-                    '& .MuiFormHelperText-root': {
-                      fontSize: 10,
-                    },
-                  }}
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  value={firstName}
-                  onChange={handleNameChange}
-                  error={!!firstNameError}
-                  helperText={firstNameError}
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  sx={{
-                    '& .MuiFormHelperText-root': {
-                      fontSize: 10,
-                    },
-                  }}
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  value={lastName}
-                  onChange={handleLastNameChange}
-                  error={!!lastNameError}
-                  helperText={lastNameError}
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   sx={{
@@ -266,6 +166,9 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
+                  style={{
+                    fontSize: '12px',
+                  }}
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
@@ -278,7 +181,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, height: '54px' }}
+              sx={{ mt: 2, mb: 2, height: '54px' }}
               id="form-button"
             >
               Sign up

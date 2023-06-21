@@ -3,9 +3,5 @@
 .link {
   color: $primary-color;
   text-decoration: none;
-  transition: all 0.3s ease-in;
-
-  &:hover {
-    font-weight: 650;
-  }
+  cursor: pointer;
 }
