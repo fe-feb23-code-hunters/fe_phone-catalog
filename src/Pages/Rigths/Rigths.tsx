@@ -285,7 +285,10 @@ const Rigths = () => {
             </h2>
 
             <p className={text}>
-              If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.
+              If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us:
+              <strong>
+                &nbsp;codehunters23@gmail.com
+              </strong>
             </p>
           </div>
         </div>
