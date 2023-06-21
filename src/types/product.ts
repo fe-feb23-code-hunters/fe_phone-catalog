@@ -15,4 +15,5 @@ export interface Product {
   screen: string;
   ram: string;
   image: string;
+  ProductOrder?: { count: number; orderId: number; productId: string };
 }

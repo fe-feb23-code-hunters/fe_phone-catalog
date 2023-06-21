@@ -14,14 +14,12 @@ import './resetForm.scss';
 import Modal from '../Modal';
 import { validateEmail } from '../../utils/validation.utils';
 import Copyright from '../Copyright';
+import { resetPassword } from '../../api/auth.api';
 
 const defaultTheme = createTheme({
   typography: {
     htmlFontSize: 14,
-    fontFamily: [
-      'Mont',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Mont', 'sans-serif'].join(','),
     h1: {
       fontSize: 32,
     },
@@ -53,7 +51,7 @@ export default function ResetForm() {
     navigate('/auth');
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isEmailValid = validateEmail(email);
@@ -61,8 +59,14 @@ export default function ResetForm() {
     if (!isEmailValid) {
       setEmailError('Please enter a valid email address.');
     } else {
-      setEmailError('');
-      setShowModal(true);
+      try {
+        await resetPassword(email);
+
+        setEmailError('');
+        setShowModal(true);
+      } catch (err: any) {
+        setEmailError(err.response.data);
+      }
     }
   };
 

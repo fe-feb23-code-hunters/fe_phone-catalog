@@ -1,10 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -13,19 +11,15 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './signInSide.scss';
 import { teal } from '@mui/material/colors';
-import { useState } from 'react';
-import {
-  validateEmail, validatePassword,
-} from '../../utils/validation.utils';
+import { useContext, useState } from 'react';
+import { validateEmail } from '../../utils/validation.utils';
 import Copyright from '../Copyright';
+import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
 
 const defaultTheme = createTheme({
   typography: {
     htmlFontSize: 14,
-    fontFamily: [
-      'Mont',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Mont', 'sans-serif'].join(','),
     h1: {
       fontSize: 32,
     },
@@ -59,40 +53,28 @@ const SignInSide = () => {
   const [password, setPassword] = useState('');
 
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { logIn, userId } = useContext(AuthContext);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isEmailValid = validateEmail(email);
-    const isPasswordValid = validatePassword(password);
 
-    if (isEmailValid && isPasswordValid) {
-      // Виконайте потрібні дії для входу користувача
-      const data = {
-        email,
-        password,
-      };
+    if (isEmailValid) {
+      try {
+        await logIn(email, password);
 
-      // eslint-disable-next-line no-console
-      console.log(data);
+        setEmail('');
+        setPassword('');
+        setEmailError('');
 
-      setEmail('');
-      setPassword('');
-      setEmailError('');
-      setPasswordError('');
-      navigate('/');
-    } else {
-      if (!isEmailValid) {
-        setEmailError('Please enter a valid email address.');
+        navigate('/');
+      } catch (err: any) {
+        setEmailError(err.response.data);
       }
-
-      if (!isPasswordValid) {
-        setPasswordError(
-          // eslint-disable-next-line max-len
-          'Please enter a password between 8 and 16 characters long, containing at least one uppercase letter and one digit.',
-        );
-      }
+    } else if (!isEmailValid) {
+      setEmailError('Please enter a valid email address.');
     }
   };
 
@@ -103,8 +85,11 @@ const SignInSide = () => {
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    setPasswordError('');
   };
+
+  if (userId) {
+    return <Navigate to="/profile" replace />;
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -125,12 +110,12 @@ const SignInSide = () => {
           md={7}
           sx={{
             // eslint-disable-next-line max-len
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundImage:
+              'url(https://source.unsplash.com/random?wallpapers)',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) => (
-              t.palette.mode === 'light'
-                ? t.palette.grey[50]
-                : t.palette.grey[900]),
+            backgroundColor: (t) => (t.palette.mode === 'light'
+              ? t.palette.grey[50]
+              : t.palette.grey[900]),
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             display: 'none',
@@ -208,17 +193,8 @@ const SignInSide = () => {
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePasswordChange}
-                error={!!passwordError}
-                helperText={passwordError}
               />
-              <FormControlLabel
-                control={(
-                  <Checkbox
-                    value="remember"
-                  />
-                )}
-                label="Remember me"
-              />
+
               <Button
                 type="submit"
                 fullWidth

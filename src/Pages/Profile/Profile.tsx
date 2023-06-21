@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { useContext, useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/shared/buttons/BackButton';
 import Button from '../../components/shared/buttons/Button';
 import classes from './Profile.module.scss';
@@ -35,9 +36,15 @@ const goBack = () => {
 };
 
 export const Profile = () => {
-  const { userId, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { userEmail, userId, logOut } = useContext(AuthContext);
   const [orders, setOrders] = useState<OrderType[]>([]);
   const [hasError, setHasError] = useState(false);
+
+  const handleLogOut = () => {
+    logOut();
+    navigate('/');
+  };
 
   useEffect(() => {
     const loadOrders = async () => {
@@ -46,9 +53,13 @@ export const Profile = () => {
           return;
         }
 
-        const userOrders = await fetchUserOrders(userId);
+        const { orders: fetchedOrders } = await fetchUserOrders(userId);
 
-        setOrders(userOrders);
+        fetchedOrders.sort(
+          (order1, order2) => order2.id - order1.id,
+        );
+
+        setOrders(fetchedOrders);
       } catch {
         setHasError(true);
       }
@@ -57,7 +68,11 @@ export const Profile = () => {
     loadOrders();
   }, [userId]);
 
-  const hasNoOrders = orders.length === 0 && !hasError;
+  const hasNoOrders = orders.length === 0;
+
+  if (!userId) {
+    return <Navigate to="/auth" replace />;
+  }
 
   return (
     <div className={container}>
@@ -79,16 +94,10 @@ export const Profile = () => {
           <div className={userInfo}>
             <h2 className={userInfoHeading}>Your email:</h2>
 
-            <h3 className={userInfoEmail}>
-              example@gmail.com
-            </h3>
+            <h3 className={userInfoEmail}>{userEmail}</h3>
 
             <div className={userInfoButton}>
-              <Button
-                label="Log out"
-                onClick={logOut}
-                height="48px"
-              />
+              <Button label="Log out" onClick={handleLogOut} height="48px" />
             </div>
           </div>
         </div>
@@ -101,18 +110,12 @@ export const Profile = () => {
             gridDesktopEnd,
           )}
         >
-          {orders.length > 0 && (
-            orders.map((orderItem) => (
-              <Order
-                key={orderItem.id}
-                order={orderItem}
-              />
-            ))
-          )}
+          {orders.length > 0
+            && orders.map((orderItem) => (
+              <Order key={orderItem.id} order={orderItem} />
+            ))}
 
-          {hasError && (
-            <ErrorItem />
-          )}
+          {hasError && <ErrorItem />}
 
           {hasNoOrders && (
             <EmptyPage
