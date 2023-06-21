@@ -184,7 +184,7 @@ const Cart: React.FC = () => {
         onClose={() => setIsLoginModalShown(false)}
         showModal={isLoginModalShown}
         description="Log into your account to continue shopping"
-        navigation="/log-in"
+        navigation="/auth"
       />
 
       <Modal
