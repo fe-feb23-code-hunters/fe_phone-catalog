@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { useEffect } from 'react';
 import classes from './Contacts.module.scss';
 import Linkedin from '../../icons/Linkedin/Linkedin';
 import GitHub from '../../icons/GitHub/GitHub';
@@ -34,7 +35,6 @@ const Contacts = () => {
     grid__item__mobile_2_3: gridMobileCenter,
     grid__item__tablet_1_12: gridTabletFullSize,
     grid__item__tablet_4_9: gridTabletCenter,
-    //    grid__item__tablet_1_7: gridTabletMiddle,
     grid__item__desktop_1_8: gridDesktopStart,
     grid__item__desktop_1_14: gridDesktopMiddle,
     grid__item__desktop_15_24: gridDesktopEnd,
@@ -49,6 +49,10 @@ const Contacts = () => {
     about__footer: marginFooter,
     about__header: aboutMargin,
   } = classes;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
 
   return (
     <div className={contact}>

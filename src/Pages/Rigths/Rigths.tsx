@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import cn from 'classnames';
+import { useEffect } from 'react';
 import classes from './Rigths.module.scss';
 
 const Rigths = () => {
@@ -18,6 +19,10 @@ const Rigths = () => {
     grid__item__desktop_1_24: gridDesktopFullSize,
     section,
   } = classes;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
 
   return (
     <>

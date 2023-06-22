@@ -13,6 +13,7 @@ import { Product } from '../../types/product';
 import { fetchProductById } from '../../api/products.api';
 import { EmptyPage } from '../../components/EmptyPage';
 import HeartOff from '../../icons/HeartOff/HeartOff';
+import { NoProductsFound } from '../../components/NoProductsFound';
 
 const {
   grid,
@@ -77,6 +78,10 @@ const FavouritePage: React.FC = () => {
     }
   }, [favourites]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
+
   return (
     <div>
       <div className={cn(container, containerTop)}>
@@ -134,7 +139,11 @@ const FavouritePage: React.FC = () => {
             </div>
           </div>
 
-          {favouritesProducts.length === 0 && (
+          {favouritesProducts.length === 0 && query.length !== 0 && (
+            <NoProductsFound />
+          )}
+
+          {favouritesProducts.length === 0 && query.length === 0 && (
             <div className={cn(container, sectionMargin)}>
               <div className={cn(grid, gridDesktop, gridTablet, gridMobile)}>
                 <div
