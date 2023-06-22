@@ -110,6 +110,10 @@ const Cart: React.FC = () => {
     }
   }, [cart]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
+
   return (
     <div className={container}>
       <div className={buttonBack}>

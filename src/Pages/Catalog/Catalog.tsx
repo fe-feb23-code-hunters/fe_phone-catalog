@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import classes from './catalog.module.scss';
@@ -93,6 +93,10 @@ const Catalog: React.FC = () => {
       handlePageChange(newPage);
     }, 800);
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  });
 
   return (
     <>
