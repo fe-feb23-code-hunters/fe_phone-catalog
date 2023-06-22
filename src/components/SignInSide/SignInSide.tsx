@@ -53,6 +53,7 @@ const SignInSide = () => {
   const [password, setPassword] = useState('');
 
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const { logIn, userId } = useContext(AuthContext);
 
@@ -71,7 +72,13 @@ const SignInSide = () => {
 
         navigate('/');
       } catch (err: any) {
-        setEmailError(err.response.data);
+        if (err?.response?.data?.includes('password')) {
+          setPasswordError(err.response.data);
+          setEmailError('');
+        } else {
+          setEmailError(err.response.data);
+          setPasswordError('');
+        }
       }
     } else if (!isEmailValid) {
       setEmailError('Please enter a valid email address.');
@@ -193,6 +200,8 @@ const SignInSide = () => {
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePasswordChange}
+                error={!!passwordError}
+                helperText={passwordError}
               />
 
               <Button
